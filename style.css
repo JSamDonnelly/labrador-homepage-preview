@@ -1,0 +1,1237 @@
+/* ============================================================
+   LABRADOR SERVICES — Variant B
+   Direction: warm strategic studio (idea-led, conversational)
+   Same palette, different register: big type, soft shapes,
+   one bold mint moment, almost no print apparatus.
+   ============================================================ */
+
+:root {
+  /* Original Labrador palette (see DESIGN.md) mapped onto this layout's token
+     names. Every pairing used below comes from the audited set: ink on paper,
+     ink on Mint 100, paper on Mint 800, and the Mint 800 / Gold 700 text floors. */
+  --paper: #f7f8f7; /* Paper */
+  --paper-deep: #f1f3f2; /* Neutral 50 */
+  --ink: #1a1d1c; /* Ink */
+  --ink-soft: #585f5c; /* Neutral 600 — lightest neutral safe for text */
+  --line: #bbc1be; /* Neutral 300 — hairlines */
+
+  --mint: #cdf7e5; /* Mint 100 — safe for large surfaces with ink text */
+  --mint-strong: #6fe3b4; /* Mint 400 — brand accent / marks */
+  --mint-deep: #166d51; /* Mint 800 — text floor on light */
+  --gold: #e0a23c; /* Gold 400 — cameo */
+  --gold-deep: #855713; /* Gold 700 — text floor on light */
+  /* Gold 100 — Amber's large-surface counterpart to Mint 100, introduced for the
+     audits page's process panel (each page gets one color block; the homepage's
+     is mint, the audits page's is gold). Verified on this fill: Ink 13.4:1,
+     Soft Ink 5.2:1, Gold 700 5.0:1, Mint 800 5.0:1. Same pairing rule as mint:
+     ink-family or deep-accent text only, never white. */
+  --gold-mist: #f6e4bc;
+
+  /* Text-on-dark pair for surfaces using --ink as a background (the CTA plate).
+     --ink-soft is calibrated for light backgrounds and fails on dark ones —
+     these are separate, verified against --ink: body 10.20:1, metadata 7.89:1. */
+  --ink-text: #cfc8b8; /* body copy on --ink */
+  --ink-meta: #b8b0a0; /* labels/metadata on --ink */
+  /* The page's floor, used once: the colophon strip under the dark sign-off.
+     A step below --ink so the dark run ends on its lowest tone. Deliberately
+     not --focus-ink (#0b0c0c), which is close in value but means "the focus
+     ring's halo" — one job per token. */
+  --ink-deep: #0e100f;
+
+  /* Focus: always-visible yellow + black ring (non-negotiable per the style guide) */
+  --focus: #fd0;
+  --focus-ink: #0b0c0c;
+
+  /* Display is the licensed Neue Haas Unica, self-hosted (see fonts.css).
+     The kit has no 500/600 cut, so those weights resolve to 400/700. */
+  --font-display: "Neue Haas Unica", "Helvetica Neue", arial, sans-serif;
+  --font-body:
+    "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", "Helvetica Neue", arial, sans-serif;
+
+  --text-hero: clamp(2.6rem, 7.5vw, 5.2rem);
+  --text-2xl: clamp(1.9rem, 4vw, 3rem);
+  --text-xl: clamp(1.4rem, 2.4vw, 1.9rem);
+  /* Body copy runs large by design: 1.2rem (19.2px) is the reading size, not
+     1rem. The stylishness is in the ratio, not the raw number — at this size
+     leading comes down to 1.6 and the measures stay pinned in `ch`, so lines
+     hold their character count instead of sprawling. --text-sm stays at 16px
+     and is now strictly a UI-label token (nav, pills, kicker, colophon); it is
+     never used for prose, which is what lets body grow without widening the
+     header and breaking the nav breakpoint. */
+  --text-lg: 1.45rem;
+  --text-base: 1.2rem;
+  /* 16px floor. Nothing on the page renders below this — the old 0.9rem
+     (14.4px) label size and 0.78rem (12.48px) kicker/colophon size are gone.
+     There is deliberately no token smaller than this one: small type is the
+     most common readability failure on sites like ours, and a distinct
+     "--text-xs" would just be an invitation to reintroduce one. The kicker
+     and colophon separate themselves by font, casing, tracking, and color
+     instead of by shrinking. */
+  --text-sm: 1rem;
+
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+}
+
+body {
+  overflow-x: clip;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+}
+
+.wrap {
+  max-width: 74rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.5rem 1rem;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: top 0.15s ease;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: 3rem;
+}
+
+/* ============================================================
+   HEADER — sentence case, pill CTA
+   ============================================================ */
+.masthead-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1.4rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+/* Real brand lockup (gold Labrador mark + "Labrador/" wordmark + "Services" tagline)
+   in place of the style tile's placeholder mark. Intrinsic ratio is 759×189. */
+.brand-logo {
+  height: 3rem;
+  width: auto;
+}
+
+nav.masthead {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* Scoped to the direct child list throughout: the Services dropdown nests a
+   second <ul> inside this one, and an unscoped `nav.masthead ul` would lay
+   that submenu out horizontally and restyle its links. */
+nav.masthead > ul {
+  display: flex;
+  flex-wrap: wrap; /* let the list flow to a second row rather than crushing labels */
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav.masthead > ul > li > a,
+.submenu-toggle > summary {
+  display: inline-block;
+  padding-block: 0.3rem; /* clears the 24px target minimum outright */
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-weight: 500;
+  font-size: var(--text-sm);
+  /* A nav label is a phrase, not prose — "Our Tool" breaking across two lines
+     reads as two separate links. The list wraps instead (above). */
+  white-space: nowrap;
+}
+
+nav.masthead > ul > li > a:hover,
+.submenu-toggle > summary:hover {
+  color: var(--mint-deep);
+}
+
+/* ---- Services dropdown (native disclosure, no JS) ---- */
+.has-submenu {
+  position: relative;
+}
+
+.submenu-toggle > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  list-style: none; /* Firefox default triangle */
+}
+
+.submenu-toggle > summary::-webkit-details-marker {
+  display: none; /* Safari / older Chrome default triangle */
+}
+
+/* Direction is not the only signal that this opens: the summary announces its
+   own expanded/collapsed state natively, which is the whole reason for using
+   <details> here rather than a styled link. */
+.chevron {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid currentcolor;
+  border-bottom: 2px solid currentcolor;
+  transform: translateY(-0.1rem) rotate(45deg);
+  transition: transform 0.18s ease;
+}
+
+.submenu-toggle[open] > summary .chevron {
+  transform: translateY(0.1rem) rotate(-135deg);
+}
+
+.submenu {
+  position: absolute;
+  top: calc(100% + 0.7rem);
+  left: 0;
+  z-index: 5; /* under the skip link (10), over page content */
+  display: grid;
+  gap: 0.15rem;
+  min-width: 11rem;
+  margin: 0;
+  padding: 0.45rem;
+  list-style: none;
+  background: var(--paper-deep);
+  /* Flat by system rule: separation comes from the border and an opaque
+     surface, never a drop shadow. That puts the whole burden of "this is a
+     surface in front of the page" on one line, so it is Soft Ink (6.15:1 on
+     paper) rather than the Hairline Sand used elsewhere — at 1.72:1 the
+     hairline left the panel edge nearly invisible to low-vision users. */
+  border: 1px solid var(--ink-soft);
+  border-radius: 0.75rem;
+}
+
+.submenu a {
+  display: block;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.submenu a:hover {
+  background: var(--mint);
+  color: var(--mint-deep);
+}
+
+.pill {
+  display: inline-block;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  transition: background 0.18s ease;
+  white-space: nowrap; /* "Say hi" must never split across two lines */
+}
+
+.pill:hover {
+  background: var(--mint-deep);
+}
+/* Small screens: wrap the nav under the logo rather than hiding it — hiding the
+   links removed the only way to reach the sections on the majority of traffic.
+   Breakpoint is 900px: at the 16px label size the logo + links + pill need
+   ~766px of content width (≈855px of viewport) to sit on one row. Re-measure
+   whenever a nav item is added, removed, or renamed — this was 694px/772px
+   before the About link was added, and 646px/718px before that, before the
+   Services dropdown replaced the original three links. One more top-level
+   item will exhaust this margin too. */
+@media (width <= 900px) {
+  .masthead-inner {
+    flex-wrap: wrap;
+  }
+
+  /* The submenu drops out of the overlay and into the flow here, and that is a
+     conformance fix rather than a preference. Down here the link list wraps to
+     a second row; an absolutely-positioned panel paints straight over it, and
+     since the panel cannot close without JS, a user tabbing on from Services
+     lands on "Pricing" or "Blog" completely hidden behind it — WCAG 2.2 SC
+     2.4.11 Focus Not Obscured. In flow, the panel pushes the rest of the nav
+     down instead, and nothing can be buried. */
+  .submenu {
+    position: static;
+    min-width: 0;
+    margin-top: 0.5rem;
+  }
+
+  nav.masthead {
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  nav.masthead > ul {
+    gap: 1.25rem;
+  }
+}
+
+/* ============================================================
+   HERO — one big idea
+   ============================================================ */
+.hero {
+  padding-block: clamp(4.5rem, 11vw, 9rem) clamp(3.5rem, 8vw, 6rem);
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--mint-deep);
+}
+
+/* The stat line: a direct continuation of the headline, played straight. This
+   replaced an asterisk-and-footnote mechanic — the fine-print framing worked
+   against the claim, and a dangling * is exactly the kind of visual apparatus
+   this page argues against. The gold moved off the glyph and onto the figure
+   it was pointing at, which keeps Amber Ember at its documented two homepage
+   cameos: this number and "decades" in the background section. */
+.hero-sub {
+  margin-top: 1.4rem;
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+/* Gold marks the numeric proof, the same grammar "decades" uses below. Weight
+   carries the emphasis alongside the colour (5.85:1 on paper), so the phrase
+   reads identically to anyone who can't see the hue. */
+.hero-sub em {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--gold-deep);
+}
+
+.hero .lede {
+  margin-top: 1.8rem;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 46ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.6rem;
+}
+
+/* Fact strip under the hero CTAs: three risk-reversal claims surfaced from
+   deeper sections. Same grammar as the sector strip — a flex-wrap list with
+   whitespace doing the grouping, no separator glyphs (screen readers announce
+   middots inconsistently, and generated-content separators get read aloud by
+   some of them). UI-label size, not prose size: this is metadata. */
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.6rem 0 0;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.pill-ghost {
+  display: inline-block;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.pill-ghost:hover {
+  background: var(--mint);
+  border-color: var(--mint-deep);
+}
+
+/* ============================================================
+   BELIEFS — manifesto trio
+   ============================================================ */
+.beliefs {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+/* Shared section-label heading: the quiet Soft Ink <h2> that opens the beliefs,
+   background, philosophy, regulations, and widgets sections. Deliberately held
+   at --text-base (19.2px) rather than riding --text-lg up to 23.2px — at that
+   size it would collide with the belief/offer h3s at their small-screen floor
+   (22.4px) and the hierarchy would go muddy. Same size as body now; weight 600
+   and Soft Ink are what separate it. */
+.beliefs h2,
+.background h2,
+.philosophy h2,
+.tool h2,
+.regulations h2,
+.widgets h2,
+.snapshot h2,
+.method h2,
+.automation h2,
+.deliverables h2 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-transform: none;
+  margin-bottom: 2.5rem;
+}
+
+.belief-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+.belief h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  max-width: 18ch;
+}
+
+.belief p {
+  margin-top: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 38ch;
+}
+
+/* ============================================================
+   BACKGROUND — the proof layer. Sibling grammar to Beliefs (same
+   hairline top border, same section-label heading), with the page's
+   one deliberate gold escalation: the claim's emphasized phrase
+   reuses the hero's colored-em pattern in Amber Ember instead of
+   mint. Sectors sit in a rule-bounded strip (offer-list grammar,
+   not cards); no gold there — one cameo per section.
+   ============================================================ */
+.background {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.background-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.background-claim em {
+  font-style: normal;
+  color: var(--gold-deep);
+}
+
+/* .at-list is the audits page's assistive-technology strip: same rule-bounded
+   flex-wrap grammar, same reason there are no separators between items (a
+   wrapped row must never strand a divider). */
+.sector-list,
+.at-list {
+  list-style: none;
+  padding: 0;
+  margin-block: 2.2rem 0;
+  padding-block: 1.1rem;
+  border-block: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2.5rem;
+  font-weight: 500;
+}
+
+.background-note {
+  margin-top: 1.6rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+/* Shared inset-panel geometry: paper must stay visible on all four sides or
+   the corner radius reads as a rendering error. Inline inset here; the
+   vertical gaps come from the neighbouring sections' padding, which is why
+   there is no margin-block on the panel itself. The one case that padding
+   can't cover is handled below. Each page gets at most one of these color
+   blocks: mint on the homepage (services), gold on the audits page (process). */
+.services-panel,
+.process-panel {
+  border-radius: clamp(1.25rem, 3vw, 2.5rem);
+  margin-inline: clamp(0.75rem, 2vw, 1.5rem);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.services-panel {
+  background: var(--mint);
+}
+
+.process-panel {
+  background: var(--gold-mist);
+}
+
+/* The exception: a full-bleed colour block carries no outer spacing, so when
+   the dark sign-off directly follows the panel there is nothing to keep them
+   apart and the panel's rounded corners collide with it. Give the dark block
+   the gap instead of the panel, so that inserting any normal section between
+   them (which brings its own padding) doesn't double it up. */
+.services-panel + .say-hi,
+.process-panel + .say-hi {
+  margin-block-start: clamp(3.5rem, 8vw, 6rem);
+}
+
+.services-panel h2,
+.process-panel h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+.services-panel .intro {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  max-width: 48ch;
+}
+
+.offer-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2.75rem;
+  border-top: 1.5px solid rgba(26, 29, 28, 0.22);
+}
+
+.offer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding-block: 1.6rem;
+  border-bottom: 1.5px solid rgba(26, 29, 28, 0.22);
+}
+
+.offer h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.offer p {
+  color: var(--ink-soft);
+  /* Prose, so it takes the body size. It sat at --text-sm when that token was
+     doing double duty as both a label and a small-body size; --text-sm is
+     UI-only now. */
+  font-size: var(--text-base);
+  line-height: 1.6;
+  max-width: 44ch;
+}
+
+.offer .arrow {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--mint-deep);
+}
+
+/* Stacks at 900px, matching the nav breakpoint rather than carrying its own
+   number. It was 720px, which was tuned when offer descriptions sat at 16px;
+   at the 19.2px body size the description column below ~840px gets narrow
+   enough that copy wraps to four or five lines while the title column sits
+   half empty. Re-check this if the body size moves again, and re-sync with
+   the nav breakpoint if that one changes. */
+@media (width <= 900px) {
+  .offer {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .offer .arrow {
+    display: none;
+  }
+}
+
+/* ============================================================
+   PHILOSOPHY — third and last of the light "about us" run
+   (beliefs, background, philosophy), so it takes the same hairline
+   rule and the same section padding as its two siblings rather than
+   the looser rhythm it had when it followed the mint panel. The
+   color block below is what closes the run. Emphasis is the hero's
+   colored-em pattern in Deep Forest Mint — gold stays spent
+   (see DESIGN.md, Amber Ember).
+   ============================================================ */
+.philosophy {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.philosophy-statement {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+.philosophy-statement em {
+  font-style: normal;
+  color: var(--mint-deep);
+}
+
+.philosophy-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+.philosophy-statement + .philosophy-note {
+  margin-top: 2rem;
+}
+
+/* ============================================================
+   OUR TOOL — the page's one place where colour means "clickable".
+   Every other section spends its accent on an emphasised phrase;
+   here Deep Forest Mint is reserved for the links, so the mint
+   underline reads as an affordance rather than decoration. That is
+   also what differentiates this section from its neighbours, which
+   is why the claim carries no coloured <em> of its own.
+   Follows the mint panel, so no hairline rule.
+   ============================================================ */
+.tool {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.tool-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+.tool-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 54ch;
+  text-wrap: pretty;
+}
+
+.tool-claim + .tool-note {
+  margin-top: 2rem;
+}
+
+/* Links are identified by two signals, not just colour: Deep Forest Mint
+   (5.90:1 on paper, and plainly different from the Soft Ink prose around it)
+   plus a 2px underline. Mint 400 is deliberately NOT used for the resting
+   underline — at 1.6:1 on paper it would be too faint to carry the job on its
+   own — but it earns its brightness on hover, where the text simultaneously
+   darkens to full Ink. */
+.tool-note a,
+.tool-link a,
+.process-steps a {
+  color: var(--mint-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--mint-deep);
+  text-decoration-thickness: 2px;
+  /* 0.28em, not the 0.18em this started at. Both faces here drop their
+     descenders to ~0.19em below the baseline, so a 0.18em offset put the rule
+     straight through the tail of every "g" and "y"; `text-decoration-skip-ink`
+     then chopped a gap around each one and the line read as broken rather than
+     drawn. 0.28em clears the deepest descender with room to spare, so the rule
+     runs unbroken and skip-ink never has to fire. Measured, not guessed — if
+     either typeface changes, re-measure before trusting this number. */
+  text-underline-offset: 0.28em;
+  transition:
+    color 0.18s ease,
+    text-decoration-color 0.18s ease;
+}
+
+.tool-note a:hover,
+.tool-link a:hover,
+.process-steps a:hover {
+  color: var(--ink);
+  text-decoration-color: var(--mint-strong);
+}
+
+.tool-link {
+  margin-top: 2rem;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   REGULATIONS — jurisdictional coverage. Follows the mint panel, so
+   no hairline rule (the colour block divides). Structurally this is
+   the page's one data section, and that is deliberate: it opens with
+   a body-size lead rather than a display claim, so it doesn't become
+   a fourth big-statement pillar next to Background, Philosophy, and
+   Widgets. The pairs are a real <dl> — region is the term, the
+   standards are its definition — wrapped in divs so the grid can lay
+   out each pair as a unit (valid per the HTML spec).
+   ============================================================ */
+.regulations {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.regulations .intro {
+  margin-bottom: 2.75rem;
+  color: var(--ink-soft);
+  max-width: 54ch;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.jurisdictions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 2rem clamp(2rem, 4vw, 3.5rem);
+  margin: 0;
+}
+
+/* WARNING — do not "simplify" the wrapper divs away with `display: contents`.
+   It is the obvious-looking refactor here (it would make each dt/dd a direct
+   grid item and delete the divs), and it is the one display value that really
+   does remove an element's box from the accessibility tree; Chromium and
+   WebKit have both shipped bugs dropping semantics under it. `display: grid`
+   on the <dl> itself is safe by contrast: roles come from the element, not
+   from computed display. Keep the divs. */
+
+.jurisdictions dt {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.jurisdictions dd {
+  margin: 0.45rem 0 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+/* ============================================================
+   WIDGETS — the honest aside. Takes a hairline rule because it now
+   follows a light section (regulations) rather than the mint block.
+   Deliberately the quietest of the statement sections — a step down in size (--text-xl, not the
+   --text-2xl its siblings use) and no accent colour at all — so it
+   reads as a considered aside rather than a fourth pillar beside
+   Background (gold) and Philosophy (mint). That also keeps Amber
+   Ember spent at two uses; see DESIGN.md.
+   ============================================================ */
+.widgets {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.widgets-statement {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+
+.widgets-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+.widgets-statement + .widgets-note {
+  margin-top: 1.6rem;
+}
+
+/* ============================================================
+   SNAPSHOT — the $495 homepage-audit offer, the page's conversion
+   moment before the dark close. Full-bleed Neutral 50 band: the
+   system's quiet second neutral (elsewhere only the nav dropdown's
+   panel), which marks "this is an offer" without spending a second
+   mint moment. No hairline above or below; the colour changes are
+   the dividers. Two things differentiate it from the statement
+   sections it otherwise resembles: the band, and the page's first
+   pill CTA since the hero. Both text colours re-verified against
+   Neutral 50 rather than assumed from their paper ratios:
+   Soft Ink 5.88:1, Deep Forest Mint 5.64:1.
+   ============================================================ */
+.snapshot {
+  background: var(--paper-deep);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.snapshot-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+.snapshot-claim em {
+  font-style: normal;
+  color: var(--mint-deep);
+}
+
+.snapshot-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+.snapshot-claim + .snapshot-note {
+  margin-top: 2rem;
+}
+
+.snapshot-cta {
+  margin-top: 2.2rem;
+}
+
+/* ============================================================
+   CTA — dark sign-off. The system's one dark surface (absorbed the
+   labrador-footer-a "plate" treatment directly into Say Hi instead of
+   running it as a separate section — same tokens, one closing moment
+   instead of two). No focus-visible override here: the project's
+   global yellow/black ring (base.css) applies as-is.
+   ============================================================ */
+.say-hi {
+  padding-block: clamp(4rem, 9vw, 7rem);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Kicker set in the display face, not the mono the inspiration file shipped
+   with. Mono was costume here (brand.md's exact warning: mono as shorthand
+   for "technical" on a non-technical brand), it was a third typeface loaded
+   for one 20-character label, and the Two-Voice Rule already gives structural
+   announcements to Neue Haas. Uppercase + tracking + the mint bar carry the
+   "label" quality; the face no longer has to. */
+.say-hi .kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1.1rem;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-meta);
+}
+
+.say-hi .kicker::before {
+  content: "";
+  width: 2rem;
+  height: 4px;
+  flex: none;
+  background: var(--mint-deep);
+  /* Optical, not geometric, centring. `align-items: center` centres the rule on
+     the text's line box, but this label is all-caps: it has no descenders, so
+     its glyphs sit in the upper part of that box and the rule lands ~1.8px low
+     against them. Measured at 16px: cap height 11.62px puts the caps' optical
+     centre at 10.99px from the line-box top, while the box centre is 12.8px.
+     0.11em lifts it onto the caps. Transform rather than margin so nothing in
+     the flex layout shifts. Re-measure if the face, size, or casing changes. */
+  transform: translateY(-0.11em);
+}
+
+.say-hi h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.say-hi h2 a {
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.say-hi h2 a:hover {
+  color: var(--mint-strong);
+}
+
+.say-hi p {
+  margin-top: 1.2rem;
+  color: var(--ink-text);
+  max-width: 46ch;
+  line-height: 1.6;
+}
+
+/* Colophon. The page's floor: a step deeper than the sign-off above it, so the
+   dark run closes on its lowest tone rather than bouncing back to paper. The
+   background sits on <footer> rather than on .colophon because .colophon is
+   also the .wrap, and a background there would stop at the 74rem measure
+   instead of going full width.
+
+   The step between the two darks is deliberately soft (1.12:1) — two
+   near-blacks cannot be separated strongly, and a colophon should not announce
+   itself anyway. The real separation is the ~160px of dark space the sign-off's
+   bottom padding and this block's top padding make between the two. No hairline
+   rule, consistent with the rest of the system. */
+footer {
+  background: var(--ink-deep);
+}
+
+/* Footer link columns. Grammar mirrors the sign-off's dark-surface hierarchy:
+   column titles take the kicker's treatment (uppercase, tracked, display face,
+   Sign-off Metadata) minus its mint bar, and the links sit brighter in Sign-off
+   Body — labels dimmer than content, same as everywhere on dark. Links carry
+   no underline: inside a labelled nav landmark every item is a link, so there
+   is no surrounding prose to distinguish them from (the tool section's
+   in-prose links are the case that needs underlines; this isn't it).
+   Verified on Deep Ink: titles 8.87:1, links 11.46:1, hover 12.11:1. */
+.footer-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 2.5rem clamp(2rem, 4vw, 3.5rem);
+  padding-block: clamp(3rem, 6vw, 4.5rem) 0;
+}
+
+.footer-col h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-meta);
+  margin-bottom: 1rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col a {
+  display: inline-block;
+  padding-block: 0.35rem; /* clears the 24px target minimum */
+  color: var(--ink-text);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-col a:hover {
+  color: var(--mint-strong);
+}
+
+.colophon {
+  padding-block: clamp(2rem, 4vw, 3rem);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: var(--text-sm);
+  /* Soft Ink is a light-surface colour and fails here; this is metadata on a
+     dark surface, so it takes the same token the sign-off kicker uses. */
+  color: var(--ink-meta);
+}
+
+/* ============================================================
+   AUDITS PAGE (audits.html) — the gold page. The homepage's one
+   color block is mint (services); this page's is gold (process),
+   and its accents run Amber Ember where the homepage runs mint.
+   Mint appears here only where it means the same thing on every
+   page: link grammar, hover states, current-page markers. Shared
+   blocks reused unchanged: header, pills, snapshot band, say-hi,
+   footer.
+   ============================================================ */
+
+/* Split hero: headline column beside a rule-bounded fact stack. The homepage
+   hero is strictly single-column with a horizontal fact strip; this asymmetric
+   composition is the audits page's first departure from it. */
+.hero-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  column-gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+}
+
+.hero-audits h1 em {
+  color: var(--gold-deep);
+}
+
+.hero-facts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-block: 1px solid var(--line);
+  /* Optically seats the stack's top rule against the h1's cap line rather
+     than its line-box top. */
+  margin-top: 0.35rem;
+}
+
+.hero-facts li {
+  padding-block: 0.9rem;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.hero-facts li + li {
+  border-top: 1px solid var(--line);
+}
+
+@media (width <= 900px) {
+  .hero-split {
+    display: block;
+  }
+
+  .hero-facts {
+    margin-top: 2.2rem;
+  }
+}
+
+/* Method and automation are the audits page's light "argument" run. Method
+   sets its claim BESIDE its prose — a two-column topology the homepage never
+   uses — with the bordered AT strip closing the section full-width.
+   Automation keeps the stacked grammar, so the two adjacent sections
+   differentiate by structure the way background/philosophy differentiate by
+   texture on the homepage. */
+.method,
+.automation {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.method-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  gap: 2rem clamp(2.5rem, 5vw, 4.5rem);
+}
+
+@media (width <= 900px) {
+  .method-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
+.method-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 16ch;
+  text-wrap: balance;
+}
+
+.method-note {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 50ch;
+  text-wrap: pretty;
+}
+
+.method-note + .method-note {
+  margin-top: 1.1rem;
+}
+
+.automation-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+/* Numeric-proof grammar in the page's own accent — the audits page runs gold
+   where the homepage runs mint. */
+.automation-claim em {
+  font-style: normal;
+  color: var(--gold-deep);
+}
+
+.automation-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 50ch;
+  text-wrap: pretty;
+}
+
+.automation-claim + .automation-note {
+  margin-top: 2rem;
+}
+
+/* The process steps: the page's one numbered sequence, and a real one — an
+   audit genuinely runs in this order. They live inside the gold panel, so the
+   rows take the panel-row grammar (translucent ink rules, same as the mint
+   panel's offer list) rather than Hairline Sand. Numbering is hand-rolled:
+   list-style none strips the native markers, so each li carries a decorative
+   display-face digit (aria-hidden) plus a visually-hidden "Step n" inside its
+   h3. role="list" per the project rule. */
+.process-steps {
+  list-style: none;
+  padding: 0;
+  margin-top: 2.75rem;
+  border-top: 1.5px solid rgba(26, 29, 28, 0.22);
+}
+
+.process-steps li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem clamp(1.5rem, 3vw, 2.5rem);
+  padding-block: 1.75rem;
+  border-bottom: 1.5px solid rgba(26, 29, 28, 0.22);
+}
+
+.step-num {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  /* Gold 700 on Gold 100: 5.0:1, the same tone-on-tone move as the mint
+     panel's Deep Forest Mint arrows. */
+  color: var(--gold-deep);
+  min-width: 2ch;
+}
+
+.step-body h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+  /* Seats the smaller title against the bigger digit's cap height. */
+  margin-top: 0.18em;
+}
+
+.step-body p {
+  margin-top: 0.6rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+/* What you get: demoted from a panel to a plain light section so the gold
+   process panel stays the page's only color block. Rows take offer-list
+   grammar on paper — Hairline Sand rules, no cards. No hairline on the
+   section itself: it follows the color block, and the color change divides. */
+.deliverables {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.deliverables-intro {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 48ch;
+  text-wrap: pretty;
+}
+
+.deliverable-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.deliverable-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 1.5rem;
+  align-items: start;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.deliverable-list h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+}
+
+.deliverable-list p {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+@media (width <= 900px) {
+  .deliverable-list li {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+/* The audits snapshot band carries the page's accent: the price em runs gold
+   where the homepage's runs mint. Gold 700 on Neutral 50: 5.56:1. */
+.snapshot-audits .snapshot-claim em {
+  color: var(--gold-deep);
+}
+
+/* Current-page marker in the nav submenu and footer. Two signals in both
+   places (weight + color) — color is never the sole signal. */
+.submenu a[aria-current="page"] {
+  font-weight: 700;
+  color: var(--mint-deep);
+}
+
+.footer-col a[aria-current="page"] {
+  font-weight: 700;
+  color: var(--mint-strong);
+}

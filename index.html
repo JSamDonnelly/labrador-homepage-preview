@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Labrador Services — accessibility audits, VPATs &amp; remediation</title>
+    <meta
+      name="description"
+      content="An accessibility practice for teams who already want their product to be accessible. WCAG 2.2 audits, VPATs and ACRs, remediation, and consulting from practitioners with decades of experience."
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap masthead-inner">
+        <a class="brand" href="/">
+          <img
+            class="brand-logo"
+            src="labrador-logo.svg"
+            alt="Labrador Services home"
+            width="759"
+            height="189"
+          />
+        </a>
+        <nav class="masthead" aria-label="Primary">
+          <ul role="list">
+            <li class="has-submenu">
+              <!-- Disclosure, not a menu. <details>/<summary> is the only way to get a
+                   keyboard-operable, state-announcing dropdown with no JavaScript, and the
+                   ARIA Authoring Practices recommend a disclosure over role="menu" for site
+                   navigation anyway. Note for the WordPress build: this cannot close on Escape
+                   or on outside click without ~15 lines of JS. Add that as progressive
+                   enhancement; do not replace the native element to get it. -->
+              <details class="submenu-toggle">
+                <summary>
+                  Services
+                  <span class="chevron" aria-hidden="true"></span>
+                </summary>
+                <!-- TODO: each of these becomes its own service page. Audits has one now;
+                     the rest point at the on-page services section until theirs are built. -->
+                <ul class="submenu" role="list">
+                  <li><a href="audits.html">Audits</a></li>
+                  <li><a href="#services">VPATs</a></li>
+                  <li><a href="#services">Remediation</a></li>
+                  <li><a href="#services">Consulting</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="#our-tool">Our Tool</a></li>
+            <!-- TODO: these three pages don't exist yet and will 404 until they're built. -->
+            <li><a href="/about">About</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
+               address, which doesn't deliver on "Book a call". -->
+          <a class="pill" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- HERO -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="wrap">
+          <h1 id="hero-h">Digital products should work for <em>everyone</em>.</h1>
+          <p class="hero-sub">
+            Including the <em>1.3 billion</em> people worldwide living with a disability.
+          </p>
+          <p class="lede">
+            We're Labrador, a global accessibility practice. No fright, no panic, no jargon: we work
+            with teams who already want their product to be accessible, and we help them get there.
+          </p>
+          <div class="hero-actions">
+            <a class="pill" href="#contact">Chat with us</a>
+            <!-- TODO: repoint at the quote tool / quote form once it exists. Both buttons
+                 land on the same section today, which is a placeholder, not the intent. -->
+            <a class="pill-ghost" href="#contact">Get a quote</a>
+          </div>
+          <!-- Every item here is a claim made in full further down the page (services intro,
+               snapshot offer, sign-off). The hero only surfaces them; it must never be the
+               sole home of a promise. -->
+          <ul class="hero-meta" role="list">
+            <li>Fixed-fee, scoped in plain language</li>
+            <li>Homepage audits for $495</li>
+            <li>Proposals within one business day</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- BELIEFS -->
+      <section class="beliefs" id="beliefs" aria-labelledby="beliefs-h">
+        <div class="wrap">
+          <h2 id="beliefs-h">What we believe</h2>
+          <div class="belief-grid">
+            <div class="belief">
+              <h3>Fear is a lousy motivator.</h3>
+              <p>
+                Other firms sell accessibility with legal threats. We work with people who already
+                care. Compliance is the floor, not the goal.
+              </p>
+            </div>
+            <div class="belief">
+              <h3>Accessibility is a craft, not a checkbox.</h3>
+              <p>
+                Automated scans catch a quarter of the problems. The rest takes hands on a screen
+                reader and judgment you can't script.
+              </p>
+            </div>
+            <div class="belief">
+              <h3>The fix matters more than the finding.</h3>
+              <p>
+                Anyone can hand you a list of issues. We pair with your engineers until the barriers
+                are actually gone. Then we re-test.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BACKGROUND — the proof layer -->
+      <section class="background" id="background" aria-labelledby="background-h">
+        <div class="wrap">
+          <h2 id="background-h">Our background</h2>
+          <p class="background-claim">We've been doing this work for <em>decades</em>.</p>
+          <ul class="sector-list" role="list">
+            <li>Global sports</li>
+            <li>Broadcast media</li>
+            <li>Airlines</li>
+            <li>Talent marketplaces</li>
+            <li>Education</li>
+            <li>Enterprise SaaS</li>
+          </ul>
+          <p class="background-note">
+            Our founding team has delivered WCAG-aligned work with leading organizations in each of
+            these sectors, and has taught and spoken on accessibility at California State
+            University, Northridge and Techstars. Our most experienced founder has been doing this
+            work since 2001.
+          </p>
+        </div>
+      </section>
+
+      <!-- PHILOSOPHY -->
+      <section class="philosophy" id="philosophy" aria-labelledby="philosophy-h">
+        <div class="wrap">
+          <h2 id="philosophy-h">Our philosophy</h2>
+          <p class="philosophy-statement">Access to the internet is a <em>civil right</em>.</p>
+          <p class="philosophy-note">
+            We mean that literally. One of our founders taught UX in Haiti and co-founded a
+            digital-literacy nonprofit there. Getting people online is one half of access.
+            Accessibility is the other half. School, work, and public life happen online now, and a
+            connection means little if what loads cannot be used.
+          </p>
+          <p class="philosophy-note">
+            That is why we don't ration attention. Every client gets as much of it as they need, for
+            as long as they need it, and we work with them until WCAG 2.2 and regulatory conformance
+            are met.
+          </p>
+        </div>
+      </section>
+
+      <!-- SERVICES — the mint moment -->
+      <section class="services-panel" id="services" aria-labelledby="services-h">
+        <div class="wrap">
+          <h2 id="services-h">Four ways to work with us</h2>
+          <p class="intro">
+            Every engagement is fixed-fee, scoped in plain language, and delivered by practitioners
+            across three time zones, so the work moves while you sleep.
+          </p>
+          <ul class="offer-list" role="list">
+            <li class="offer">
+              <h3>WCAG 2.2 audits</h3>
+              <p>
+                Manual, AT-first evaluation of your critical journeys. Every finding comes with
+                severity and evidence, including images and video where they help.
+              </p>
+              <span class="arrow" aria-hidden="true">→</span>
+            </li>
+            <li class="offer">
+              <h3>VPATs &amp; ACRs</h3>
+              <p>
+                Conformance reports against Section 508, WCAG, and EN 301 549 that your sales team
+                can defend in any market, written by the people who did the testing.
+              </p>
+              <span class="arrow" aria-hidden="true">→</span>
+            </li>
+            <li class="offer">
+              <h3>Remediation partnership</h3>
+              <p>
+                We embed with your team, review pull requests, and stay until the re-test comes back
+                clean.
+              </p>
+              <span class="arrow" aria-hidden="true">→</span>
+            </li>
+            <li class="offer">
+              <h3>Consulting</h3>
+              <p>
+                We work alongside your team to build accessibility into how you already design and
+                ship, so the practice keeps running after we leave.
+              </p>
+              <span class="arrow" aria-hidden="true">→</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- OUR TOOL — the delivery mechanism behind the services above -->
+      <section class="tool" id="our-tool" aria-labelledby="tool-h">
+        <div class="wrap">
+          <h2 id="tool-h">Our tool</h2>
+          <p class="tool-claim">We built the software our audits run on.</p>
+          <p class="tool-note">
+            Labrador is our
+            <a href="https://testwithlabrador.com">guided WCAG conformance testing platform</a>, and
+            it is most of why our audits come back consistent. Testers work each success criterion
+            in order, page by page and component by component, recording severity and remediation
+            status as they go, so nothing depends on a spreadsheet someone forgot to update.
+          </p>
+          <p class="tool-note">
+            Evidence lands in the same record. Screenshots and video attach to the finding they
+            document, and your report is generated from that record rather than retyped into it.
+            Every export is built for the person receiving it: beautiful, interactive HTML reports
+            with embedded media and clickable criterion links, an editable DOCX VPAT when
+            procurement asks for one, and a Jira-ready export plus a Jira integration that moves
+            findings straight into your developers' backlog.
+          </p>
+          <p class="tool-note">
+            It is not a scanner, and it is not something you install on your site. It gives the
+            manual work structure instead of trying to replace it.
+          </p>
+          <p class="tool-link">
+            <a href="https://testwithlabrador.com"
+              >See what Labrador does at testwithlabrador.com</a
+            >
+          </p>
+        </div>
+      </section>
+
+      <!-- REGULATIONS — jurisdictional coverage -->
+      <section class="regulations" id="regulations" aria-labelledby="regulations-h">
+        <div class="wrap">
+          <h2 id="regulations-h">Global regulations</h2>
+          <p class="intro">
+            Accessibility law is not one law. What a regulator expects in Brussels is not what one
+            expects in Toronto, Delhi, or Canberra. We scope to the markets you actually sell into,
+            and produce the conformance evidence each of them asks for.
+          </p>
+          <dl class="jurisdictions">
+            <div>
+              <dt>United States</dt>
+              <dd>ADA, Section 508</dd>
+            </div>
+            <div>
+              <dt>European Union</dt>
+              <dd>European Accessibility Act, EN 301 549</dd>
+            </div>
+            <div>
+              <dt>United Kingdom</dt>
+              <dd>Equality Act 2010, Public Sector Bodies Accessibility Regulations</dd>
+            </div>
+            <div>
+              <dt>Canada</dt>
+              <dd>AODA, Accessible Canada Act</dd>
+            </div>
+            <div>
+              <dt>India</dt>
+              <!-- "Indian Standard 17802", not "IS 17802": screen readers pronounce the
+                   bare prefix as the English word "is". Spelling it out also reads better
+                   for anyone who doesn't already know the designation. -->
+              <dd>RPwD Act, Indian Standard 17802, GIGW 3.0</dd>
+            </div>
+            <div>
+              <dt>Australia</dt>
+              <dd>Disability Discrimination Act, AHRC digital access guidelines</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- WIDGETS — the honest aside -->
+      <section class="widgets" id="widgets" aria-labelledby="widgets-h">
+        <div class="wrap">
+          <h2 id="widgets-h">On widgets and overlays</h2>
+          <p class="widgets-statement">Accessibility isn't something you can install.</p>
+          <p class="widgets-note">
+            Widgets promise compliance in a line of JavaScript. They sit on top of a site and patch
+            it in the browser, but the barriers live in the code underneath, and that is where they
+            stay. Often the widget adds new ones, intercepting keyboard focus or overriding the
+            screen reader someone has already tuned to their liking.
+          </p>
+          <p class="widgets-note">
+            The filings bear it out. UsableNet, which tracks ADA website lawsuits, finds that more
+            than one in five are now brought against sites that already had a widget running.
+          </p>
+          <p class="widgets-note">
+            If you have one today, that is not a mark against you. Plenty of teams were sold one in
+            good faith. Ask us and we will tell you plainly what it does and does not cover.
+          </p>
+        </div>
+      </section>
+
+      <!-- SNAPSHOT — the $495 homepage audit offer -->
+      <section class="snapshot" id="homepage-audit" aria-labelledby="snapshot-h">
+        <div class="wrap">
+          <h2 id="snapshot-h">The homepage audit</h2>
+          <p class="snapshot-claim">See where you stand for <em>$495</em>.</p>
+          <p class="snapshot-note">
+            One page, tested by hand. We take your homepage through the same manual,
+            assistive-technology testing we bring to full engagements and send back a snapshot of
+            your site's accessibility: what works, what fails, and which fixes matter most, each
+            finding with severity and evidence.
+          </p>
+          <p class="snapshot-note">
+            It is a small commitment with nothing wasted: if what we find convinces you the rest of
+            the site deserves the same attention, the full $495 is credited toward your complete
+            audit. The first look ends up costing nothing, and you will already know exactly how we
+            work.
+          </p>
+          <!-- TODO: point at the real order/checkout flow once it exists. -->
+          <p class="snapshot-cta"><a class="pill" href="#contact">Order a homepage audit</a></p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="say-hi" id="contact" aria-labelledby="cta-h">
+        <div class="wrap">
+          <p class="kicker">Start a conversation</p>
+          <h2 id="cta-h">
+            <!-- TODO: replace the placeholder address with the real inbox -->
+            <a href="mailto:hello@example.com">Say hi <span aria-hidden="true">→</span></a>
+          </h2>
+          <p>
+            Tell us what you're building and where you want it to be more accessible. Our founding
+            team spans Maine, Wales, and Delhi, so it's always morning somewhere at Labrador. Expect
+            a scoped, fixed-fee proposal within one business day, no discovery-call gauntlet.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- aria-label distinguishes this nav from the header's "Primary" landmark. -->
+      <nav class="wrap footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul role="list">
+            <li><a href="audits.html">WCAG 2.2 audits</a></li>
+            <li><a href="#services">VPATs &amp; ACRs</a></li>
+            <li><a href="#services">Remediation</a></li>
+            <li><a href="#services">Consulting</a></li>
+            <li><a href="#homepage-audit">The $495 homepage audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Company</h2>
+          <ul role="list">
+            <li><a href="#beliefs">What we believe</a></li>
+            <li><a href="#philosophy">Our philosophy</a></li>
+            <li><a href="#our-tool">Our tool</a></li>
+            <!-- TODO: /pricing doesn't exist yet; same placeholder as the header nav. -->
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="#contact">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Writing</h2>
+          <!-- TODO: these posts don't exist yet. Slugs are proposals; keep them in sync
+               with the real URLs when the blog ships. -->
+          <ul role="list">
+            <li><a href="/blog/manual-vs-automated-testing">Manual vs. automated testing</a></li>
+            <li><a href="/blog/audits-vs-widgets">Full accessibility audits vs. widgets</a></li>
+            <li><a href="/blog/what-is-a-vpat">What is a VPAT, and when do you need one?</a></li>
+            <li>
+              <a href="/blog/european-accessibility-act"
+                >The European Accessibility Act, explained</a
+              >
+            </li>
+            <li>
+              <a href="/blog/how-to-read-an-audit-report">How to read your first audit report</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrap colophon">
+        <span>© 2026 Labrador Services · Maine · Wales · Delhi</span>
+      </div>
+    </footer>
+  </body>
+</html>

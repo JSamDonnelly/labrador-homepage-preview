@@ -1,0 +1,46 @@
+/* Neue Haas Unica — self-hosted licensed webfont (display / headings).
+   Paths are relative so the folder works as-is when opened locally, served
+   statically, or dropped into a WordPress theme directory.
+
+   The kit ships Light / Regular / Bold / Black. There is no Medium (500) or
+   Semibold (600), so the 500/600 display weights in style.css resolve to the
+   nearest available cut (400 and 700 respectively). */
+@font-face {
+  font-family: "Neue Haas Unica";
+  src:
+    url("fonts/neue-haas-unica-light.woff2") format("woff2"),
+    url("fonts/neue-haas-unica-light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Haas Unica";
+  src:
+    url("fonts/neue-haas-unica-regular.woff2") format("woff2"),
+    url("fonts/neue-haas-unica-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Haas Unica";
+  src:
+    url("fonts/neue-haas-unica-bold.woff2") format("woff2"),
+    url("fonts/neue-haas-unica-bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Haas Unica";
+  src:
+    url("fonts/neue-haas-unica-black.woff2") format("woff2"),
+    url("fonts/neue-haas-unica-black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}

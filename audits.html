@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WCAG 2.2 audits — Labrador Services</title>
+    <meta
+      name="description"
+      content="How a Labrador WCAG 2.2 audit works: every page tested by hand with NVDA, JAWS, VoiceOver, and TalkBack, automated sweeps with axe, and findings your developers can act on the day the report lands."
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap masthead-inner">
+        <a class="brand" href="/">
+          <img
+            class="brand-logo"
+            src="labrador-logo.svg"
+            alt="Labrador Services home"
+            width="759"
+            height="189"
+          />
+        </a>
+        <nav class="masthead" aria-label="Primary">
+          <ul role="list">
+            <li class="has-submenu">
+              <!-- Same native disclosure as index.html; see the comment there for why
+                   <details>/<summary> and not an ARIA menu. -->
+              <details class="submenu-toggle">
+                <summary>
+                  Services
+                  <span class="chevron" aria-hidden="true"></span>
+                </summary>
+                <!-- Audits now has its own page (this one). The rest still point at the
+                     homepage services section until their pages are built. -->
+                <ul class="submenu" role="list">
+                  <li><a href="audits.html" aria-current="page">Audits</a></li>
+                  <li><a href="index.html#services">VPATs</a></li>
+                  <li><a href="index.html#services">Remediation</a></li>
+                  <li><a href="index.html#services">Consulting</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="index.html#our-tool">Our Tool</a></li>
+            <!-- TODO: these three pages don't exist yet and will 404 until they're built. -->
+            <li><a href="/about">About</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
+               address, which doesn't deliver on "Book a call". -->
+          <a class="pill" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- HERO — the reframe: an audit is helpful, not a judgment. Split composition:
+           headline column beside a rule-bounded fact stack (the homepage hero is
+           single-column; this asymmetry is deliberate differentiation). The em runs
+           gold — this is the gold page; mint here means links and hovers only. -->
+      <section class="hero hero-audits" aria-labelledby="hero-h">
+        <div class="wrap hero-split">
+          <div class="hero-main">
+            <h1 id="hero-h">An audit is a <em>map</em>, not a verdict.</h1>
+            <p class="lede">
+              We're not here to judge; we're here to guide. Our auditors test your product by hand,
+              with the assistive technology your users actually rely on, and chart the clearest path
+              to WCAG conformance and regulatory compliance.
+            </p>
+            <div class="hero-actions">
+              <a class="pill" href="#contact">Book a call</a>
+              <a class="pill-ghost" href="#homepage-audit">Start small for $495</a>
+            </div>
+          </div>
+          <!-- Every item here is a claim made in full further down the page (method,
+               process step 2, process step 1). The hero only surfaces them. -->
+          <ul class="hero-facts" role="list">
+            <li>Every page tested by hand</li>
+            <li>All 55 WCAG 2.2 AA success criteria</li>
+            <li>Fixed-fee, scoped in plain language</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- METHOD — the AT proof layer. Claim sits BESIDE the prose (a two-column
+           topology the homepage never uses), and the bordered assistive-technology
+           strip (sector-strip grammar) closes the section full-width. -->
+      <section class="method" id="method" aria-labelledby="method-h">
+        <div class="wrap">
+          <h2 id="method-h">How we test</h2>
+          <div class="method-cols">
+            <p class="method-claim">We meet your product the way your users do.</p>
+            <div class="method-prose">
+              <p class="method-note">
+                The heart of every audit is a person, sitting with your product, using it. Our
+                auditors navigate your critical journeys with the same assistive technology your
+                users bring: listening to how a form announces itself, feeling where keyboard focus
+                lands, noticing the exact moment a journey quietly becomes impossible.
+              </p>
+              <p class="method-note">
+                Each screen reader has its own habits and its own home: NVDA and JAWS on Windows,
+                VoiceOver on Mac and iPhone, TalkBack on Android. We test across those pairings, on
+                desktop and on mobile, so a fix that helps one user never becomes a barrier for
+                another.
+              </p>
+            </div>
+          </div>
+          <ul class="at-list" role="list">
+            <li>NVDA</li>
+            <li>JAWS</li>
+            <li>VoiceOver</li>
+            <li>TalkBack</li>
+            <li>Keyboard-only testing</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- AUTOMATION — honest about the tooling, consistent with belief 2 on the
+           homepage ("automated scans catch a quarter of the problems"). The em runs
+           gold: the page's accent, in the homepage's numeric-proof grammar. -->
+      <section class="automation" id="automation" aria-labelledby="automation-h">
+        <div class="wrap">
+          <h2 id="automation-h">Where automation fits</h2>
+          <p class="automation-claim">Scanners catch about a <em>quarter</em> of the problems.</p>
+          <p class="automation-note">
+            We run automated checks on every engagement, led by axe, the engine behind much of the
+            industry's tooling. It sweeps each page for the mechanical issues a machine can see:
+            missing alt attributes, contrast slips, ARIA that contradicts itself. It's fast, it's
+            tireless, and we'd be silly not to use it.
+          </p>
+          <p class="automation-note">
+            What a scanner can't tell you is whether the focus order makes sense, whether the alt
+            text says anything useful, or whether checking out with a screen reader takes four
+            minutes or forty. That judgment is the audit. Automation clears the mechanical layer so
+            our auditors spend their time on the three quarters only a person can find.
+          </p>
+        </div>
+      </section>
+
+      <!-- PROCESS — the page's one color block, and it's gold: the homepage's bold
+           moment is the mint services panel, this page's is the process. The numbered
+           sequence earns its numbers: an audit genuinely runs in this order. -->
+      <section class="process-panel" id="process" aria-labelledby="process-h">
+        <div class="wrap">
+          <h2 id="process-h">How an audit runs</h2>
+          <!-- list-style: none strips native numbering, so each step carries its own:
+               a decorative digit for sighted readers plus a visually-hidden "Step n"
+               inside the heading for everyone else. role="list" per the project rule. -->
+          <ol class="process-steps" role="list">
+            <li>
+              <span class="step-num" aria-hidden="true">1</span>
+              <div class="step-body">
+                <h3><span class="visually-hidden">Step 1: </span>Scope</h3>
+                <p>
+                  Tell us about your product and the markets you sell into. Within one business day
+                  you'll have a fixed-fee proposal in plain language: the pages, the flows, the
+                  price.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">2</span>
+              <div class="step-body">
+                <h3><span class="visually-hidden">Step 2: </span>Test</h3>
+                <p>
+                  Our auditors work through everything in scope by hand, against all 55 WCAG 2.2 AA
+                  success criteria, with automated sweeps clearing the mechanical layer as they go.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">3</span>
+              <div class="step-body">
+                <h3><span class="visually-hidden">Step 3: </span>Report</h3>
+                <p>
+                  Findings land in Labrador as they're found, and your report is generated straight
+                  from that record: severity, evidence, and suggested fixes, nothing retyped.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">4</span>
+              <div class="step-body">
+                <h3><span class="visually-hidden">Step 4: </span>Walk through</h3>
+                <p>
+                  We sit down with your team and put the findings in order together. No jargon, no
+                  alarm, just a clear picture and a sensible plan.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num" aria-hidden="true">5</span>
+              <div class="step-body">
+                <h3><span class="visually-hidden">Step 5: </span>Re-test</h3>
+                <p>
+                  When your fixes land, we verify them and update the report. And if you'd like
+                  company along the way, our
+                  <a href="index.html#services">remediation partnership</a> picks up exactly where
+                  the audit leaves off.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- DELIVERABLES — plain light section so the gold panel above stays the page's
+           only color block. Rows take offer-list grammar on paper: hairlines, no
+           cards, no arrows. No top rule; it follows the color block. -->
+      <section class="deliverables" id="deliverables" aria-labelledby="deliverables-h">
+        <div class="wrap">
+          <h2 id="deliverables-h">What you get</h2>
+          <p class="deliverables-intro">
+            Every audit closes with the same set of deliverables, built to be used rather than
+            filed.
+          </p>
+          <ul class="deliverable-list" role="list">
+            <li>
+              <h3>Findings you can hand to a developer</h3>
+              <p>
+                Every issue is written against its WCAG success criterion, with severity, evidence
+                (screenshots and video where they help), and a suggested fix in plain language.
+              </p>
+            </li>
+            <li>
+              <h3>A report people actually read</h3>
+              <p>
+                An interactive HTML report, generated by Labrador, the testing platform we built.
+                Filter by page, severity, or criterion; every claim sits next to its evidence.
+              </p>
+            </li>
+            <li>
+              <h3>Exports that meet your team where it works</h3>
+              <p>
+                A Jira-ready export moves findings straight into your backlog, and when procurement
+                asks for formal proof, your audit becomes the basis for a VPAT or ACR.
+              </p>
+            </li>
+            <li>
+              <h3>A walkthrough, included</h3>
+              <p>
+                We present what we found, answer questions in plain language, and help you decide
+                what to fix first, so the report starts moving the day it lands.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SNAPSHOT — the $495 entry point, same band and copy rules as the homepage:
+           no turnaround promises, credit stated plainly, nobody compared to. -->
+      <section class="snapshot snapshot-audits" id="homepage-audit" aria-labelledby="snapshot-h">
+        <div class="wrap">
+          <h2 id="snapshot-h">The homepage audit</h2>
+          <p class="snapshot-claim">Start with one page for <em>$495</em>.</p>
+          <p class="snapshot-note">
+            Not ready to scope a whole audit? We'll take your homepage through the same hands-on
+            testing described above, on the same assistive technology, and send you the snapshot:
+            every finding with severity, evidence, and a suggested fix.
+          </p>
+          <p class="snapshot-note">
+            Nothing is wasted, either: go on to a complete audit and the full $495 is credited
+            toward it. Your first look ends up costing nothing, and you'll already know exactly how
+            we work.
+          </p>
+          <!-- TODO: point at the real order/checkout flow once it exists. -->
+          <p class="snapshot-cta"><a class="pill" href="#contact">Order a homepage audit</a></p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="say-hi" id="contact" aria-labelledby="cta-h">
+        <div class="wrap">
+          <p class="kicker">Start a conversation</p>
+          <h2 id="cta-h">
+            <!-- TODO: replace the placeholder address with the real inbox -->
+            <a href="mailto:hello@example.com">Say hi <span aria-hidden="true">→</span></a>
+          </h2>
+          <p>
+            Tell us what you're building, and we'll tell you what an audit of it looks like. Our
+            founding team spans Maine, Wales, and Delhi, so it's always morning somewhere at
+            Labrador. Expect a scoped, fixed-fee proposal within one business day, no discovery-call
+            gauntlet.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- aria-label distinguishes this nav from the header's "Primary" landmark. -->
+      <nav class="wrap footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul role="list">
+            <li><a href="audits.html" aria-current="page">WCAG 2.2 audits</a></li>
+            <li><a href="index.html#services">VPATs &amp; ACRs</a></li>
+            <li><a href="index.html#services">Remediation</a></li>
+            <li><a href="index.html#services">Consulting</a></li>
+            <li><a href="#homepage-audit">The $495 homepage audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Company</h2>
+          <ul role="list">
+            <li><a href="index.html#beliefs">What we believe</a></li>
+            <li><a href="index.html#philosophy">Our philosophy</a></li>
+            <li><a href="index.html#our-tool">Our tool</a></li>
+            <!-- TODO: /pricing doesn't exist yet; same placeholder as the header nav. -->
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="#contact">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Writing</h2>
+          <!-- TODO: these posts don't exist yet. Slugs are proposals; keep them in sync
+               with the real URLs when the blog ships. -->
+          <ul role="list">
+            <li><a href="/blog/manual-vs-automated-testing">Manual vs. automated testing</a></li>
+            <li><a href="/blog/audits-vs-widgets">Full accessibility audits vs. widgets</a></li>
+            <li><a href="/blog/what-is-a-vpat">What is a VPAT, and when do you need one?</a></li>
+            <li>
+              <a href="/blog/european-accessibility-act"
+                >The European Accessibility Act, explained</a
+              >
+            </li>
+            <li>
+              <a href="/blog/how-to-read-an-audit-report">How to read your first audit report</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrap colophon">
+        <span>© 2026 Labrador Services · Maine · Wales · Delhi</span>
+      </div>
+    </footer>
+  </body>
+</html>
