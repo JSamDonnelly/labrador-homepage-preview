@@ -549,6 +549,33 @@ nav.masthead > ul > li > a:hover,
   color: var(--gold-deep);
 }
 
+/* Claim beside credentials: the section's one asymmetric row. Wraps on its
+   own via flex-wrap (no breakpoint needed — three small badges have room
+   until the viewport gets genuinely narrow, unlike the two-column text
+   layouts elsewhere that need a hard breakpoint). */
+.background-credentials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.85rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.badge-row img {
+  width: clamp(2.75rem, 6vw, 4rem);
+  height: clamp(2.75rem, 6vw, 4rem);
+}
+
 /* .at-list is the audits page's assistive-technology strip: same rule-bounded
    flex-wrap grammar, same reason there are no separators between items (a
    wrapped row must never strand a divider). */
