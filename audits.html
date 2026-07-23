@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="fonts.css" />
     <link rel="stylesheet" href="base.css" />
     <link rel="stylesheet" href="style.css" />
+    <script src="site.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -286,8 +287,12 @@
         <div class="wrap">
           <p class="kicker">Start a conversation</p>
           <h2 id="cta-h">
-            <!-- TODO: replace the placeholder address with the real inbox -->
-            <a href="mailto:hello@example.com">Say hi <span aria-hidden="true">→</span></a>
+            <!-- TODO: "(opens chat)" names where this is headed — wire the real chat
+                 widget when it exists. Until then the heading opens email, same as
+                 the address below, so nothing here is a dead end. -->
+            <a href="mailto:hello@labradoraccessibility.com"
+              >Say hi <span class="h2-note">(opens chat)</span> <span aria-hidden="true">→</span></a
+            >
           </h2>
           <p>
             Tell us what you're building, and we'll tell you what an audit of it looks like. Our
@@ -295,6 +300,31 @@
             Labrador. Expect a scoped, fixed-fee proposal within one business day, no discovery-call
             gauntlet.
           </p>
+          <!-- Every way to reach us, in one row. site.js turns the address into a
+               copy-on-click control (visible + announced "Copied!" note); without
+               the script it stays a plain working mailto link. -->
+          <ul class="contact-row" role="list">
+            <li class="contact-email">
+              <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+              <span class="copy-note" role="status"></span>
+            </li>
+            <!-- TODO: swap both pre-filled mailtos for the real scheduler and quote
+                 form once those exist. -->
+            <li>
+              <a
+                class="pill"
+                href="mailto:hello@labradoraccessibility.com?subject=Booking%20a%20call"
+                >Book a call</a
+              >
+            </li>
+            <li>
+              <a
+                class="pill-ghost"
+                href="mailto:hello@labradoraccessibility.com?subject=Quote%20request"
+                >Get a quote</a
+              >
+            </li>
+          </ul>
         </div>
       </section>
     </main>

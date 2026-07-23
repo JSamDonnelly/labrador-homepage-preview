@@ -998,6 +998,97 @@ nav.masthead > ul > li > a:hover,
   line-height: 1.6;
 }
 
+/* The small functional annotation inside the giant heading link: body face,
+   metadata color, never smaller than the 16px floor. Part of the link text on
+   purpose — its whole job is telling everyone, screen readers included, what
+   the link does before they commit. */
+.say-hi .h2-note {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  letter-spacing: normal;
+  color: var(--ink-meta);
+  white-space: nowrap;
+}
+
+/* Every way in, one row: the copyable address, the call, the quote. This
+   retires the sign-off's old single-click-target rule (DESIGN.md) — the
+   heading is now the lead gesture, not the only one. */
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.1rem 2.25rem;
+  list-style: none;
+  padding: 0;
+  margin: 2.4rem 0 0;
+}
+
+.contact-email {
+  /* Anchors the floating "Copied!" note. */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+/* Sign-off Body with a quiet metadata underline; hover brightens both, the
+   same stronger-on-hover move every link on this site makes. */
+.contact-email a {
+  color: var(--ink-text);
+  text-decoration: underline;
+  text-decoration-color: var(--ink-meta);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.28em;
+  transition:
+    color 0.18s ease,
+    text-decoration-color 0.18s ease;
+}
+
+.contact-email a:hover {
+  color: var(--mint-strong);
+  text-decoration-color: var(--mint-strong);
+}
+
+/* Copy feedback: a small note floating above the address (site.js populates
+   it after copying), absolutely positioned so its arrival never shifts the
+   row. Doubles as the role="status" live region, so the same words are
+   announced to screen readers. Mint 400 on Ink: 11.5:1. */
+.copy-note {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 0;
+  width: max-content;
+  max-width: min(70vw, 22rem);
+  color: var(--mint-strong);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+/* Dark-surface pill variants: the primary inverts to paper, the ghost dims to
+   the sign-off's own text colors. Hover fills stay in the mint family, always
+   with Ink text (never white on a mint fill). */
+.say-hi .pill {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.say-hi .pill:hover {
+  background: var(--mint-strong);
+  color: var(--ink);
+}
+
+.say-hi .pill-ghost {
+  border-color: var(--ink-meta);
+  color: var(--ink-text);
+}
+
+.say-hi .pill-ghost:hover {
+  background: transparent;
+  border-color: var(--mint-strong);
+  color: var(--mint-strong);
+}
+
 /* Colophon. The page's floor: a step deeper than the sign-off above it, so the
    dark run closes on its lowest tone rather than bouncing back to paper. The
    background sits on <footer> rather than on .colophon because .colophon is
