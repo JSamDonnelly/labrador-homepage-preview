@@ -309,27 +309,16 @@ nav.masthead > ul > li > a:hover,
   color: var(--mint-deep);
 }
 
-/* The stat line: a direct continuation of the headline, played straight. This
-   replaced an asterisk-and-footnote mechanic — the fine-print framing worked
-   against the claim, and a dangling * is exactly the kind of visual apparatus
-   this page argues against. The gold moved off the glyph and onto the figure
-   it was pointing at, which keeps Amber Ember at its documented two homepage
-   cameos: this number and "decades" in the background section. */
+/* The stat line: the mission beat under the headline, played straight. This
+   slot once held an asterisk-and-footnote mechanic, then the 1.3 billion
+   figure; the number now lives in the stat pair below (see The Numbers), and
+   this line stays a plain, quiet claim. */
 .hero-sub {
   margin-top: 1.4rem;
   font-size: var(--text-base);
   line-height: 1.6;
   color: var(--ink-soft);
   max-width: 60ch;
-}
-
-/* Gold marks the numeric proof, the same grammar "decades" uses below. Weight
-   carries the emphasis alongside the colour (5.85:1 on paper), so the phrase
-   reads identically to anyone who can't see the hue. */
-.hero-sub em {
-  font-style: normal;
-  font-weight: 700;
-  color: var(--gold-deep);
 }
 
 .hero .lede {
@@ -398,6 +387,7 @@ nav.masthead > ul > li > a:hover,
    (22.4px) and the hierarchy would go muddy. Same size as body now; weight 600
    and Soft Ink are what separate it. */
 .beliefs h2,
+.numbers h2,
 .background h2,
 .philosophy h2,
 .tool h2,
@@ -434,6 +424,101 @@ nav.masthead > ul > li > a:hover,
   color: var(--ink-soft);
   line-height: 1.6;
   max-width: 38ch;
+}
+
+/* ============================================================
+   THE NUMBERS — the anti-fear proof pair, directly answering
+   belief 1: the case is scale, not threats. Two cards in the
+   site's two hues, mapped to the site's two audiences — the human
+   number on Mint Mist (the mission color), the market number on
+   Gold Mist (the numeric-proof color). The mint fill is a
+   half-scale echo of the services panel below; paired with gold it
+   reads as the two-hue system speaking, not a second bold moment.
+   Each card argues in complete sentences — deliberately not the
+   big-number-small-label stat-tile template. Exactly two cards,
+   by design.
+   ============================================================ */
+.numbers {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.numbers-intro {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 48ch;
+}
+
+.stat-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+  margin-top: 2.5rem;
+}
+
+/* Card radius sits at the panel clamp's floor (1.25rem): same shape family as
+   the services panel, at card scale. Not a new token — the panel's minimum. */
+.stat-card {
+  border-radius: 1.25rem;
+  padding: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.stat-card-people {
+  background: var(--mint);
+}
+
+.stat-card-market {
+  background: var(--gold-mist);
+}
+
+.stat-figure {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+/* Tone-on-tone, same move as the mint panel's arrows and the gold panel's
+   step digits: mint-deep on Mint Mist 5.4:1, gold-deep on Gold Mist 5.0:1. */
+.stat-card-people .stat-figure {
+  color: var(--mint-deep);
+}
+
+.stat-card-market .stat-figure {
+  color: var(--gold-deep);
+}
+
+/* Soft Ink re-verified on both fills: 5.6:1 on Mint Mist, 5.2:1 on Gold
+   Mist — the same pairing the mint panel's offer descriptions already use. */
+.stat-card > p:not(.stat-figure) {
+  margin-top: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 34ch;
+  text-wrap: pretty;
+}
+
+/* The market card's citation link takes the in-prose link grammar (deep
+   accent + 2px underline, two signals) in the card's own hue: Gold 700 on
+   Gold Mist is 5.0:1. Hover mirrors the tool links' move — text darkens to
+   Ink while the underline brightens to Gold 400 — so the pairing gets
+   stronger, not weaker. Same 0.28em offset as the tool links: both faces
+   drop descenders ~0.19em, and the measured value clears them unbroken. */
+.stat-card-market a {
+  color: var(--gold-deep);
+  text-decoration: underline;
+  text-decoration-color: var(--gold-deep);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.28em;
+  transition:
+    color 0.18s ease,
+    text-decoration-color 0.18s ease;
+}
+
+.stat-card-market a:hover {
+  color: var(--ink);
+  text-decoration-color: var(--gold);
 }
 
 /* ============================================================
