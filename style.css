@@ -786,7 +786,8 @@ nav.masthead > ul > li > a:hover,
    darkens to full Ink. */
 .tool-note a,
 .tool-link a,
-.process-steps a {
+.process-steps a,
+.background-note a {
   color: var(--mint-deep);
   text-decoration: underline;
   text-decoration-color: var(--mint-deep);
@@ -806,7 +807,8 @@ nav.masthead > ul > li > a:hover,
 
 .tool-note a:hover,
 .tool-link a:hover,
-.process-steps a:hover {
+.process-steps a:hover,
+.background-note a:hover {
   color: var(--ink);
   text-decoration-color: var(--mint-strong);
 }
