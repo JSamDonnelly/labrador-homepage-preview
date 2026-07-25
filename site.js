@@ -1,7 +1,67 @@
 // site.js — the prototype's one script, progressive enhancement only. Every
 // control on the page works without it: the contact email is a plain mailto
-// link until this wires it to copy the address instead. Keep it that way —
-// nothing on these pages may *require* JavaScript.
+// link until this wires it to copy the address instead, and the nav is a
+// wrapping row of links until this collapses it behind the Menu button. Keep it
+// that way — nothing on these pages may *require* JavaScript.
+
+// ---------------------------------------------------------------------------
+// Responsive nav
+//
+// The Menu button and the collapsed panel are both CSS-gated on .nav-enhanced,
+// added here. That ordering is the whole point: if this script never runs, the
+// button stays hidden and the nav stays open, so nobody is left with a menu
+// they cannot open. A native <button> carries the disclosure semantics
+// (aria-expanded, keyboard operation) that a styled <div> would not.
+// ---------------------------------------------------------------------------
+(() => {
+  const header = document.querySelector(".masthead-inner");
+  const button = header && header.querySelector(".menu-button");
+  const panel = header && header.querySelector("nav.masthead");
+  if (!header || !button || !panel) return;
+
+  // max-width, not the range syntax the stylesheet uses: matchMedia support for
+  // ranges is newer than the media query itself. Same 900px boundary.
+  const narrow = window.matchMedia("(max-width: 900px)");
+
+  const setOpen = (open) => {
+    header.classList.toggle("nav-open", open);
+    button.setAttribute("aria-expanded", String(open));
+    // Reopening should start clean, so collapse the Services disclosure with it.
+    if (!open) {
+      panel.querySelectorAll("details[open]").forEach((d) => {
+        d.open = false;
+      });
+    }
+  };
+
+  header.classList.add("nav-enhanced");
+  setOpen(false);
+
+  button.addEventListener("click", () => {
+    setOpen(button.getAttribute("aria-expanded") !== "true");
+  });
+
+  // In-page links must close the panel: the target section sits below an open
+  // menu, so leaving it open would scroll the reader to a pushed-down anchor.
+  panel.addEventListener("click", (event) => {
+    if (narrow.matches && event.target.closest("a")) setOpen(false);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    if (button.getAttribute("aria-expanded") !== "true") return;
+    setOpen(false);
+    // Escape must leave focus somewhere sensible, not on a link that just
+    // disappeared.
+    button.focus();
+  });
+
+  // Widening past the breakpoint shows the full nav again; clear the collapsed
+  // state so it can never come back stuck shut.
+  narrow.addEventListener("change", (event) => {
+    if (!event.matches) setOpen(false);
+  });
+})();
 
 document.querySelectorAll(".contact-email").forEach((item) => {
   if (!navigator.clipboard) return;

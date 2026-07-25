@@ -34,7 +34,15 @@
             height="189"
           />
         </a>
-        <nav class="masthead" aria-label="Primary">
+        <!-- Collapsed behind this button below 900px, but only once site.js has
+             confirmed it can run: the button ships display:none and the nav
+             ships fully visible, so with no JavaScript the header keeps its
+             original behaviour (the link row wraps under the logo and every
+             destination stays reachable). -->
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <nav class="masthead" id="primary-nav" aria-label="Primary">
           <ul role="list">
             <li class="has-submenu">
               <!-- Disclosure, not a menu. <details>/<summary> is the only way to get a

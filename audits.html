@@ -34,7 +34,12 @@
             height="189"
           />
         </a>
-        <nav class="masthead" aria-label="Primary">
+        <!-- See index.html for why this button ships hidden: the collapsed nav is
+             progressive enhancement, not a requirement. -->
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <nav class="masthead" id="primary-nav" aria-label="Primary">
           <ul role="list">
             <li class="has-submenu">
               <!-- Same native disclosure as index.html; see the comment there for why

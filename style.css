@@ -250,6 +250,37 @@ nav.masthead > ul > li > a:hover,
 .pill:hover {
   background: var(--mint-deep);
 }
+
+/* ---- The "Menu" button (responsive nav disclosure) ----
+   A worded button, not a hamburger: three lines is an icon you have to already
+   know, and this brand explains itself in words everywhere else. Takes the
+   ghost-pill treatment so it reads as a button in the system's own shape
+   language (DESIGN.md: the pill is the only button shape here).
+
+   Ships display:none and is revealed only when site.js adds .nav-enhanced, so
+   a JavaScript-less visitor never sees a button that cannot open. base.css
+   strips button borders and padding, hence the explicit values. */
+.menu-button {
+  display: none;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: var(--text-sm);
+  padding: 0.7rem 1.5rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  white-space: nowrap;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.menu-button:hover {
+  background: var(--mint);
+  border-color: var(--mint-deep);
+}
 /* Small screens: wrap the nav under the logo rather than hiding it — hiding the
    links removed the only way to reach the sections on the majority of traffic.
    Breakpoint is 900px: at the 16px label size the logo + links + pill need
@@ -284,6 +315,70 @@ nav.masthead > ul > li > a:hover,
 
   nav.masthead > ul {
     gap: 1.25rem;
+  }
+
+  /* ---- Enhanced state: the nav collapses behind the Menu button ----
+     Everything below is gated on .nav-enhanced, which only exists once
+     site.js has run. Without it these rules never apply and the header keeps
+     its wrapping no-JS layout. */
+  .nav-enhanced .menu-button {
+    display: inline-flex;
+  }
+
+  .nav-enhanced nav.masthead {
+    display: none;
+  }
+
+  /* The open panel stays in the document flow and pushes the page down rather
+     than floating over it — the same WCAG 2.2 SC 2.4.11 reasoning as the
+     submenu above. A focused link can never end up behind an overlay. */
+  .nav-enhanced.nav-open nav.masthead {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin-top: 1.1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .nav-enhanced.nav-open nav.masthead > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .nav-enhanced.nav-open nav.masthead > ul > li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* Full-width rows: the whole line is the target, not just the glyphs, and
+     0.9rem of block padding clears the 44px touch minimum comfortably. */
+  .nav-enhanced.nav-open nav.masthead > ul > li > a,
+  .nav-enhanced.nav-open .submenu-toggle > summary {
+    display: flex;
+    align-items: center;
+    padding-block: 0.9rem;
+  }
+
+  /* In the stacked panel the submenu is already inside a menu, so it drops the
+     surface treatment it needs as a desktop overlay and simply indents. */
+  .nav-enhanced.nav-open .submenu {
+    margin-top: 0;
+    padding: 0 0 0.6rem 1.1rem;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    gap: 0;
+  }
+
+  .nav-enhanced.nav-open .submenu a {
+    padding-block: 0.7rem;
+  }
+
+  .nav-enhanced.nav-open nav.masthead > .pill {
+    align-self: flex-start;
+    margin-top: 1.4rem;
   }
 }
 
