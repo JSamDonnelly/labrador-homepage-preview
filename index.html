@@ -25,7 +25,10 @@
 
     <header>
       <div class="wrap masthead-inner">
-        <a class="brand" href="/">
+        <!-- Relative, not "/": the prototype is served from a subpath on GitHub
+             Pages (and opened as a file), where a root link leaves the site.
+             Point it back at "/" in the WordPress header.php. -->
+        <a class="brand" href="index.html">
           <img
             class="brand-logo"
             src="labrador-logo.svg"
