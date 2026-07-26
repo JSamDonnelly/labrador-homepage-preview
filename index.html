@@ -63,7 +63,7 @@
                      the rest point at the on-page services section until theirs are built. -->
                 <ul class="submenu" role="list">
                   <li><a href="audits.html">Audits</a></li>
-                  <li><a href="#services">VPATs</a></li>
+                  <li><a href="#services">VPATs &amp; ACRs</a></li>
                   <li><a href="#services">Remediation</a></li>
                   <li><a href="#services">Consulting</a></li>
                 </ul>
@@ -94,9 +94,12 @@
             produce digestible, beautiful reports. We'll even do the fixing for you.
           </p>
           <div class="hero-actions">
-            <a class="pill" href="#contact">Chat with us</a>
-            <!-- TODO: repoint at the quote tool / quote form once it exists. Both buttons
-                 land on the same section today, which is a placeholder, not the intent. -->
+            <!-- data-chat-launch is the Intercom placeholder: site.js opens the
+                 messenger when the Intercom widget is present, and falls through to
+                 this link until then. Paste the Intercom snippet into <head> and this
+                 button goes live unchanged. -->
+            <a class="pill" href="#contact" data-chat-launch>Chat with us</a>
+            <!-- TODO: repoint at the quote tool / quote form once it exists. -->
             <a class="pill-ghost" href="#contact">Get a quote</a>
           </div>
           <!-- Every item here is a claim made in full further down the page (services intro,
@@ -154,7 +157,13 @@
           <div class="stat-pair">
             <div class="stat-card stat-card-people">
               <p class="stat-figure">1.3 billion</p>
-              <p>people worldwide live with a disability.</p>
+              <!-- The link is the citation: WHO's disability fact sheet, the source of
+                   both the figure and the one-in-six ratio. -->
+              <p>
+                <a href="https://www.who.int/news-room/fact-sheets/detail/disability-and-health"
+                  >people worldwide live with a disability</a
+                >, about one in six of us.
+              </p>
             </div>
             <div class="stat-card stat-card-market">
               <p class="stat-figure">$675 billion</p>
@@ -162,9 +171,9 @@
                    resource. Satisfies the cite-your-exact-figures rule the widgets
                    section set. -->
               <p>
-                the annual value of the
+                the annual
                 <a href="https://disabilityin.org/resources/disability-consumer-market"
-                  >US disabled consumer market</a
+                  >buying power of disabled consumers in the US</a
                 >.
               </p>
             </div>
@@ -185,7 +194,7 @@
               <li>
                 <img
                   src="badges/cpwa-badge.svg"
-                  alt="IAAP Certified Professional in Web Accessibility (CPWA)"
+                  alt="International Association of Accessibility Professionals (IAAP) Certified Professional in Web Accessibility (CPWA)"
                   width="72"
                   height="72"
                   loading="lazy"
@@ -225,9 +234,9 @@
               >International Association of Accessibility Professionals</a
             >
             (IAAP), and has delivered accessibility work with leading organizations in each of these
-            sectors. We've taught and spoken on accessibility at California State University,
-            Northridge and Techstars, and our most experienced founder has been doing this work
-            since 2001.
+            sectors. We've taught and spoken on accessibility at California State University
+            Northridge (CSUN) and at Techstars, and our most experienced founder has been doing this
+            work since 2001.
           </p>
         </div>
       </section>
@@ -276,10 +285,10 @@
             <li class="offer">
               <h3>VPATs &amp; ACRs</h3>
               <p>
-                Conformance reports against ADA, Section 508, WCAG, and EN 301 549 that your sales
-                team can defend in any market, written by the people who did the testing. A VPAT is
-                the industry's Voluntary Product Accessibility Template; filled out, it becomes an
-                ACR, an Accessibility Conformance Report.
+                Conformance reports against the ADA (Americans with Disabilities Act), Section 508,
+                WCAG, and EN 301 549 that your sales team can defend in any market, written by the
+                people who did the testing. A VPAT is the industry's Voluntary Product Accessibility
+                Template; filled out, it becomes an ACR, an Accessibility Conformance Report.
               </p>
             </li>
             <li class="offer">
@@ -386,8 +395,8 @@
             or overriding the screen reader someone has already tuned to their liking.
           </p>
           <p class="widgets-note">
-            The filings bear it out. UsableNet, which tracks ADA website lawsuits, finds that more
-            than one in five lawsuits are now brought against sites that already had a widget
+            The lawsuit data backs this up. UsableNet, which tracks ADA website lawsuits, finds that
+            more than one in five lawsuits are now brought against sites that already had a widget
             running.
           </p>
           <p class="widgets-note">
@@ -424,10 +433,10 @@
         <div class="wrap">
           <p class="kicker">Start a conversation</p>
           <h2 id="cta-h">
-            <!-- TODO: "(opens chat)" names where this is headed — wire the real chat
-                 widget when it exists. Until then the heading opens email, same as
-                 the address below, so nothing here is a dead end. -->
-            <a href="mailto:hello@labradoraccessibility.com"
+            <!-- data-chat-launch: opens Intercom once its snippet is added (site.js);
+                 until then the heading opens email, same as the address below, so
+                 nothing here is a dead end. -->
+            <a href="mailto:hello@labradoraccessibility.com" data-chat-launch
               >Say hi <span class="h2-note">(opens chat)</span> <span aria-hidden="true">→</span></a
             >
           </h2>
@@ -442,6 +451,10 @@
           <ul class="contact-row" role="list">
             <li class="contact-email">
               <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+              <!-- Visible cue for the copy-on-click upgrade; aria-hidden because the
+                   link's own accessible name already carries the same hint for screen
+                   readers. Ships hidden; site.js reveals it with the behavior. -->
+              <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
               <span class="copy-note" role="status"></span>
             </li>
             <!-- TODO: swap both pre-filled mailtos for the real scheduler and quote

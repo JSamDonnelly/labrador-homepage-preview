@@ -63,20 +63,44 @@
   });
 })();
 
+// ---------------------------------------------------------------------------
+// Chat placeholder (Intercom)
+//
+// Controls labelled "(opens chat)" / "Chat with us" carry data-chat-launch.
+// Once the Intercom snippet is in <head>, clicking them opens the messenger;
+// until then the click falls through to each control's own href (email or
+// the contact section), so nothing dead-ends. TODO: add the standard
+// Intercom snippet with the workspace app id — these controls then go live
+// with no further changes.
+// ---------------------------------------------------------------------------
+document.querySelectorAll("[data-chat-launch]").forEach((control) => {
+  control.addEventListener("click", (event) => {
+    if (typeof window.Intercom === "function") {
+      event.preventDefault();
+      window.Intercom("show");
+    }
+  });
+});
+
 document.querySelectorAll(".contact-email").forEach((item) => {
   if (!navigator.clipboard) return;
 
   const link = item.querySelector("a");
   const note = item.querySelector(".copy-note");
+  const clickHint = item.querySelector(".copy-hint");
   const address = link.textContent.trim();
   let timer;
 
+  // The visible "(click to copy)" cue only appears once the behavior it
+  // describes actually exists.
+  if (clickHint) clickHint.hidden = false;
+
   // Once JS is in charge the link copies instead of navigating, so say so in
   // its accessible name before anyone commits to a click.
-  const hint = document.createElement("span");
-  hint.className = "visually-hidden";
-  hint.textContent = " (copies the address to your clipboard)";
-  link.append(hint);
+  const nameHint = document.createElement("span");
+  nameHint.className = "visually-hidden";
+  nameHint.textContent = " (copies the address to your clipboard)";
+  link.append(nameHint);
 
   const settle = (message, holdMs) => {
     // One element does both jobs: visible note for sighted users, and a

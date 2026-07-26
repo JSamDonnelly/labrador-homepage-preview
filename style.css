@@ -594,21 +594,36 @@ nav.masthead > ul > li > a:hover,
   text-wrap: pretty;
 }
 
-/* The market card's citation link takes the in-prose link grammar (deep
-   accent + 2px underline, two signals) in the card's own hue: Gold 700 on
-   Gold Mist is 5.0:1. Hover mirrors the tool links' move — text darkens to
-   Ink while the underline brightens to Gold 400 — so the pairing gets
-   stronger, not weaker. Same 0.28em offset as the tool links: both faces
-   drop descenders ~0.19em, and the measured value clears them unbroken. */
+/* Each card's citation link takes the in-prose link grammar (deep accent +
+   2px underline, two signals) in its card's own hue: Deep Forest Mint on
+   Mint Mist is 5.4:1, Gold 700 on Gold Mist is 5.0:1. Hover mirrors the tool
+   links' move — text darkens to Ink while the underline brightens — so the
+   pairing gets stronger, not weaker. Same 0.28em offset as the tool links:
+   both faces drop descenders ~0.19em, and the measured value clears them
+   unbroken. */
+.stat-card-people a,
 .stat-card-market a {
-  color: var(--gold-deep);
   text-decoration: underline;
-  text-decoration-color: var(--gold-deep);
   text-decoration-thickness: 2px;
   text-underline-offset: 0.28em;
   transition:
     color 0.18s ease,
     text-decoration-color 0.18s ease;
+}
+
+.stat-card-people a {
+  color: var(--mint-deep);
+  text-decoration-color: var(--mint-deep);
+}
+
+.stat-card-market a {
+  color: var(--gold-deep);
+  text-decoration-color: var(--gold-deep);
+}
+
+.stat-card-people a:hover {
+  color: var(--ink);
+  text-decoration-color: var(--mint-strong);
 }
 
 .stat-card-market a:hover {
@@ -1188,6 +1203,16 @@ nav.masthead > ul > li > a:hover,
 .contact-email a:hover {
   color: var(--mint-strong);
   text-decoration-color: var(--mint-strong);
+}
+
+/* The visible "(click to copy)" cue. Ships hidden; site.js reveals it with
+   the copy behavior itself, and it is aria-hidden because the link's
+   accessible name already carries the same hint. Sign-off Metadata on Ink:
+   7.89:1. */
+.copy-hint {
+  color: var(--ink-meta);
+  font-size: var(--text-sm);
+  white-space: nowrap;
 }
 
 /* Copy feedback: a small note floating above the address (site.js populates
