@@ -81,11 +81,16 @@ document.querySelectorAll(".contact-email").forEach((item) => {
   const settle = (message, holdMs) => {
     // One element does both jobs: visible note for sighted users, and a
     // role="status" live region announcing the same words to screen readers.
+    // holdMs is only passed for the success message — its task is already
+    // done, so it may fade. The failure message is an instruction the user
+    // still has to act on, so it stays until the next attempt replaces it.
     note.textContent = message;
     clearTimeout(timer);
-    timer = setTimeout(() => {
-      note.textContent = "";
-    }, holdMs);
+    if (holdMs) {
+      timer = setTimeout(() => {
+        note.textContent = "";
+      }, holdMs);
+    }
   };
 
   link.addEventListener("click", (event) => {
@@ -101,7 +106,7 @@ document.querySelectorAll(".contact-email").forEach((item) => {
         range.selectNode(link.firstChild);
         selection.removeAllRanges();
         selection.addRange(range);
-        settle("Selected. Copy with your usual shortcut.", 4000);
+        settle("Selected. Copy with your usual shortcut.");
       },
     );
   });

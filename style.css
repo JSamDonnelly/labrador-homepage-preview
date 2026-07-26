@@ -765,6 +765,22 @@ nav.masthead > ul > li > a:hover,
   letter-spacing: -0.015em;
 }
 
+/* A linked offer title (currently only Audits, whose page exists). Underline
+   plus hover shift: two signals, never color alone. Deep Forest Mint is 5.4:1
+   on Mint Mist. */
+.offer h3 a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--mint-deep);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.28em;
+  transition: color 0.18s ease;
+}
+
+.offer h3 a:hover {
+  color: var(--mint-deep);
+}
+
 .offer p {
   color: var(--ink-soft);
   /* Prose, so it takes the body size. It sat at --text-sm when that token was
