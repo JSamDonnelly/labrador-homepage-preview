@@ -6,7 +6,7 @@
     <title>VPATs &amp; ACRs — Labrador Services</title>
     <meta
       name="description"
-      content="What a VPAT actually is, who publishes the template, and how it becomes an Accessibility Conformance Report: Labrador fills yours out from hands-on audit evidence, in the edition your market needs, for a flat $750 after your audit."
+      content="What a VPAT actually is, who publishes the template, and how it becomes an Accessibility Conformance Report: Labrador fills yours out from hands-on audit evidence, in the edition your market needs, priced by edition from $750 after your audit."
     />
     <link rel="icon" href="favicon.ico" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -92,7 +92,7 @@
           </p>
           <div class="hero-actions">
             <a class="pill" href="#contact">Book a call</a>
-            <a class="pill-ghost" href="#price">Get yours for $750</a>
+            <a class="pill-ghost" href="#price">Get yours from $750</a>
           </div>
         </div>
       </section>
@@ -219,6 +219,11 @@
             your buyers expect.
           </p>
           <dl class="edition-list">
+            <!-- Each edition carries two definitions: what it is, and what it costs.
+                 The second <dd> is the price (multiple dds per dt are valid HTML, and
+                 the announced order — term, description, price — reads naturally).
+                 Editions are priced by the work in them: single-standard is the base,
+                 508 and EU add their own chapters, INT folds in all three. -->
             <div class="edition">
               <dt>WCAG</dt>
               <dd>
@@ -226,6 +231,7 @@
                 edition, and the right one when buyers simply want to know the product is
                 accessible.
               </dd>
+              <dd class="edition-price">$750</dd>
             </div>
             <div class="edition">
               <dt>508</dt>
@@ -233,6 +239,7 @@
                 Adds Section 508, the law that governs technology bought by the United States
                 federal government. The edition federal agencies and their vendors ask for.
               </dd>
+              <dd class="edition-price">$950</dd>
             </div>
             <div class="edition">
               <dt>EU</dt>
@@ -240,6 +247,7 @@
                 Adds EN 301 549, the European accessibility standard used in public procurement
                 across the European Union.
               </dd>
+              <dd class="edition-price">$950</dd>
             </div>
             <div class="edition">
               <dt>INT</dt>
@@ -247,6 +255,7 @@
                 The international edition: everything above in one document, for products sold into
                 more than one market.
               </dd>
+              <dd class="edition-price">$1,500</dd>
             </div>
           </dl>
           <p class="editions-note">
@@ -286,11 +295,12 @@
       <section class="snapshot" id="price" aria-labelledby="price-h">
         <div class="wrap">
           <h2 id="price-h">The price</h2>
-          <p class="snapshot-claim">A finished ACR is <em>$750</em>.</p>
+          <p class="snapshot-claim">A finished ACR starts at <em>$750</em>.</p>
           <p class="snapshot-note">
-            Flat, like everything we scope. The fee covers the completed report in whichever edition
-            your buyers need, filled out from your audit's findings, ready to send or publish, and
-            we walk your team through it first.
+            Fixed per edition, because the editions differ in work. The WCAG edition is $750; adding
+            Section 508 or EN 301 549 makes it $950, and the international edition, which folds in
+            all three standards, is $1,500. Every fee covers the completed report, filled out from
+            your audit's findings, ready to send or publish, and we walk your team through it first.
           </p>
           <p class="snapshot-note">
             It does assume an audit to draw from, because every answer needs evidence behind it. If

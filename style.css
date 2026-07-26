@@ -1759,13 +1759,28 @@ footer {
 
 /* Fixed term column (not auto): each row is its own grid, so an auto column
    would size to its own dt and the four terms would sit ragged. The clamp
-   fits "WCAG", the widest, at every viewport. */
+   fits "WCAG", the widest, at every viewport. The third (auto) column is the
+   price, pushed to the row's far edge by the description's 1fr track. */
 .edition {
   display: grid;
-  grid-template-columns: clamp(5.5rem, 12vw, 7.5rem) minmax(0, 1fr);
+  grid-template-columns: clamp(5.5rem, 12vw, 7.5rem) minmax(0, 1fr) auto;
   gap: 0.25rem clamp(1.5rem, 3vw, 2.5rem);
   padding-block: 1.6rem;
   border-bottom: 1.5px solid rgb(247 248 247 / 30%);
+}
+
+/* The price definition (a second <dd> per edition). Mint 400 is the dark
+   surface's emphasis color — the counterpart of the mint-deep price em the
+   light snapshot bands use. 11.5:1 on Ink. The compound selector outweighs
+   `.edition dd` above, which would otherwise paint the price Sign-off Body. */
+.edition dd.edition-price {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+  color: var(--mint-strong);
 }
 
 .edition dt {
