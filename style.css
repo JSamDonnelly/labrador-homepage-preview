@@ -494,7 +494,9 @@ nav.masthead > ul > li > a:hover,
 .deliverables h2,
 .terms h2,
 .evidence h2,
-.buyers h2 {
+.buyers h2,
+.rates h2,
+.includes h2 {
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--ink-soft);
@@ -693,7 +695,8 @@ nav.masthead > ul > li > a:hover,
    flex-wrap grammar, same reason there are no separators between items (a
    wrapped row must never strand a divider). */
 .sector-list,
-.at-list {
+.at-list,
+.includes-list {
   list-style: none;
   padding: 0;
   margin-block: 2.2rem 0;
@@ -922,7 +925,8 @@ nav.masthead > ul > li > a:hover,
 .process-steps a,
 .background-note a,
 .evidence-note a,
-.deliverable-list a {
+.deliverable-list a,
+.rates-intro a {
   color: var(--mint-deep);
   text-decoration: underline;
   text-decoration-color: var(--mint-deep);
@@ -945,7 +949,8 @@ nav.masthead > ul > li > a:hover,
 .process-steps a:hover,
 .background-note a:hover,
 .evidence-note a:hover,
-.deliverable-list a:hover {
+.deliverable-list a:hover,
+.rates-intro a:hover {
   color: var(--ink);
   text-decoration-color: var(--mint-strong);
 }
@@ -1846,6 +1851,109 @@ footer {
   margin-top: 2rem;
 }
 
+/* ============================================================
+   PRICING PAGE (pricing.html) — the paper page. Deliberately the
+   one page with NO color block: a rate card is the artifact where
+   quiet is the credibility, so the whole surface is hairline rows
+   and big numbers. Mint-deep is the money color (the same role the
+   snapshot bands' price ems play); the only band is the quiet
+   second neutral. Shared blocks reused unchanged: header, pills,
+   say-hi, footer.
+   ============================================================ */
+
+/* Rate groups run tighter than the site's statement sections so the three
+   strata read as one continuous card rather than three separate arguments.
+   Hairlines between groups are the same rules the about-us run uses. */
+.rates {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(2.75rem, 6vw, 4.5rem);
+}
+
+.rates-intro {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 54ch;
+  text-wrap: pretty;
+}
+
+/* The rate rows: the editions-panel grammar (term, description, price) on
+   paper. Same dl-with-wrapper-div structure as .jurisdictions and
+   .edition-list — the divs are load-bearing; never display: contents. */
+.rate-list {
+  margin: 2.5rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+/* The section heading's 2.5rem gap does the work when there's no intro. */
+.rates h2 + .rate-list {
+  margin-top: 0;
+}
+
+.rate {
+  display: grid;
+  grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr) auto;
+  gap: 0.35rem clamp(1.5rem, 3vw, 2.5rem);
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.rate dt {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+}
+
+.rate dd {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+/* The price definition. Mint-deep is the established money color on light
+   surfaces (the snapshot bands' em); 5.90:1 on paper. nowrap so "from
+   $3,000" can never split against the right edge. */
+.rate dd.rate-price {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+  color: var(--mint-deep);
+  white-space: nowrap;
+}
+
+/* "from" stays in the reading face at body scale: the number is the display
+   moment, the qualifier is prose. */
+.rate-from {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+@media (width <= 900px) {
+  .rate {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+/* The reassurance strip: quiet second neutral, same role as the snapshot
+   bands (a surface change marks "this is the offer's fine print, in full
+   size"). The list itself reuses the sector-strip grammar. */
+.includes {
+  background: var(--paper-deep);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.includes .includes-list {
+  margin-block: 0;
+}
+
 /* Current-page marker in the nav submenu and footer. Two signals in both
    places (weight + color) — color is never the sole signal. */
 .submenu a[aria-current="page"] {
@@ -1856,4 +1964,12 @@ footer {
 .footer-col a[aria-current="page"] {
   font-weight: 700;
   color: var(--mint-strong);
+}
+
+/* Top-level nav current-page marker (the pricing page is the first page whose
+   nav entry sits outside the Services submenu). Same two signals as the
+   submenu marker: weight + color, never color alone. */
+nav.masthead > ul > li > a[aria-current="page"] {
+  font-weight: 700;
+  color: var(--mint-deep);
 }

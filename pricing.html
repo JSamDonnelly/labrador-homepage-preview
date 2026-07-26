@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing — Labrador Services</title>
+    <meta
+      name="description"
+      content="Labrador's published prices: homepage audits for $495, site audits from $3,000, VPATs and ACRs from $750 per edition, remediation from $2,000. Fixed fees, scoped in plain language, proposals within one business day."
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap masthead-inner">
+        <!-- Relative, not "/": see index.html. -->
+        <a class="brand" href="index.html">
+          <img
+            class="brand-logo"
+            src="labrador-logo.svg"
+            alt="Labrador Services home"
+            width="759"
+            height="189"
+          />
+        </a>
+        <!-- See index.html for why this button ships hidden: the collapsed nav is
+             progressive enhancement, not a requirement. -->
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <nav class="masthead" id="primary-nav" aria-label="Primary">
+          <ul role="list">
+            <li class="has-submenu">
+              <!-- Same native disclosure as index.html; see the comment there for why
+                   <details>/<summary> and not an ARIA menu. -->
+              <details class="submenu-toggle">
+                <summary>
+                  Services
+                  <span class="chevron" aria-hidden="true"></span>
+                </summary>
+                <!-- Audits and VPATs have their own pages. The rest still point at the
+                     homepage services section until theirs are built. -->
+                <ul class="submenu" role="list">
+                  <li><a href="audits.html">Audits</a></li>
+                  <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+                  <li><a href="index.html#services">Remediation</a></li>
+                  <li><a href="index.html#services">Consulting</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="index.html#our-tool">Our Tool</a></li>
+            <!-- TODO: About and Blog don't exist yet and will 404 until they're built. -->
+            <li><a href="/about">About</a></li>
+            <li><a href="pricing.html" aria-current="page">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
+               address, which doesn't deliver on "Book a call". -->
+          <a class="pill" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- HERO — the transparency statement. This is the paper page: the one page
+           with no color block, deliberately, because a rate card is the artifact
+           where quiet IS the credibility. The whole surface is hairline rows and
+           big numbers; publishing prices at all is the differentiator in this
+           market, and the design should read like a confident printed rate
+           sheet, not a sales page. -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="wrap">
+          <h1 id="hero-h">What things <em>cost</em>.</h1>
+          <p class="lede">
+            Most firms in this market will only quote on a call. We publish our prices instead.
+            Every engagement is fixed-fee and scoped in plain language: the floors below become an
+            exact number in your proposal, delivered within one business day.
+          </p>
+          <div class="hero-actions">
+            <a class="pill" href="#contact">Get a quote</a>
+            <a class="pill-ghost" href="audits.html">See how audits run</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE RATE CARD — three grouped strata of the same row grammar the VPATs
+           page's editions panel introduced (term, description, price), here on
+           paper with Hairline Sand rules. Each row is a <dl> group: the service
+           is the term; the description and the price are both definitions.
+           Section padding is deliberately tighter than the site's statement
+           sections so the groups read as one continuous card. -->
+      <section class="rates" id="audit-rates" aria-labelledby="audit-rates-h">
+        <div class="wrap">
+          <h2 id="audit-rates-h">Audits</h2>
+          <p class="rates-intro">
+            Hands-on testing against the Web Content Accessibility Guidelines (WCAG), version 2.2 or
+            2.1, whichever your regulation asks for. Every audit includes severity and evidence on
+            each finding, a walkthrough, and re-testing once your fixes land.
+          </p>
+          <dl class="rate-list">
+            <div class="rate">
+              <dt>Homepage audit</dt>
+              <dd>
+                One page through the full manual treatment: real assistive technology, every
+                applicable success criterion, findings you can act on the day they land. Go on to a
+                complete audit and the full $495 is credited toward it.
+              </dd>
+              <dd class="rate-price">$495</dd>
+            </div>
+            <div class="rate">
+              <dt>Small business site</dt>
+              <dd>
+                Brochure sites, small stores, and marketing sites built from a modest set of
+                templates. Scoped by the pages and flows that matter.
+              </dd>
+              <dd class="rate-price"><span class="rate-from">from</span> $3,000</dd>
+            </div>
+            <div class="rate">
+              <dt>Mid-size site or small web app</dt>
+              <dd>
+                Larger sites and products with real interaction: accounts, forms, search, checkout.
+                The scope grows with the states a user can reach.
+              </dd>
+              <dd class="rate-price"><span class="rate-from">from</span> $5,500</dd>
+            </div>
+            <div class="rate">
+              <dt>Large site or SaaS product</dt>
+              <dd>
+                Authenticated flows, complex components, and the surface area of a full product.
+                Scoped journey by journey with your team.
+              </dd>
+              <dd class="rate-price"><span class="rate-from">from</span> $9,500</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="rates" id="vpat-rates" aria-labelledby="vpat-rates-h">
+        <div class="wrap">
+          <h2 id="vpat-rates-h">VPATs &amp; ACRs</h2>
+          <p class="rates-intro">
+            A VPAT (the Voluntary Product Accessibility Template) filled out becomes an ACR, an
+            Accessibility Conformance Report: the proof procurement asks for. Ours are built from
+            your audit's evidence, priced by edition, and explained in full on
+            <a href="vpats.html">the VPATs page</a>.
+          </p>
+          <dl class="rate-list">
+            <div class="rate">
+              <dt>WCAG edition</dt>
+              <dd>
+                The Web Content Accessibility Guidelines alone: the edition for buyers who simply
+                want to know the product is accessible.
+              </dd>
+              <dd class="rate-price">$750</dd>
+            </div>
+            <div class="rate">
+              <dt>508 edition</dt>
+              <dd>Adds Section 508, for United States federal procurement.</dd>
+              <dd class="rate-price">$950</dd>
+            </div>
+            <div class="rate">
+              <dt>EU edition</dt>
+              <dd>Adds EN 301 549, for public procurement across the European Union.</dd>
+              <dd class="rate-price">$950</dd>
+            </div>
+            <div class="rate">
+              <dt>INT edition</dt>
+              <dd>
+                All three standards in one document, for products sold into more than one market.
+              </dd>
+              <dd class="rate-price">$1,500</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="rates" id="work-rates" aria-labelledby="work-rates-h">
+        <div class="wrap">
+          <h2 id="work-rates-h">Remediation and consulting</h2>
+          <dl class="rate-list">
+            <div class="rate">
+              <dt>Remediation</dt>
+              <dd>
+                We fix what the audit found, ourselves or embedded with your team, and stay until
+                the re-test comes back clean. Scoped from your findings list.
+              </dd>
+              <dd class="rate-price"><span class="rate-from">from</span> $2,000</dd>
+            </div>
+            <div class="rate">
+              <dt>Consulting</dt>
+              <dd>
+                Accessibility built into how you already design and ship: reviews, training, and a
+                practice that keeps running after we leave. No two engagements match, so each is
+                priced on its shape.
+              </dd>
+              <dd class="rate-price">Scoped individually</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- ALWAYS INCLUDED — the reassurance strip on the quiet second neutral,
+           closing the card the way the snapshot bands close their pages. The
+           last item is the "call welcome, never required" promise, kept in its
+           established wording family. -->
+      <section class="includes" id="includes" aria-labelledby="includes-h">
+        <div class="wrap">
+          <h2 id="includes-h">Every engagement includes</h2>
+          <ul class="includes-list" role="list">
+            <li>A fixed fee, agreed before work begins</li>
+            <li>A proposal within one business day</li>
+            <li>Severity and evidence on every finding</li>
+            <li>A walkthrough of every report</li>
+            <li>Re-testing included on audits</li>
+            <li>A call whenever you want one, never required</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="say-hi" id="contact" aria-labelledby="cta-h">
+        <div class="wrap">
+          <p class="kicker">Start a conversation</p>
+          <h2 id="cta-h">
+            <!-- data-chat-launch: opens Intercom once its snippet is added (site.js);
+                 until then the heading opens email, same as the address below, so
+                 nothing here is a dead end. -->
+            <a href="mailto:hello@labradoraccessibility.com" data-chat-launch
+              >Say hi <span class="h2-note">(opens chat)</span> <span aria-hidden="true">→</span></a
+            >
+          </h2>
+          <p>
+            Tell us what you're building and which number caught your eye. Our founding team spans
+            Maine, Wales, and Delhi, so someone's online through most of your working day. Expect a
+            scoped, fixed-fee proposal within one business day. A call is welcome, never required.
+          </p>
+          <!-- Every way to reach us, in one row. site.js turns the address into a
+               copy-on-click control (visible + announced "Copied!" note); without
+               the script it stays a plain working mailto link. -->
+          <ul class="contact-row" role="list">
+            <li class="contact-email">
+              <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+              <!-- Visible cue for the copy-on-click upgrade; aria-hidden because the
+                   link's own accessible name already carries the same hint for screen
+                   readers. Ships hidden; site.js reveals it with the behavior. -->
+              <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
+              <span class="copy-note" role="status"></span>
+            </li>
+            <!-- TODO: swap both pre-filled mailtos for the real scheduler and quote
+                 form once those exist. -->
+            <li>
+              <a
+                class="pill"
+                href="mailto:hello@labradoraccessibility.com?subject=Booking%20a%20call"
+                >Book a call</a
+              >
+            </li>
+            <li>
+              <a
+                class="pill-ghost"
+                href="mailto:hello@labradoraccessibility.com?subject=Quote%20request"
+                >Get a quote</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- aria-label distinguishes this nav from the header's "Primary" landmark. -->
+      <nav class="wrap footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul role="list">
+            <li><a href="audits.html">Audits</a></li>
+            <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+            <li><a href="index.html#services">Remediation</a></li>
+            <li><a href="index.html#services">Consulting</a></li>
+            <li><a href="audits.html#homepage-audit">The $495 homepage audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Company</h2>
+          <ul role="list">
+            <li><a href="index.html#beliefs">What we believe</a></li>
+            <li><a href="index.html#philosophy">Our philosophy</a></li>
+            <li><a href="index.html#our-tool">Our tool</a></li>
+            <li><a href="pricing.html" aria-current="page">Pricing</a></li>
+            <li><a href="#contact">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Writing</h2>
+          <!-- TODO: these posts don't exist yet. Slugs are proposals; keep them in sync
+               with the real URLs when the blog ships. -->
+          <ul role="list">
+            <li><a href="/blog/manual-vs-automated-testing">Manual vs. automated testing</a></li>
+            <li><a href="/blog/audits-vs-widgets">Accessibility audits vs. widgets</a></li>
+            <li><a href="/blog/what-is-a-vpat">What is a VPAT, and when do you need one?</a></li>
+            <li>
+              <a href="/blog/european-accessibility-act"
+                >The European Accessibility Act (EAA), explained</a
+              >
+            </li>
+            <li>
+              <a href="/blog/how-to-read-an-audit-report">How to read your first audit report</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrap colophon">
+        <span>© 2026 Labrador Services · Maine · Wales · Delhi</span>
+      </div>
+    </footer>
+  </body>
+</html>
