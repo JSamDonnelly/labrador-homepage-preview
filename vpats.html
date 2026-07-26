@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VPATs &amp; ACRs — Labrador Services</title>
+    <meta
+      name="description"
+      content="What a VPAT actually is, who publishes the template, and how it becomes an Accessibility Conformance Report: Labrador fills yours out from hands-on audit evidence, in the edition your market needs, for a flat $750 after your audit."
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap masthead-inner">
+        <!-- Relative, not "/": see index.html. -->
+        <a class="brand" href="index.html">
+          <img
+            class="brand-logo"
+            src="labrador-logo.svg"
+            alt="Labrador Services home"
+            width="759"
+            height="189"
+          />
+        </a>
+        <!-- See index.html for why this button ships hidden: the collapsed nav is
+             progressive enhancement, not a requirement. -->
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <nav class="masthead" id="primary-nav" aria-label="Primary">
+          <ul role="list">
+            <li class="has-submenu">
+              <!-- Same native disclosure as index.html; see the comment there for why
+                   <details>/<summary> and not an ARIA menu. -->
+              <details class="submenu-toggle">
+                <summary>
+                  Services
+                  <span class="chevron" aria-hidden="true"></span>
+                </summary>
+                <!-- Audits and VPATs have their own pages now. The rest still point at
+                     the homepage services section until their pages are built. -->
+                <ul class="submenu" role="list">
+                  <li><a href="audits.html">Audits</a></li>
+                  <li><a href="vpats.html" aria-current="page">VPATs &amp; ACRs</a></li>
+                  <li><a href="index.html#services">Remediation</a></li>
+                  <li><a href="index.html#services">Consulting</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="index.html#our-tool">Our Tool</a></li>
+            <!-- TODO: these three pages don't exist yet and will 404 until they're built. -->
+            <li><a href="/about">About</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
+               address, which doesn't deliver on "Book a call". -->
+          <a class="pill" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- HERO — the quietest of the three heroes, deliberately: no fact strip, no
+           split column. The definition pair right below does the structural work,
+           so the hero stays a single confident statement. The em runs mint: this
+           is the ink page (its color block is the dark editions panel), and mint
+           is the brand's voice on light surfaces here. Gold stays spent on the
+           audits page. -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="wrap">
+          <h1 id="hero-h">The <em>proof</em> procurement asks for.</h1>
+          <p class="lede">
+            When a buyer asks for your VPAT, they're asking a fair question: can everyone use what
+            you're selling? A VPAT (the Voluntary Product Accessibility Template) is the standard
+            way to answer, and once it's filled out it earns a second name: an Accessibility
+            Conformance Report, or ACR. We prepare yours from real testing, and we walk you through
+            every line of it.
+          </p>
+          <div class="hero-actions">
+            <a class="pill" href="#contact">Book a call</a>
+            <a class="pill-ghost" href="#price">Get yours for $750</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE TWO ACRONYMS — the page's signature section. The reader's actual
+           problem is vocabulary, so the vocabulary IS the layout: a real <dl>
+           with the two terms at display scale, side by side. No other page has
+           this shape. Belief-trio spirit (plain blocks, no cards), with a
+           hairline seating each term. -->
+      <section class="terms" id="terms" aria-labelledby="terms-h">
+        <div class="wrap">
+          <h2 id="terms-h">First, the two acronyms</h2>
+          <dl class="term-pair">
+            <div class="term">
+              <dt>VPAT</dt>
+              <dd>
+                The blank form. The Voluntary Product Accessibility Template is published by the
+                Information Technology Industry Council (ITI), the trade association much of the
+                tech industry belongs to. It lists every accessibility requirement a buyer might
+                care about and asks the same question of each: does your product meet it?
+              </dd>
+            </div>
+            <div class="term">
+              <dt>ACR</dt>
+              <dd>
+                The form, filled out. With every answer in place, the template becomes an
+                Accessibility Conformance Report: the document your buyer actually reads. Most
+                people say “VPAT” for both, the way a filled-out application is still called an
+                application. Use whichever name you like; we always know what you mean.
+              </dd>
+            </div>
+          </dl>
+          <p class="terms-note">
+            The distinction matters in exactly one place: the thing procurement needs is the
+            completed report, with honest answers and evidence behind them. That's the one we build.
+          </p>
+        </div>
+      </section>
+
+      <!-- EVIDENCE — why ours holds up: the answers come from an audit, and the
+           page about a document shows the document. The specimen is a real,
+           accessible <table> (an accessibility agency's ACR excerpt had better
+           be exemplary markup), including one candid Partially Supports row,
+           because that honesty is the actual sales argument. -->
+      <section class="evidence" id="evidence" aria-labelledby="evidence-h">
+        <div class="wrap">
+          <h2 id="evidence-h">Where the answers come from</h2>
+          <p class="evidence-claim">Every answer traces to a <em>tested</em> finding.</p>
+          <p class="evidence-note">
+            The template asks the same question of every requirement in scope, most of them success
+            criteria from the Web Content Accessibility Guidelines (WCAG), and accepts three honest
+            answers: Supports, Partially Supports, and Does Not Support. The middle answer carries
+            more weight than you might expect. Procurement reads a candid Partially Supports, with a
+            remark explaining the gap and the fix underway, as the mark of a vendor who actually
+            tested. A page of nothing but Supports gets read twice.
+          </p>
+          <p class="evidence-note">
+            That's why our VPATs come after an audit, never from a self-assessment questionnaire.
+            Each answer in your ACR is backed by what our auditors found by hand: the finding, the
+            evidence, the remark. If you haven't been audited yet, that's simply where we start;
+            <a href="audits.html">see how an audit runs</a>, and the VPAT follows from it.
+          </p>
+          <figure class="acr-sample">
+            <figcaption>
+              An excerpt from an ACR, showing the format. A finished report answers every criterion
+              in the chosen edition this way.
+            </figcaption>
+            <!-- The wrapper scrolls sideways on narrow screens; reflowing a data
+                 table into stacked blocks breaks the header associations screen
+                 readers rely on, so the table keeps its shape instead. -->
+            <section class="acr-scroll" tabindex="0" aria-label="ACR excerpt table">
+              <table>
+                <thead>
+                  <tr>
+                    <th scope="col">Criteria</th>
+                    <th scope="col">Conformance level</th>
+                    <th scope="col">Remarks and explanations</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1.1.1 Non-text Content (Level A)</th>
+                    <td class="acr-status">Supports</td>
+                    <td>
+                      Images carry text alternatives throughout; decorative images are hidden from
+                      assistive technology.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">1.4.3 Contrast (Minimum) (Level AA)</th>
+                    <td class="acr-status">Supports</td>
+                    <td>
+                      Text meets the required contrast ratios across the product, including form
+                      hints and error states.
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2.1.1 Keyboard (Level A)</th>
+                    <td class="acr-status">Partially Supports</td>
+                    <td>
+                      The date picker in checkout cannot be operated by keyboard alone; a fix is
+                      scheduled. Keyboard users can type the date directly meanwhile.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          </figure>
+        </div>
+      </section>
+
+      <!-- EDITIONS — the page's one color block, and it's ink: the homepage's is
+           mint (services), the audits page's is gold (process). A dark panel suits
+           the formal-document register, and the dark-surface text colors already
+           exist for it (the sign-off's). The editions are a real term/definition
+           set, so this is a <dl> like the homepage's jurisdictions, in panel-row
+           clothing: translucent paper rules where the light panels use ink. -->
+      <section class="editions-panel" id="editions" aria-labelledby="editions-h">
+        <div class="wrap">
+          <h2 id="editions-h">One template, four editions</h2>
+          <p class="intro">
+            Standards differ by market, so ITI publishes the current template, VPAT 2.5, in four
+            editions. Choosing one is the first scoping question, and we'll tell you plainly which
+            your buyers expect.
+          </p>
+          <dl class="edition-list">
+            <div class="edition">
+              <dt>WCAG</dt>
+              <dd>
+                Measures against the Web Content Accessibility Guidelines alone. The broadest
+                edition, and the right one when buyers simply want to know the product is
+                accessible.
+              </dd>
+            </div>
+            <div class="edition">
+              <dt>508</dt>
+              <dd>
+                Adds Section 508, the law that governs technology bought by the United States
+                federal government. The edition federal agencies and their vendors ask for.
+              </dd>
+            </div>
+            <div class="edition">
+              <dt>EU</dt>
+              <dd>
+                Adds EN 301 549, the European accessibility standard used in public procurement
+                across the European Union.
+              </dd>
+            </div>
+            <div class="edition">
+              <dt>INT</dt>
+              <dd>
+                The international edition: everything above in one document, for products sold into
+                more than one market.
+              </dd>
+            </div>
+          </dl>
+          <p class="editions-note">
+            Selling everywhere, or not sure? INT covers all of it at once, and that's where we
+            usually point international products.
+          </p>
+        </div>
+      </section>
+
+      <!-- BUYERS — what the document is for, which is also where the hero's
+           "proof procurement asks for" claim is made in full. Statement grammar,
+           no accent em: the section's job is calm confidence, and the page has
+           spent its color. -->
+      <section class="buyers" id="buyers" aria-labelledby="buyers-h">
+        <div class="wrap">
+          <h2 id="buyers-h">What buyers do with it</h2>
+          <p class="buyers-claim">Procurement reads these for a living.</p>
+          <p class="buyers-note">
+            Government and education buyers are often required to collect an ACR before they can
+            sign, and enterprise procurement checklists ask for one by name. Having yours ready
+            means the request stops being a scramble and becomes an attachment.
+          </p>
+          <p class="buyers-note">
+            Plenty of companies go a step further and publish their ACR right on their site, beside
+            their accessibility statement. It answers the question before anyone asks it, and it
+            tells every visitor the product takes this seriously. When yours is ready, we'd
+            encourage you to do the same.
+          </p>
+        </div>
+      </section>
+
+      <!-- PRICE — the conversion band, same Neutral 50 grammar as both siblings'
+           snapshot offers. The mint em is the homepage's price treatment; gold
+           stays off this page. Copy rule: the $750 is honest only with its
+           precondition attached — the audit is where the answers come from, and
+           the band says so plainly rather than hiding it in fine print. -->
+      <section class="snapshot" id="price" aria-labelledby="price-h">
+        <div class="wrap">
+          <h2 id="price-h">The price</h2>
+          <p class="snapshot-claim">A finished ACR is <em>$750</em>.</p>
+          <p class="snapshot-note">
+            Flat, like everything we scope. The fee covers the completed report in whichever edition
+            your buyers need, filled out from your audit's findings, ready to send or publish, and
+            we walk your team through it first.
+          </p>
+          <p class="snapshot-note">
+            It does assume an audit to draw from, because every answer needs evidence behind it. If
+            you haven't had one yet, we'll start there: one proposal covers both, and you'll know
+            the whole cost before anything begins.
+          </p>
+          <!-- TODO: point at the real quote form once it exists. -->
+          <p class="snapshot-cta"><a class="pill" href="#contact">Get a quote</a></p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="say-hi" id="contact" aria-labelledby="cta-h">
+        <div class="wrap">
+          <p class="kicker">Start a conversation</p>
+          <h2 id="cta-h">
+            <!-- data-chat-launch: opens Intercom once its snippet is added (site.js);
+                 until then the heading opens email, same as the address below, so
+                 nothing here is a dead end. -->
+            <a href="mailto:hello@labradoraccessibility.com" data-chat-launch
+              >Say hi <span class="h2-note">(opens chat)</span> <span aria-hidden="true">→</span></a
+            >
+          </h2>
+          <p>
+            Tell us who's asking for the VPAT and what they need. Our founding team spans Maine,
+            Wales, and Delhi, so someone's online through most of your working day. Expect a scoped,
+            fixed-fee proposal within one business day. A call is welcome, never required.
+          </p>
+          <!-- Every way to reach us, in one row. site.js turns the address into a
+               copy-on-click control (visible + announced "Copied!" note); without
+               the script it stays a plain working mailto link. -->
+          <ul class="contact-row" role="list">
+            <li class="contact-email">
+              <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+              <!-- Visible cue for the copy-on-click upgrade; aria-hidden because the
+                   link's own accessible name already carries the same hint for screen
+                   readers. Ships hidden; site.js reveals it with the behavior. -->
+              <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
+              <span class="copy-note" role="status"></span>
+            </li>
+            <!-- TODO: swap both pre-filled mailtos for the real scheduler and quote
+                 form once those exist. -->
+            <li>
+              <a
+                class="pill"
+                href="mailto:hello@labradoraccessibility.com?subject=Booking%20a%20call"
+                >Book a call</a
+              >
+            </li>
+            <li>
+              <a
+                class="pill-ghost"
+                href="mailto:hello@labradoraccessibility.com?subject=Quote%20request"
+                >Get a quote</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- aria-label distinguishes this nav from the header's "Primary" landmark. -->
+      <nav class="wrap footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul role="list">
+            <li><a href="audits.html">Audits</a></li>
+            <li><a href="vpats.html" aria-current="page">VPATs &amp; ACRs</a></li>
+            <li><a href="index.html#services">Remediation</a></li>
+            <li><a href="index.html#services">Consulting</a></li>
+            <li><a href="audits.html#homepage-audit">The $495 homepage audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Company</h2>
+          <ul role="list">
+            <li><a href="index.html#beliefs">What we believe</a></li>
+            <li><a href="index.html#philosophy">Our philosophy</a></li>
+            <li><a href="index.html#our-tool">Our tool</a></li>
+            <!-- TODO: /pricing doesn't exist yet; same placeholder as the header nav. -->
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="#contact">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Writing</h2>
+          <!-- TODO: these posts don't exist yet. Slugs are proposals; keep them in sync
+               with the real URLs when the blog ships. -->
+          <ul role="list">
+            <li><a href="/blog/manual-vs-automated-testing">Manual vs. automated testing</a></li>
+            <li><a href="/blog/audits-vs-widgets">Accessibility audits vs. widgets</a></li>
+            <li><a href="/blog/what-is-a-vpat">What is a VPAT, and when do you need one?</a></li>
+            <li>
+              <a href="/blog/european-accessibility-act"
+                >The European Accessibility Act (EAA), explained</a
+              >
+            </li>
+            <li>
+              <a href="/blog/how-to-read-an-audit-report">How to read your first audit report</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrap colophon">
+        <span>© 2026 Labrador Services · Maine · Wales · Delhi</span>
+      </div>
+    </footer>
+  </body>
+</html>

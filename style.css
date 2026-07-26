@@ -491,7 +491,10 @@ nav.masthead > ul > li > a:hover,
 .snapshot h2,
 .method h2,
 .automation h2,
-.deliverables h2 {
+.deliverables h2,
+.terms h2,
+.evidence h2,
+.buyers h2 {
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--ink-soft);
@@ -714,9 +717,11 @@ nav.masthead > ul > li > a:hover,
    vertical gaps come from the neighbouring sections' padding, which is why
    there is no margin-block on the panel itself. The one case that padding
    can't cover is handled below. Each page gets at most one of these color
-   blocks: mint on the homepage (services), gold on the audits page (process). */
+   blocks: mint on the homepage (services), gold on the audits page (process),
+   ink on the VPATs page (editions). */
 .services-panel,
-.process-panel {
+.process-panel,
+.editions-panel {
   border-radius: clamp(1.25rem, 3vw, 2.5rem);
   margin-inline: clamp(0.75rem, 2vw, 1.5rem);
   padding-block: clamp(3.5rem, 8vw, 6rem);
@@ -736,12 +741,14 @@ nav.masthead > ul > li > a:hover,
    the gap instead of the panel, so that inserting any normal section between
    them (which brings its own padding) doesn't double it up. */
 .services-panel + .say-hi,
-.process-panel + .say-hi {
+.process-panel + .say-hi,
+.editions-panel + .say-hi {
   margin-block-start: clamp(3.5rem, 8vw, 6rem);
 }
 
 .services-panel h2,
-.process-panel h2 {
+.process-panel h2,
+.editions-panel h2 {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-weight: 600;
@@ -913,7 +920,9 @@ nav.masthead > ul > li > a:hover,
 .tool-note a,
 .tool-link a,
 .process-steps a,
-.background-note a {
+.background-note a,
+.evidence-note a,
+.deliverable-list a {
   color: var(--mint-deep);
   text-decoration: underline;
   text-decoration-color: var(--mint-deep);
@@ -934,7 +943,9 @@ nav.masthead > ul > li > a:hover,
 .tool-note a:hover,
 .tool-link a:hover,
 .process-steps a:hover,
-.background-note a:hover {
+.background-note a:hover,
+.evidence-note a:hover,
+.deliverable-list a:hover {
   color: var(--ink);
   text-decoration-color: var(--mint-strong);
 }
@@ -1183,8 +1194,13 @@ nav.masthead > ul > li > a:hover,
   /* Anchors the floating "Copied!" note. */
   position: relative;
   display: inline-flex;
+  /* The "(click to copy)" hint must be able to drop under the address: on a
+     375px screen the two don't fit side by side, and without the wrap the
+     hint is clipped at the viewport edge (body's overflow-x: clip masks the
+     scrollbar but not the cropped text). */
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.2rem 0.7rem;
 }
 
 /* Sign-off Body with a quiet metadata underline; hover brightens both, the
@@ -1563,6 +1579,256 @@ footer {
    where the homepage's runs mint. Gold 700 on Neutral 50: 5.56:1. */
 .snapshot-audits .snapshot-claim em {
   color: var(--gold-deep);
+}
+
+/* ============================================================
+   VPATS PAGE (vpats.html) — the ink page. The third color-block
+   hue: mint on the homepage, gold on audits, ink here (the
+   editions panel), suiting the formal-document register. On light
+   surfaces the page speaks the brand's mint (hero em, evidence em,
+   price em all take the default mint-deep); gold appears nowhere —
+   it stays spent on the audits page. Shared blocks reused
+   unchanged: header, pills, snapshot band, say-hi, footer.
+   ============================================================ */
+
+/* The definition pair: the page's signature section. Two terms at display
+   scale in a real <dl>, belief-trio spirit (no cards, no shadows) with one
+   hairline seating each term. The wrapper divs are load-bearing — same
+   accessibility warning as .jurisdictions: never "simplify" them away with
+   display: contents. */
+.terms {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.term-pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: clamp(2rem, 4vw, 3.5rem);
+  margin: 0;
+}
+
+.term {
+  border-top: 1px solid var(--line);
+  padding-top: 1.4rem;
+}
+
+.term dt {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.term dd {
+  margin: 0.9rem 0 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 38ch;
+  text-wrap: pretty;
+}
+
+.terms-note {
+  margin-top: 2.4rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+/* Evidence: statement grammar (the audits automation section's shape), with
+   the em in this page's light accent, mint. */
+.evidence {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.evidence-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.evidence-claim em {
+  font-style: normal;
+  color: var(--mint-deep);
+}
+
+.evidence-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 50ch;
+  text-wrap: pretty;
+}
+
+.evidence-claim + .evidence-note {
+  margin-top: 2rem;
+}
+
+/* The ACR specimen. A real table, styled in the site's print grammar:
+   border-block bounds (sector-strip style), hairline row rules, weight
+   doing the header work. No zebra fills, no side accents. On narrow
+   screens the wrapper scrolls sideways instead of the table reflowing —
+   stacked-block tables break the header associations screen readers rely
+   on — and it is focusable (tabindex + role + label in the markup) so
+   keyboard users can operate the scroll. */
+.acr-sample {
+  margin: 2.75rem 0 0;
+}
+
+.acr-sample figcaption {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+  margin-bottom: 1.25rem;
+  text-wrap: pretty;
+}
+
+.acr-scroll {
+  overflow-x: auto;
+}
+
+.acr-sample table {
+  width: 100%;
+  min-width: 44rem;
+  border-collapse: collapse;
+}
+
+.acr-sample th,
+.acr-sample td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.9rem 1.5rem 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.6;
+}
+
+.acr-sample th:last-child,
+.acr-sample td:last-child {
+  padding-right: 0;
+}
+
+.acr-sample thead th {
+  border-top: 1px solid var(--line);
+  font-weight: 700;
+}
+
+.acr-sample tbody th {
+  font-weight: 600;
+  width: 30%;
+}
+
+/* The answer column: bolder because it is the answer, and unwrapped so
+   "Partially Supports" never splits. Weight is typographic emphasis only;
+   the words themselves carry the meaning. */
+.acr-status {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Remarks read as supporting prose, a step quieter than the claim they
+   support. Soft Ink on paper: 5.9:1. */
+.acr-sample td:last-child {
+  color: var(--ink-soft);
+}
+
+/* The editions panel: this page's one color block, on ink. Text colors are
+   the dark sign-off's own (paper headings, Sign-off Body prose); rules are
+   translucent paper where the light panels use translucent ink. */
+.editions-panel {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.editions-panel .intro {
+  margin-top: 1rem;
+  color: var(--ink-text);
+  max-width: 48ch;
+}
+
+.edition-list {
+  margin: 2.75rem 0 0;
+  border-top: 1.5px solid rgb(247 248 247 / 30%);
+}
+
+/* Fixed term column (not auto): each row is its own grid, so an auto column
+   would size to its own dt and the four terms would sit ragged. The clamp
+   fits "WCAG", the widest, at every viewport. */
+.edition {
+  display: grid;
+  grid-template-columns: clamp(5.5rem, 12vw, 7.5rem) minmax(0, 1fr);
+  gap: 0.25rem clamp(1.5rem, 3vw, 2.5rem);
+  padding-block: 1.6rem;
+  border-bottom: 1.5px solid rgb(247 248 247 / 30%);
+}
+
+.edition dt {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+}
+
+.edition dd {
+  margin: 0;
+  color: var(--ink-text);
+  line-height: 1.6;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+/* Stacks at the site-wide 900px breakpoint, same as the deliverable rows: on
+   narrow screens the side column squeezes the description into a tall sliver
+   beside a floating term, and the term reads better as a small heading over
+   full-measure text. */
+@media (width <= 900px) {
+  .edition {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+.editions-note {
+  margin-top: 1.6rem;
+  color: var(--ink-text);
+  line-height: 1.6;
+  max-width: 48ch;
+  text-wrap: pretty;
+}
+
+/* Buyers: the quiet close of the argument. No top rule (it follows the color
+   block) and no accent em — the page has spent its color. */
+.buyers {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.buyers-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.buyers-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 50ch;
+  text-wrap: pretty;
+}
+
+.buyers-claim + .buyers-note {
+  margin-top: 2rem;
 }
 
 /* Current-page marker in the nav submenu and footer. Two signals in both
