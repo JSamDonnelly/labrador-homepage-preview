@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consulting — Labrador Services</title>
+    <meta
+      name="description"
+      content="Accessibility consulting and training from Labrador: lunch and learns, conference talks, full-day hands-on trainings, design and code reviews, and office hours, taught by IAAP-certified founders. Shaped around your team, scoped individually."
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap masthead-inner">
+        <!-- Relative, not "/": see index.html. -->
+        <a class="brand" href="index.html">
+          <img
+            class="brand-logo"
+            src="labrador-logo.svg"
+            alt="Labrador Services home"
+            width="759"
+            height="189"
+          />
+        </a>
+        <!-- See index.html for why this button ships hidden: the collapsed nav is
+             progressive enhancement, not a requirement. -->
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <nav class="masthead" id="primary-nav" aria-label="Primary">
+          <ul role="list">
+            <li class="has-submenu">
+              <!-- Same native disclosure as index.html; see the comment there for why
+                   <details>/<summary> and not an ARIA menu. -->
+              <details class="submenu-toggle">
+                <summary>
+                  Services
+                  <span class="chevron" aria-hidden="true"></span>
+                </summary>
+                <!-- All four services have their own pages now. -->
+                <ul class="submenu" role="list">
+                  <li><a href="audits.html">Audits</a></li>
+                  <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+                  <li><a href="remediation.html">Remediation</a></li>
+                  <li><a href="consulting.html" aria-current="page">Consulting</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="index.html#our-tool">Our Tool</a></li>
+            <!-- TODO: About and Blog don't exist yet and will 404 until they're built. -->
+            <li><a href="/about">About</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
+               address, which doesn't deliver on "Book a call". -->
+          <a class="pill" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- HERO — the consulting thesis, said the honest way: dependence on a
+           consultant is the failure mode, and this page sells the exit. The em
+           runs gold: this is the second gold page, deliberately — gold is the
+           site's experience-and-authority accent ("decades", the audits
+           process), and consulting is the experience sold directly. The panel
+           content differs completely from the audits page's, which is what
+           keeps the shared hue reading as a system rather than a repeat. -->
+      <section class="hero hero-consulting" aria-labelledby="hero-h">
+        <div class="wrap">
+          <h1 id="hero-h">We're here to make ourselves <em>unnecessary</em>.</h1>
+          <p class="lede">
+            Accessibility that depends on a consultant isn't finished. We teach your team the craft
+            itself: over lunch, in a conference hall, through a full day of hands-on training, or in
+            a standing hour each week, until catching barriers early is simply how you ship. Then we
+            get out of the way.
+          </p>
+          <div class="hero-actions">
+            <a class="pill" href="#contact">Book a call</a>
+            <a class="pill-ghost" href="#formats">Ways to bring us in</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FORMATS — the page's one color block, gold, sitting directly after the
+           hero (earlier than any sibling page's block; the formats are what the
+           visitor came for). Rows are a real <dl> in the two-column row grammar
+           with the translucent-ink rules every light panel uses. No prices here
+           or anywhere on this page: consulting is scoped individually, per the
+           rate card. -->
+      <section class="formats-panel" id="formats" aria-labelledby="formats-h">
+        <div class="wrap">
+          <h2 id="formats-h">Ways to bring us in</h2>
+          <p class="intro">
+            Every format below is a real thing we run, sized from a single lunch hour to a standing
+            relationship. Mix them; most teams do.
+          </p>
+          <dl class="format-list">
+            <div class="format">
+              <dt>Lunch and learn</dt>
+              <dd>
+                An hour, your whole team, one topic done well: how screen reader users experience
+                your product, what the European Accessibility Act asks of you, why overlays
+                disappoint. We bring the session; you bring lunch.
+              </dd>
+            </div>
+            <div class="format">
+              <dt>Speaking</dt>
+              <dd>
+                Conferences, offsites, and company all-hands. Our founders have taught and spoken at
+                California State University Northridge (CSUN) and at Techstars, and we size the talk
+                to the room, keynote to breakout.
+              </dd>
+            </div>
+            <div class="format">
+              <dt>Full-day training</dt>
+              <dd>
+                Hands-on and built around your stack. Your team leaves having fixed real components
+                from your own product, with the patterns to handle the next hundred.
+              </dd>
+            </div>
+            <div class="format">
+              <dt>Design and code reviews</dt>
+              <dd>
+                Bring us mocks, prototypes, or pull requests before things ship. An hour of review
+                early is the cheapest accessibility work there is.
+              </dd>
+            </div>
+            <div class="format">
+              <dt>Office hours</dt>
+              <dd>
+                A standing block each week or month where your team brings whatever they're stuck
+                on. Over time the questions get harder; that's the point.
+              </dd>
+            </div>
+            <div class="format">
+              <dt>Program building</dt>
+              <dd>
+                We help you stand up the internal practice: component standards, a definition of
+                done, checks in your pipeline, and clear ownership, so accessibility survives
+                launches, deadlines, and reorgs.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- TRAINING — the concrete center: a sample agenda, in the site's
+           show-the-deliverable tradition (the VPATs page's ACR excerpt, the
+           remediation page's diffs). The times take gold, the page's accent, in
+           its numeric-proof role. Clearly captioned as a sample; every real
+           training is rebuilt per team. No top rule: follows the color block. -->
+      <section class="training" id="training" aria-labelledby="training-h">
+        <div class="wrap">
+          <h2 id="training-h">Inside a full-day training</h2>
+          <p class="training-claim">One day moves a team <em>further</em> than you'd guess.</p>
+          <p class="training-note">
+            The day is taught by our founding team, certified through the International Association
+            of Accessibility Professionals (IAAP), and it is relentlessly practical: more time in
+            your codebase than in slides. Developers get the deepest version; designer and product
+            variants swap the afternoon for design-system and spec work.
+          </p>
+          <figure class="agenda">
+            <figcaption>
+              A sample agenda from a developer-focused day. Every training is rebuilt around your
+              team's stack, product, and questions.
+            </figcaption>
+            <dl class="agenda-list">
+              <div class="agenda-row">
+                <dt>9:00</dt>
+                <dd>How people actually use the web: a live screen reader session</dd>
+              </div>
+              <div class="agenda-row">
+                <dt>10:30</dt>
+                <dd>Semantic HTML, the layer you get for free</dd>
+              </div>
+              <div class="agenda-row">
+                <dt>12:00</dt>
+                <dd>Lunch, and the questions that come with it</dd>
+              </div>
+              <div class="agenda-row">
+                <dt>1:00</dt>
+                <dd>ARIA: when you need it, and when you don't</dd>
+              </div>
+              <div class="agenda-row">
+                <dt>2:30</dt>
+                <dd>Hands-on: fixing real components from your own product</dd>
+              </div>
+              <div class="agenda-row">
+                <dt>4:00</dt>
+                <dd>Making it stick: reviews, tooling, and a definition of done</dd>
+              </div>
+            </dl>
+          </figure>
+        </div>
+      </section>
+
+      <!-- THESIS — what "leaving behind" means in practice, and the honest line
+           about how consulting relates to testing (it shortens audits; it never
+           replaces them). Keeps this page consistent with the sitewide claim
+           that conformance requires testing. -->
+      <section class="thesis" id="thesis" aria-labelledby="thesis-h">
+        <div class="wrap">
+          <h2 id="thesis-h">What we leave behind</h2>
+          <p class="thesis-claim">The practice should <em>outlive</em> the engagement.</p>
+          <p class="thesis-note">
+            Leaving behind looks like this: accessibility notes in your component library, focus
+            order in your design specs, a definition of done that includes the keyboard, and
+            developers who catch a missing name in code review without us in the room. We measure a
+            consulting engagement by how little you need the next one.
+          </p>
+          <p class="thesis-note">
+            It doesn't replace testing. Teams that ship accessibly still
+            <a href="audits.html">audit</a> before making claims; the difference is that the audit
+            comes back shorter every time. Consulting is how the findings list starts shrinking
+            before anyone writes a finding.
+          </p>
+        </div>
+      </section>
+
+      <!-- PRICE — the band, minus a number: consulting is the one service the
+           rate card scopes individually, and the copy owns that plainly instead
+           of hiding it. The em runs gold, the page's accent. -->
+      <section class="snapshot snapshot-consulting" id="price" aria-labelledby="price-h">
+        <div class="wrap">
+          <h2 id="price-h">The price</h2>
+          <p class="snapshot-claim">Priced on its <em>shape</em>.</p>
+          <p class="snapshot-note">
+            A lunch and learn, a conference keynote, and a quarter of standing office hours are
+            different animals, so consulting is the one service we don't publish a floor for. Tell
+            us what you're imagining and we'll shape it with you: format, audience, cadence, and
+            fee, all in the same one-business-day proposal.
+          </p>
+          <p class="snapshot-note">
+            Everything else we sell has its price in the open, on
+            <a href="pricing.html">the rate card</a>.
+          </p>
+          <!-- TODO: point at the real quote form once it exists. -->
+          <p class="snapshot-cta"><a class="pill" href="#contact">Get a quote</a></p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="say-hi" id="contact" aria-labelledby="cta-h">
+        <div class="wrap">
+          <p class="kicker">Start a conversation</p>
+          <h2 id="cta-h">
+            <!-- data-chat-launch: opens Intercom once its snippet is added (site.js);
+                 until then the heading opens email, same as the address below, so
+                 nothing here is a dead end. -->
+            <a href="mailto:hello@labradoraccessibility.com" data-chat-launch
+              >Say hi <span class="h2-note">(opens chat)</span> <span aria-hidden="true">→</span></a
+            >
+          </h2>
+          <p>
+            Tell us who's learning and what they ship, and we'll shape the session around them. Our
+            founding team spans Maine, Wales, and Delhi, so someone's online through most of your
+            working day. Expect a scoped, fixed-fee proposal within one business day. A call is
+            welcome, never required.
+          </p>
+          <!-- Every way to reach us, in one row. site.js turns the address into a
+               copy-on-click control (visible + announced "Copied!" note); without
+               the script it stays a plain working mailto link. -->
+          <ul class="contact-row" role="list">
+            <li class="contact-email">
+              <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+              <!-- Visible cue for the copy-on-click upgrade; aria-hidden because the
+                   link's own accessible name already carries the same hint for screen
+                   readers. Ships hidden; site.js reveals it with the behavior. -->
+              <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
+              <span class="copy-note" role="status"></span>
+            </li>
+            <!-- TODO: swap both pre-filled mailtos for the real scheduler and quote
+                 form once those exist. -->
+            <li>
+              <a
+                class="pill"
+                href="mailto:hello@labradoraccessibility.com?subject=Booking%20a%20call"
+                >Book a call</a
+              >
+            </li>
+            <li>
+              <a
+                class="pill-ghost"
+                href="mailto:hello@labradoraccessibility.com?subject=Quote%20request"
+                >Get a quote</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- aria-label distinguishes this nav from the header's "Primary" landmark. -->
+      <nav class="wrap footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul role="list">
+            <li><a href="audits.html">Audits</a></li>
+            <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+            <li><a href="remediation.html">Remediation</a></li>
+            <li><a href="consulting.html" aria-current="page">Consulting</a></li>
+            <li><a href="audits.html#homepage-audit">The $495 homepage audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Company</h2>
+          <ul role="list">
+            <li><a href="index.html#beliefs">What we believe</a></li>
+            <li><a href="index.html#philosophy">Our philosophy</a></li>
+            <li><a href="index.html#our-tool">Our tool</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="#contact">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Writing</h2>
+          <!-- TODO: these posts don't exist yet. Slugs are proposals; keep them in sync
+               with the real URLs when the blog ships. -->
+          <ul role="list">
+            <li><a href="/blog/manual-vs-automated-testing">Manual vs. automated testing</a></li>
+            <li><a href="/blog/audits-vs-widgets">Accessibility audits vs. widgets</a></li>
+            <li><a href="/blog/what-is-a-vpat">What is a VPAT, and when do you need one?</a></li>
+            <li>
+              <a href="/blog/european-accessibility-act"
+                >The European Accessibility Act (EAA), explained</a
+              >
+            </li>
+            <li>
+              <a href="/blog/how-to-read-an-audit-report">How to read your first audit report</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrap colophon">
+        <span>© 2026 Labrador Services · Maine · Wales · Delhi</span>
+      </div>
+    </footer>
+  </body>
+</html>

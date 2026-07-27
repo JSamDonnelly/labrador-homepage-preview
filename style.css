@@ -496,7 +496,9 @@ nav.masthead > ul > li > a:hover,
 .evidence h2,
 .buyers h2,
 .fixes h2,
-.runbook h2 {
+.runbook h2,
+.training h2,
+.thesis h2 {
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--ink-soft);
@@ -725,7 +727,8 @@ nav.masthead > ul > li > a:hover,
 .services-panel,
 .process-panel,
 .editions-panel,
-.modes-panel {
+.modes-panel,
+.formats-panel {
   border-radius: clamp(1.25rem, 3vw, 2.5rem);
   margin-inline: clamp(0.75rem, 2vw, 1.5rem);
   padding-block: clamp(3.5rem, 8vw, 6rem);
@@ -747,14 +750,16 @@ nav.masthead > ul > li > a:hover,
 .services-panel + .say-hi,
 .process-panel + .say-hi,
 .editions-panel + .say-hi,
-.modes-panel + .say-hi {
+.modes-panel + .say-hi,
+.formats-panel + .say-hi {
   margin-block-start: clamp(3.5rem, 8vw, 6rem);
 }
 
 .services-panel h2,
 .process-panel h2,
 .editions-panel h2,
-.modes-panel h2 {
+.modes-panel h2,
+.formats-panel h2 {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-weight: 600;
@@ -930,7 +935,8 @@ nav.masthead > ul > li > a:hover,
 .evidence-note a,
 .deliverable-list a,
 .rates-intro a,
-.snapshot-note a {
+.snapshot-note a,
+.thesis-note a {
   color: var(--mint-deep);
   text-decoration: underline;
   text-decoration-color: var(--mint-deep);
@@ -955,7 +961,8 @@ nav.masthead > ul > li > a:hover,
 .evidence-note a:hover,
 .deliverable-list a:hover,
 .rates-intro a:hover,
-.snapshot-note a:hover {
+.snapshot-note a:hover,
+.thesis-note a:hover {
   color: var(--ink);
   text-decoration-color: var(--mint-strong);
 }
@@ -2070,6 +2077,190 @@ footer {
 
 .runbook-claim + .runbook-note {
   margin-top: 2rem;
+}
+
+/* ============================================================
+   CONSULTING PAGE (consulting.html) — the second gold page, on
+   purpose: gold is the site's experience-and-authority accent
+   ("decades", the audits process), and consulting sells the
+   experience directly. The formats panel shares the audits page's
+   hue but nothing else — different content, different row grammar,
+   different placement (directly after the hero). Ems run gold
+   throughout, matching the audits page's accent logic. Shared
+   blocks reused unchanged: header, pills, snapshot band, say-hi,
+   footer.
+   ============================================================ */
+
+.hero-consulting h1 em {
+  color: var(--gold-deep);
+}
+
+.formats-panel {
+  background: var(--gold-mist);
+}
+
+/* Soft Ink on Gold Mist: 5.2:1, the documented process-panel pairing. */
+.formats-panel .intro {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  max-width: 48ch;
+}
+
+/* Six formats in the two-column row grammar with the translucent-ink rules
+   every light panel's rows use. Same load-bearing dl wrapper divs as
+   everywhere else: never display: contents. */
+.format-list {
+  margin: 2.75rem 0 0;
+  border-top: 1.5px solid rgb(26 29 28 / 22%);
+}
+
+.format {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 1.5rem;
+  padding-block: 1.6rem;
+  border-bottom: 1.5px solid rgb(26 29 28 / 22%);
+}
+
+.format dt {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+}
+
+.format dd {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+@media (width <= 900px) {
+  .format {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+/* The training section. No top rule: follows the color block. */
+.training {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.training-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.training-claim em {
+  font-style: normal;
+  color: var(--gold-deep);
+}
+
+.training-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.training-claim + .training-note {
+  margin-top: 2rem;
+}
+
+/* The sample agenda: a printed-schedule figure in the ruled-row grammar.
+   Times take gold in its numeric-proof role (Gold 700 on paper is the
+   documented text floor); sessions read as content, in ink. */
+.agenda {
+  margin: 2.75rem 0 0;
+}
+
+.agenda figcaption {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 60ch;
+  margin-bottom: 1.25rem;
+  text-wrap: pretty;
+}
+
+.agenda-list {
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+
+.agenda-row {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 0.35rem clamp(1.5rem, 3vw, 2.5rem);
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.agenda-row dt {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.4;
+  color: var(--gold-deep);
+}
+
+.agenda-row dd {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.5;
+  max-width: 54ch;
+  align-self: center;
+  text-wrap: pretty;
+}
+
+/* The thesis section: standard statement grammar, hairline rule (follows a
+   light section), gold em. */
+.thesis {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.thesis-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.thesis-claim em {
+  font-style: normal;
+  color: var(--gold-deep);
+}
+
+.thesis-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.thesis-claim + .thesis-note {
+  margin-top: 2rem;
+}
+
+/* The band's em runs gold on this page, like the audits page's price em.
+   Gold 700 on Neutral 50: 5.56:1. */
+.snapshot-consulting .snapshot-claim em {
+  color: var(--gold-deep);
 }
 
 /* ============================================================
