@@ -2701,12 +2701,13 @@ footer {
   margin: 0;
 }
 
-/* Each founder is a ruled row: the landscape photograph beside the bio,
-   photo column slightly wider than the text. The frames share one exact
-   size, so the rows rhyme all the way down. */
+/* Each founder is a ruled row: a compact photograph beside the bio. The
+   photo column is deliberately modest (a portrait, not a poster) so the
+   words carry the row; the frames still share one exact size, so the rows
+   rhyme all the way down. */
 .member {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-columns: clamp(13rem, 22vw, 17.5rem) minmax(0, 1fr);
   gap: clamp(1.75rem, 4vw, 3.5rem);
   align-items: start;
   padding-block: clamp(2.5rem, 5vw, 4rem);
@@ -2749,6 +2750,11 @@ footer {
   .member {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  /* Stacked, the photo stays a portrait rather than a full-bleed banner. */
+  .member img {
+    max-width: 22rem;
   }
 }
 
