@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remediation — Labrador Services</title>
+    <meta
+      name="description"
+      content="Accessibility remediation by Labrador: we fix what the audit found, in our hands or alongside your developers, and re-test every fix by hand. Typically an add-on to an audit, scoped from your findings list, from $2,000."
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap masthead-inner">
+        <!-- Relative, not "/": see index.html. -->
+        <a class="brand" href="index.html">
+          <img
+            class="brand-logo"
+            src="labrador-logo.svg"
+            alt="Labrador Services home"
+            width="759"
+            height="189"
+          />
+        </a>
+        <!-- See index.html for why this button ships hidden: the collapsed nav is
+             progressive enhancement, not a requirement. -->
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <nav class="masthead" id="primary-nav" aria-label="Primary">
+          <ul role="list">
+            <li class="has-submenu">
+              <!-- Same native disclosure as index.html; see the comment there for why
+                   <details>/<summary> and not an ARIA menu. -->
+              <details class="submenu-toggle">
+                <summary>
+                  Services
+                  <span class="chevron" aria-hidden="true"></span>
+                </summary>
+                <!-- Audits, VPATs, and Remediation have their own pages. Consulting
+                     still points at the homepage services section until its page
+                     is built. -->
+                <ul class="submenu" role="list">
+                  <li><a href="audits.html">Audits</a></li>
+                  <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+                  <li><a href="remediation.html" aria-current="page">Remediation</a></li>
+                  <li><a href="index.html#services">Consulting</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="index.html#our-tool">Our Tool</a></li>
+            <!-- TODO: About and Blog don't exist yet and will 404 until they're built. -->
+            <li><a href="/about">About</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
+               address, which doesn't deliver on "Book a call". -->
+          <a class="pill" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- HERO — belief 3 from the homepage, word for word, promoted to a page
+           thesis: this page IS that belief as a service. The echo is deliberate
+           (the lede's first clause quotes the belief's body copy the same way),
+           and the em runs mint: this is the mint page. Gold stays on audits,
+           ink on VPATs. -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="wrap">
+          <h1 id="hero-h">The <em>fix</em> matters more than the finding.</h1>
+          <p class="lede">
+            Anyone can hand you a list of issues; we're here for the part where they disappear.
+            Labrador remediation takes your audit's findings and turns them into shipped fixes: in
+            our hands, or alongside your developers. Either way, we stay until the re-test comes
+            back clean.
+          </p>
+          <div class="hero-actions">
+            <a class="pill" href="#contact">Book a call</a>
+            <a class="pill-ghost" href="audits.html">Start with an audit</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT A FIX LOOKS LIKE — the page's signature: the deliverable is code,
+           so the page shows code. Two real, tiny before-and-after diffs on dark
+           figures. Semantic <del>/<ins> carry removed/added lines; the -/+
+           prefixes carry the same meaning in plain text, so color is never the
+           sole signal. Code sets in the SYSTEM monospace stack — no third font
+           file loads, and mono appears only inside actual code, where it is the
+           correct face rather than a "technical" costume (the reason the mono
+           kicker was retired sitewide). -->
+      <section class="fixes" id="fixes" aria-labelledby="fixes-h">
+        <div class="wrap">
+          <h2 id="fixes-h">What a fix looks like</h2>
+          <p class="fixes-claim">Most fixes are <em>smaller</em> than you think.</p>
+          <p class="fixes-note">
+            Accessibility remediation has a reputation for rewrites that it doesn't deserve. Most
+            findings close with a change a reviewer can read in a minute: a real element in place of
+            an imitation, a name on something that lacked one, focus given back to the keyboard.
+            Here are two fixes we make constantly, shown as your developers would meet them.
+          </p>
+          <figure class="fix-sample">
+            <figcaption>
+              <strong>The clickable div.</strong> Success criteria 2.1.1 (Keyboard) and 4.1.2 (Name,
+              Role, Value).
+            </figcaption>
+            <!-- The wrapper scrolls sideways on narrow screens and is focusable so
+                 keyboard users can operate the scroll; same pattern as the ACR
+                 excerpt on the VPATs page. -->
+            <section class="fix-scroll" tabindex="0" aria-label="Code for the clickable div fix">
+              <pre><code><del>- &lt;div class="buy-button" onclick="checkout()"&gt;</del>
+<del>-   Buy now
+</del><del>- &lt;/div&gt;</del>
+<ins>+ &lt;button class="buy-button" type="button" onclick="checkout()"&gt;</ins>
+<ins>+   Buy now
+</ins><ins>+ &lt;/button&gt;</ins></code></pre>
+            </section>
+            <p class="fix-note">
+              A div responds to a mouse and nothing else: keyboard users tab straight past it, and a
+              screen reader finds nothing worth announcing. The button version is focusable,
+              announces its role, and works with Enter and Space, no extra script required. One
+              element swap closes two criteria.
+            </p>
+          </figure>
+          <figure class="fix-sample">
+            <figcaption>
+              <strong>The unnamed image.</strong> Success criterion 1.1.1 (Non-text Content).
+            </figcaption>
+            <section class="fix-scroll" tabindex="0" aria-label="Code for the unnamed image fix">
+              <pre><code><del>- &lt;img src="q3-revenue.png" /&gt;</del>
+<ins>+ &lt;img</ins>
+<ins>+   src="q3-revenue.png"</ins>
+<ins>+   alt="Q3 revenue: up 38% year over year"</ins>
+<ins>+ /&gt;</ins></code></pre>
+            </section>
+            <p class="fix-note">
+              Without a text alternative, a screen reader has nothing to announce but the filename.
+              The fix is a sentence carrying what the image shows, written to give the same takeaway
+              a sighted reader gets. "Chart" would technically pass and help nobody; good alt text
+              is copywriting.
+            </p>
+          </figure>
+          <p class="fix-aside">
+            Both are simplified from real findings. In your report, each one arrives with evidence,
+            severity, and a suggested fix written against your own code.
+          </p>
+        </div>
+      </section>
+
+      <!-- TWO WAYS — the page's one color block, and it's mint: the brand's own
+           hue for the service where barriers actually come down (audits carry
+           gold, VPATs ink). Two modes, not four offers, so the rows take the
+           two-column deliverable grammar rather than the homepage's arrowed
+           offer rows. -->
+      <section class="modes-panel" id="how-we-work" aria-labelledby="modes-h">
+        <div class="wrap">
+          <h2 id="modes-h">Two ways to get it done</h2>
+          <p class="intro">
+            Both start from an audit's findings list, and both end in the same place: barriers gone,
+            re-test clean. Pick by how your team likes to ship.
+          </p>
+          <dl class="mode-list">
+            <div class="mode">
+              <dt>In our hands</dt>
+              <dd>
+                Our developers write the fixes and open pull requests your team reviews. You keep
+                control of every merge; we carry the workload.
+              </dd>
+            </div>
+            <div class="mode">
+              <dt>Alongside your team</dt>
+              <dd>
+                Your developers write the fixes; we pair, review pull requests, and answer the
+                questions that come up mid-fix. The barriers fall either way, and your team learns
+                the patterns as the list shrinks.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <!-- HOW IT RUNS — the rigor section: fixes map to findings, findings close
+           on re-tests, status lives in Labrador. Closes with the common-fixes
+           strip in the site's rule-bounded strip grammar (the homepage's
+           sectors, the audits page's assistive-technology roster). No top rule:
+           follows the color block. -->
+      <section class="runbook" id="how-it-runs" aria-labelledby="runbook-h">
+        <div class="wrap">
+          <h2 id="runbook-h">How it runs</h2>
+          <p class="runbook-claim">The findings list is the <em>work order</em>.</p>
+          <p class="runbook-note">
+            Every fix maps to a finding, and every finding already carries what a developer needs:
+            the criterion it fails, the evidence, the severity, and a suggested approach. We work in
+            priority order from the walkthrough, so the barriers that lock people out entirely fall
+            first.
+          </p>
+          <p class="runbook-note">
+            Fixes don't close on our say-so. Each one is re-tested the way the issue was found: by
+            hand, with the same assistive technology, and the finding's status updates in Labrador
+            (the testing platform we built) as it happens. When the list reads clean, you have the
+            re-test to prove it.
+          </p>
+          <ul class="fix-strip" role="list">
+            <li>Modals and dialogs</li>
+            <li>Custom dropdowns</li>
+            <li>Date pickers</li>
+            <li>Carousels</li>
+            <li>Forms and error messages</li>
+            <li>Focus order</li>
+            <li>Color and contrast</li>
+            <li>ARIA repair</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- PRICE — the band, same grammar as every sibling page. Copy rule: the
+           two cost drivers are stated exactly (how many findings, how deep each
+           goes), and the add-on relationship is plain, matching the VPATs
+           page's framing. -->
+      <section class="snapshot" id="price" aria-labelledby="price-h">
+        <div class="wrap">
+          <h2 id="price-h">The price</h2>
+          <p class="snapshot-claim">Scoped from your findings, from <em>$2,000</em>.</p>
+          <p class="snapshot-note">
+            Two things set the number: how many findings there are, and how deep each one goes. A
+            missing label is a minutes-long fix; an inaccessible date picker is a component rebuild.
+            Your proposal prices the real list, finding by finding, so you'll see the whole cost
+            before anything begins.
+          </p>
+          <p class="snapshot-note">
+            Remediation typically follows an audit of ours: the findings list is the work order, and
+            we verify each fix the same way we found the issue. If you haven't been audited yet,
+            <a href="audits.html">that's where we start</a>.
+          </p>
+          <!-- TODO: point at the real quote form once it exists. -->
+          <p class="snapshot-cta"><a class="pill" href="#contact">Get a quote</a></p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="say-hi" id="contact" aria-labelledby="cta-h">
+        <div class="wrap">
+          <p class="kicker">Start a conversation</p>
+          <h2 id="cta-h">
+            <!-- data-chat-launch: opens Intercom once its snippet is added (site.js);
+                 until then the heading opens email, same as the address below, so
+                 nothing here is a dead end. -->
+            <a href="mailto:hello@labradoraccessibility.com" data-chat-launch
+              >Say hi <span class="h2-note">(opens chat)</span> <span aria-hidden="true">→</span></a
+            >
+          </h2>
+          <p>
+            Tell us what your audit found, and we'll tell you what fixing it takes. Our founding
+            team spans Maine, Wales, and Delhi, so someone's online through most of your working
+            day. Expect a scoped, fixed-fee proposal within one business day. A call is welcome,
+            never required.
+          </p>
+          <!-- Every way to reach us, in one row. site.js turns the address into a
+               copy-on-click control (visible + announced "Copied!" note); without
+               the script it stays a plain working mailto link. -->
+          <ul class="contact-row" role="list">
+            <li class="contact-email">
+              <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+              <!-- Visible cue for the copy-on-click upgrade; aria-hidden because the
+                   link's own accessible name already carries the same hint for screen
+                   readers. Ships hidden; site.js reveals it with the behavior. -->
+              <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
+              <span class="copy-note" role="status"></span>
+            </li>
+            <!-- TODO: swap both pre-filled mailtos for the real scheduler and quote
+                 form once those exist. -->
+            <li>
+              <a
+                class="pill"
+                href="mailto:hello@labradoraccessibility.com?subject=Booking%20a%20call"
+                >Book a call</a
+              >
+            </li>
+            <li>
+              <a
+                class="pill-ghost"
+                href="mailto:hello@labradoraccessibility.com?subject=Quote%20request"
+                >Get a quote</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- aria-label distinguishes this nav from the header's "Primary" landmark. -->
+      <nav class="wrap footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul role="list">
+            <li><a href="audits.html">Audits</a></li>
+            <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+            <li><a href="remediation.html" aria-current="page">Remediation</a></li>
+            <li><a href="index.html#services">Consulting</a></li>
+            <li><a href="audits.html#homepage-audit">The $495 homepage audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Company</h2>
+          <ul role="list">
+            <li><a href="index.html#beliefs">What we believe</a></li>
+            <li><a href="index.html#philosophy">Our philosophy</a></li>
+            <li><a href="index.html#our-tool">Our tool</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="#contact">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Writing</h2>
+          <!-- TODO: these posts don't exist yet. Slugs are proposals; keep them in sync
+               with the real URLs when the blog ships. -->
+          <ul role="list">
+            <li><a href="/blog/manual-vs-automated-testing">Manual vs. automated testing</a></li>
+            <li><a href="/blog/audits-vs-widgets">Accessibility audits vs. widgets</a></li>
+            <li><a href="/blog/what-is-a-vpat">What is a VPAT, and when do you need one?</a></li>
+            <li>
+              <a href="/blog/european-accessibility-act"
+                >The European Accessibility Act (EAA), explained</a
+              >
+            </li>
+            <li>
+              <a href="/blog/how-to-read-an-audit-report">How to read your first audit report</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrap colophon">
+        <span>© 2026 Labrador Services · Maine · Wales · Delhi</span>
+      </div>
+    </footer>
+  </body>
+</html>

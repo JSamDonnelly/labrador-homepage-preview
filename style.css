@@ -494,7 +494,9 @@ nav.masthead > ul > li > a:hover,
 .deliverables h2,
 .terms h2,
 .evidence h2,
-.buyers h2 {
+.buyers h2,
+.fixes h2,
+.runbook h2 {
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--ink-soft);
@@ -693,7 +695,8 @@ nav.masthead > ul > li > a:hover,
    flex-wrap grammar, same reason there are no separators between items (a
    wrapped row must never strand a divider). */
 .sector-list,
-.at-list {
+.at-list,
+.fix-strip {
   list-style: none;
   padding: 0;
   margin-block: 2.2rem 0;
@@ -721,7 +724,8 @@ nav.masthead > ul > li > a:hover,
    ink on the VPATs page (editions). */
 .services-panel,
 .process-panel,
-.editions-panel {
+.editions-panel,
+.modes-panel {
   border-radius: clamp(1.25rem, 3vw, 2.5rem);
   margin-inline: clamp(0.75rem, 2vw, 1.5rem);
   padding-block: clamp(3.5rem, 8vw, 6rem);
@@ -742,13 +746,15 @@ nav.masthead > ul > li > a:hover,
    them (which brings its own padding) doesn't double it up. */
 .services-panel + .say-hi,
 .process-panel + .say-hi,
-.editions-panel + .say-hi {
+.editions-panel + .say-hi,
+.modes-panel + .say-hi {
   margin-block-start: clamp(3.5rem, 8vw, 6rem);
 }
 
 .services-panel h2,
 .process-panel h2,
-.editions-panel h2 {
+.editions-panel h2,
+.modes-panel h2 {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-weight: 600;
@@ -923,7 +929,8 @@ nav.masthead > ul > li > a:hover,
 .background-note a,
 .evidence-note a,
 .deliverable-list a,
-.rates-intro a {
+.rates-intro a,
+.snapshot-note a {
   color: var(--mint-deep);
   text-decoration: underline;
   text-decoration-color: var(--mint-deep);
@@ -947,7 +954,8 @@ nav.masthead > ul > li > a:hover,
 .background-note a:hover,
 .evidence-note a:hover,
 .deliverable-list a:hover,
-.rates-intro a:hover {
+.rates-intro a:hover,
+.snapshot-note a:hover {
   color: var(--ink);
   text-decoration-color: var(--mint-strong);
 }
@@ -1852,6 +1860,215 @@ footer {
 }
 
 .buyers-claim + .buyers-note {
+  margin-top: 2rem;
+}
+
+/* ============================================================
+   REMEDIATION PAGE (remediation.html) — the mint page. The fourth
+   hue assignment closes the loop: gold on audits, ink on VPATs,
+   and the brand's own mint here, where the barriers actually come
+   down (the modes panel is the page's one color block). The
+   signature texture is the fix specimens: real before-and-after
+   diffs on dark figures, in the SYSTEM monospace stack — no third
+   font file loads, and mono appears only inside actual <code>,
+   where it is the correct face rather than the "technical" costume
+   the retired mono kicker was. Shared blocks reused unchanged:
+   header, pills, snapshot band, say-hi, footer.
+   ============================================================ */
+
+.fixes {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.fixes-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.fixes-claim em {
+  font-style: normal;
+  color: var(--mint-deep);
+}
+
+.fixes-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.fixes-claim + .fixes-note {
+  margin-top: 2rem;
+}
+
+/* The fix specimens. Dark figures at the stat-card radius; the diff's
+   removed lines dim to Sign-off Metadata (7.89:1) and the added lines take
+   Mint 400 (11.5:1), with the -/+ prefixes carrying the same meaning in
+   plain text so color is never the sole signal. <del>/<ins> carry it
+   semantically; their default strikethrough/underline is stripped because
+   the diff prefixes already do that job legibly in code. */
+.fix-sample {
+  margin: 2.75rem 0 0;
+}
+
+.fix-sample + .fix-sample {
+  margin-top: 3rem;
+}
+
+.fix-sample figcaption {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 60ch;
+  margin-bottom: 1rem;
+  text-wrap: pretty;
+}
+
+.fix-sample figcaption strong {
+  color: var(--ink);
+}
+
+/* Scrolls sideways on narrow screens; focusable (tabindex in markup) so
+   keyboard users can operate the scroll. Same pattern as the VPATs page's
+   ACR excerpt. */
+.fix-scroll {
+  overflow-x: auto;
+  background: var(--ink);
+  border-radius: 1.25rem;
+  /* The slab hugs the code instead of running the full 74rem measure: the
+     longest specimen line sets ~42rem, and a full-width dark slab with a
+     short diff inside reads as empty stage, not specimen. */
+  max-width: 44rem;
+}
+
+.fix-scroll pre {
+  margin: 0;
+  padding: clamp(1.4rem, 3vw, 1.9rem) clamp(1.5rem, 3vw, 2rem);
+}
+
+/* Code sets at the 16px floor in the system mono stack: it is neither a
+   UI label nor continuous prose, and mono at 16px reads larger than its
+   number. Nothing on the page renders below the floor. */
+.fix-scroll code {
+  font-family: ui-monospace, "SF Mono", menlo, consolas, "Liberation Mono", monospace;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-text);
+}
+
+.fix-scroll del {
+  text-decoration: none;
+  color: var(--ink-meta);
+}
+
+.fix-scroll ins {
+  text-decoration: none;
+  color: var(--mint-strong);
+}
+
+.fix-note {
+  margin-top: 1.25rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 54ch;
+  text-wrap: pretty;
+}
+
+.fix-aside {
+  margin-top: 2.5rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 54ch;
+  text-wrap: pretty;
+}
+
+/* The modes panel: this page's one color block, on the brand's own hue. */
+.modes-panel {
+  background: var(--mint);
+}
+
+.modes-panel .intro {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  max-width: 48ch;
+}
+
+/* Two modes in the two-column row grammar (title beside description), with
+   the translucent ink rules every light panel's rows use. Deliberately not
+   the homepage's arrowed offer rows: two ways of working, not four linked
+   services. Same load-bearing dl wrapper divs as everywhere else. */
+.mode-list {
+  margin: 2.75rem 0 0;
+  border-top: 1.5px solid rgb(26 29 28 / 22%);
+}
+
+.mode {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 1.5rem;
+  padding-block: 1.6rem;
+  border-bottom: 1.5px solid rgb(26 29 28 / 22%);
+}
+
+.mode dt {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+}
+
+/* Soft Ink re-verified on Mint Mist: 5.6:1 (the stat-card precedent). */
+.mode dd {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+@media (width <= 900px) {
+  .mode {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+/* The rigor section. No top rule: it follows the color block. */
+.runbook {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.runbook-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.runbook-claim em {
+  font-style: normal;
+  color: var(--mint-deep);
+}
+
+.runbook-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.runbook-claim + .runbook-note {
   margin-top: 2rem;
 }
 
