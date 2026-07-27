@@ -1761,11 +1761,16 @@ footer {
 
 /* Fixed term column (not auto): each row is its own grid, so an auto column
    would size to its own dt and the four terms would sit ragged. The clamp
-   fits "WCAG", the widest, at every viewport. The third (auto) column is the
-   price, pushed to the row's far edge by the description's 1fr track. */
+   fits "WCAG edition", the widest, on one line at every three-column width —
+   the terms carry the word "edition" so a skimmed row can never read as
+   "a WCAG audit for $750". The third (auto) column is the price, pushed to
+   the row's far edge by the description's 1fr track. */
 .edition {
   display: grid;
-  grid-template-columns: clamp(5.5rem, 12vw, 7.5rem) minmax(0, 1fr) auto;
+  /* Fixed, not viewport-scaled: the dt size is a fixed --text-lg now, so the
+     column that fits "WCAG edition" (measured 148px) is a constant. 10rem
+     gives it headroom at every three-column width. */
+  grid-template-columns: 10rem minmax(0, 1fr) auto;
   gap: 0.25rem clamp(1.5rem, 3vw, 2.5rem);
   padding-block: 1.6rem;
   border-bottom: 1.5px solid rgb(247 248 247 / 30%);
@@ -1778,19 +1783,21 @@ footer {
 .edition dd.edition-price {
   margin: 0;
   font-family: var(--font-display);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 1.18;
+  line-height: 1.25;
   color: var(--mint-strong);
 }
 
+/* Row-name size matches the pricing page's rebuilt rate rows (--text-lg), so
+   the two rate-card surfaces share one row-typography scale. */
 .edition dt {
   font-family: var(--font-display);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 1.18;
+  line-height: 1.25;
 }
 
 .edition dd {
