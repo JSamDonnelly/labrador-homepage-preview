@@ -38,6 +38,10 @@ svg,
 video {
   display: block;
   max-width: 100%;
+  /* Paired with max-width so an image carrying width/height attributes can
+     never render squeezed-wide but attribute-tall. Without this, any image
+     is one missing page-CSS rule away from visible distortion. */
+  height: auto;
 }
 
 input,
