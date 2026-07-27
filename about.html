@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About — Labrador Services</title>
+    <meta
+      name="description"
+      content="Meet Labrador's founding team: Grant Broome, Shadab Saifi, and Sam Donnelly. Three co-founders across Maine, Wales, and Delhi, with decades of accessibility work behind the new name."
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap masthead-inner">
+        <!-- Relative, not "/": see index.html. -->
+        <a class="brand" href="index.html">
+          <img
+            class="brand-logo"
+            src="labrador-logo.svg"
+            alt="Labrador Services home"
+            width="759"
+            height="189"
+          />
+        </a>
+        <!-- See index.html for why this button ships hidden: the collapsed nav is
+             progressive enhancement, not a requirement. -->
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <nav class="masthead" id="primary-nav" aria-label="Primary">
+          <ul role="list">
+            <li class="has-submenu">
+              <!-- Same native disclosure as index.html; see the comment there for why
+                   <details>/<summary> and not an ARIA menu. -->
+              <details class="submenu-toggle">
+                <summary>
+                  Services
+                  <span class="chevron" aria-hidden="true"></span>
+                </summary>
+                <!-- All four services have their own pages now. -->
+                <ul class="submenu" role="list">
+                  <li><a href="audits.html">Audits</a></li>
+                  <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+                  <li><a href="remediation.html">Remediation</a></li>
+                  <li><a href="consulting.html">Consulting</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="tool.html">Our Tool</a></li>
+            <li><a href="about.html" aria-current="page">About</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <!-- TODO: the blog doesn't exist yet and will 404 until it's built. -->
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
+               address, which doesn't deliver on "Book a call". -->
+          <a class="pill" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- HERO — deliberately NOT the sitewide hero formula (headline, lede,
+           two pills, fact strip). This page's payoff is the people, so the
+           opening is a compact statement that hands over to the photos as
+           fast as possible: display line, one sentence, a rule, done. No
+           buttons; the contact block at the foot does that work. -->
+      <section class="about-hero" aria-labelledby="hero-h">
+        <div class="wrap">
+          <h1 id="hero-h">The people you'll actually <em>work with</em>.</h1>
+          <p class="about-line">
+            Labrador is three co-founders across Maine, Wales, and Delhi. There are no account
+            managers and no handoffs: the people on this page are the people on your audit.
+          </p>
+        </div>
+      </section>
+
+      <!-- THE FOUNDERS — the center of the page. Each member is a ruled row:
+           a uniform landscape photograph (1200 by 800, cropped by hand from
+           the originals so every frame matches) beside the bio. Landscape
+           rather than portrait is deliberate: the wide frames give the rows a
+           calm, editorial rhythm no other page has. Sam's dog stays in frame
+           on purpose, and the bio's closing line makes the choice read as
+           intent, not accident. -->
+      <section class="founders" id="team" aria-labelledby="founders-h">
+        <div class="wrap">
+          <h2 id="founders-h">The founders</h2>
+          <ul class="member-list" role="list">
+            <li class="member">
+              <img
+                src="team/grant.jpg"
+                alt="Grant Broome smiling in close-up under a wooden pergola, sunglasses pushed up on his head, greenery behind him."
+                width="1200"
+                height="800"
+                loading="lazy"
+              />
+              <div class="member-bio">
+                <h3>Grant Broome</h3>
+                <p class="member-role">Co-founder, CEO, Audit Orchestrator</p>
+                <p>
+                  Grant has spent more than 23 years in accessibility consulting. At Labrador he
+                  leads the audit practice: WCAG audits, stakeholder discovery projects, and
+                  hands-on app testing across iOS and Android with assistive technologies such as
+                  VoiceOver and TalkBack, the screen readers built into iPhone and Android.
+                </p>
+                <p>
+                  He has delivered accessibility work for organizations including the English
+                  Premier League, the BBC, Wimbledon, Virgin Atlantic, the NHS, Bentley, and Legal
+                  &amp; General, and his discovery work explores how accessibility maturity is
+                  embedded, and can be improved, across a business. Along the way he has founded
+                  multiple accessibility companies, including Dig Inclusion, which he directed until
+                  its acquisition by Nile.
+                </p>
+              </div>
+            </li>
+            <li class="member">
+              <img
+                src="team/shadab.jpg"
+                alt="Shadab Saifi in a navy suit and open-collared white shirt, smiling in a studio portrait against a gray backdrop."
+                width="1200"
+                height="800"
+                loading="lazy"
+              />
+              <div class="member-bio">
+                <h3>Shadab Saifi</h3>
+                <p class="member-role">Co-founder, CTO, Senior Auditor</p>
+                <p>
+                  Shadab has spent nearly a decade in digital accessibility and is a full stack
+                  developer besides, working with organizations across government, healthcare,
+                  education, finance, eCommerce, and enterprise software.
+                </p>
+                <p>
+                  He is one of a small number of practitioners who hold all three senior credentials
+                  from the International Association of Accessibility Professionals (IAAP):
+                  Certified Professional in Accessibility Core Competencies (CPACC), Web
+                  Accessibility Specialist (WAS), and Certified Professional in Web Accessibility
+                  (CPWA). He is also a Section 508 Trusted Tester, certified by the United States
+                  Department of Homeland Security, and a JAWS Certified Professional (JAWS is
+                  another leading screen reader).
+                </p>
+                <p>
+                  His day-to-day work covers WCAG 2.2 audits, accessibility remediation, VPAT and
+                  ACR documentation, accessibility governance programs, and developer training. He
+                  tests with real assistive technology, including JAWS, NVDA, VoiceOver, and
+                  TalkBack, and produces documentation that holds up in procurement reviews and
+                  legal due diligence.
+                </p>
+              </div>
+            </li>
+            <li class="member">
+              <img
+                src="team/sam.jpg"
+                alt="Sam Donnelly standing on a garden path in autumn, smiling, holding his small gray dog in one arm."
+                width="1200"
+                height="800"
+                loading="lazy"
+              />
+              <div class="member-bio">
+                <h3>Sam Donnelly</h3>
+                <p class="member-role">Co-founder, COO, Senior Auditor</p>
+                <p>
+                  Sam built Labrador, the testing platform our audits run on, and is a digital
+                  accessibility specialist who has held IAAP's CPACC certification since 2021. His
+                  tech career began in design; accessibility is where it stayed. He delivered
+                  Haiti's first ever talk on user experience design in 2022, lectured on inclusive
+                  design at California State University Northridge (CSUN) in 2024, and gave a talk
+                  on digital accessibility and inclusive design at PTC Digital, an S&amp;P 500
+                  company.
+                </p>
+                <p>
+                  He has audited everything from widely used e-learning courses to AI chatbots,
+                  banking software, and e-commerce. Pictured with his dog, who declined to provide a
+                  bio.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="say-hi" id="contact" aria-labelledby="cta-h">
+        <div class="wrap">
+          <p class="kicker">Start a conversation</p>
+          <h2 id="cta-h">
+            <!-- data-chat-launch: opens Intercom once its snippet is added (site.js);
+                 until then the heading opens email, same as the address below, so
+                 nothing here is a dead end. -->
+            <a href="mailto:hello@labradoraccessibility.com" data-chat-launch
+              >Say hi <span class="h2-note">(opens chat)</span> <span aria-hidden="true">→</span></a
+            >
+          </h2>
+          <p>
+            You now know exactly who you'd be writing to. Our founding team spans Maine, Wales, and
+            Delhi, so someone's online through most of your working day. Expect a scoped, fixed-fee
+            proposal within one business day. A call is welcome, never required.
+          </p>
+          <!-- Every way to reach us, in one row. site.js turns the address into a
+               copy-on-click control (visible + announced "Copied!" note); without
+               the script it stays a plain working mailto link. -->
+          <ul class="contact-row" role="list">
+            <li class="contact-email">
+              <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+              <!-- Visible cue for the copy-on-click upgrade; aria-hidden because the
+                   link's own accessible name already carries the same hint for screen
+                   readers. Ships hidden; site.js reveals it with the behavior. -->
+              <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
+              <span class="copy-note" role="status"></span>
+            </li>
+            <!-- TODO: swap both pre-filled mailtos for the real scheduler and quote
+                 form once those exist. -->
+            <li>
+              <a
+                class="pill"
+                href="mailto:hello@labradoraccessibility.com?subject=Booking%20a%20call"
+                >Book a call</a
+              >
+            </li>
+            <li>
+              <a
+                class="pill-ghost"
+                href="mailto:hello@labradoraccessibility.com?subject=Quote%20request"
+                >Get a quote</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- aria-label distinguishes this nav from the header's "Primary" landmark. -->
+      <nav class="wrap footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul role="list">
+            <li><a href="audits.html">Audits</a></li>
+            <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+            <li><a href="remediation.html">Remediation</a></li>
+            <li><a href="consulting.html">Consulting</a></li>
+            <li><a href="audits.html#homepage-audit">The $495 homepage audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Company</h2>
+          <ul role="list">
+            <li><a href="about.html" aria-current="page">About</a></li>
+            <li><a href="index.html#beliefs">What we believe</a></li>
+            <li><a href="index.html#philosophy">Our philosophy</a></li>
+            <li><a href="tool.html">Our tool</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="#contact">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Writing</h2>
+          <!-- TODO: these posts don't exist yet. Slugs are proposals; keep them in sync
+               with the real URLs when the blog ships. -->
+          <ul role="list">
+            <li><a href="/blog/manual-vs-automated-testing">Manual vs. automated testing</a></li>
+            <li><a href="/blog/audits-vs-widgets">Accessibility audits vs. widgets</a></li>
+            <li><a href="/blog/what-is-a-vpat">What is a VPAT, and when do you need one?</a></li>
+            <li>
+              <a href="/blog/european-accessibility-act"
+                >The European Accessibility Act (EAA), explained</a
+              >
+            </li>
+            <li>
+              <a href="/blog/how-to-read-an-audit-report">How to read your first audit report</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrap colophon">
+        <span>© 2026 Labrador Services · Maine · Wales · Delhi</span>
+      </div>
+    </footer>
+  </body>
+</html>

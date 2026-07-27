@@ -500,7 +500,8 @@ nav.masthead > ul > li > a:hover,
 .training h2,
 .thesis h2,
 .features h2,
-.boundaries h2 {
+.boundaries h2,
+.founders h2 {
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--ink-soft);
@@ -2650,6 +2651,105 @@ footer {
 .footer-col a[aria-current="page"] {
   font-weight: 700;
   color: var(--mint-strong);
+}
+
+/* ============================================================
+   ABOUT PAGE (about.html) — the people page. No color block: the
+   photographs are the color, three uniform landscape frames
+   (1200 by 800) hand-cropped from the founders' originals. The
+   hero deliberately breaks the sitewide formula (headline, lede,
+   pills, fact strip): a display line, one sentence, and straight
+   into the faces. Ems run mint, the brand default.
+   ============================================================ */
+
+.about-hero {
+  padding-block: clamp(4rem, 10vw, 8rem) clamp(2.5rem, 6vw, 4rem);
+}
+
+.about-hero h1 {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+  text-wrap: balance;
+}
+
+.about-hero h1 em {
+  font-style: normal;
+  color: var(--mint-deep);
+}
+
+.about-line {
+  margin-top: 1.6rem;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 50ch;
+  text-wrap: pretty;
+}
+
+.founders {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3rem, 7vw, 5rem) clamp(3.5rem, 8vw, 6rem);
+}
+
+.member-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Each founder is a ruled row: the landscape photograph beside the bio,
+   photo column slightly wider than the text. The frames share one exact
+   size, so the rows rhyme all the way down. */
+.member {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: start;
+  padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.member + .member {
+  border-top: 1px solid var(--line);
+}
+
+.member img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1.25rem;
+}
+
+.member-bio h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+}
+
+.member-role {
+  margin-top: 0.35rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.member-bio p:not(.member-role) {
+  margin-top: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 50ch;
+  text-wrap: pretty;
+}
+
+@media (width <= 900px) {
+  .member {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }
 
 /* Top-level nav current-page marker (the pricing page is the first page whose
