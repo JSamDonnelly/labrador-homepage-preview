@@ -498,7 +498,9 @@ nav.masthead > ul > li > a:hover,
 .fixes h2,
 .runbook h2,
 .training h2,
-.thesis h2 {
+.thesis h2,
+.features h2,
+.boundaries h2 {
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--ink-soft);
@@ -728,7 +730,8 @@ nav.masthead > ul > li > a:hover,
 .process-panel,
 .editions-panel,
 .modes-panel,
-.formats-panel {
+.formats-panel,
+.showcase-panel {
   border-radius: clamp(1.25rem, 3vw, 2.5rem);
   margin-inline: clamp(0.75rem, 2vw, 1.5rem);
   padding-block: clamp(3.5rem, 8vw, 6rem);
@@ -751,7 +754,8 @@ nav.masthead > ul > li > a:hover,
 .process-panel + .say-hi,
 .editions-panel + .say-hi,
 .modes-panel + .say-hi,
-.formats-panel + .say-hi {
+.formats-panel + .say-hi,
+.showcase-panel + .say-hi {
   margin-block-start: clamp(3.5rem, 8vw, 6rem);
 }
 
@@ -759,7 +763,8 @@ nav.masthead > ul > li > a:hover,
 .process-panel h2,
 .editions-panel h2,
 .modes-panel h2,
-.formats-panel h2 {
+.formats-panel h2,
+.showcase-panel h2 {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-weight: 600;
@@ -936,7 +941,8 @@ nav.masthead > ul > li > a:hover,
 .deliverable-list a,
 .rates-intro a,
 .snapshot-note a,
-.thesis-note a {
+.thesis-note a,
+.tool-notice a {
   color: var(--mint-deep);
   text-decoration: underline;
   text-decoration-color: var(--mint-deep);
@@ -962,7 +968,8 @@ nav.masthead > ul > li > a:hover,
 .deliverable-list a:hover,
 .rates-intro a:hover,
 .snapshot-note a:hover,
-.thesis-note a:hover {
+.thesis-note a:hover,
+.tool-notice a:hover {
   color: var(--ink);
   text-decoration-color: var(--mint-strong);
 }
@@ -2076,6 +2083,184 @@ footer {
 }
 
 .runbook-claim + .runbook-note {
+  margin-top: 2rem;
+}
+
+/* ============================================================
+   TOOL PAGE (tool.html) — the platform page, and the second ink
+   page: like the VPATs page, its color block is near-black (the
+   showcase panel holding the export capture, the site's first real
+   product imagery) and its light-surface accents run mint. Two
+   unique elements: the disambiguation bar above <main> for
+   visitors who meant to reach the platform's own site, and the
+   framed report screenshot. Shared blocks reused unchanged:
+   header, pills, snapshot band, say-hi, footer.
+   ============================================================ */
+
+/* The disambiguation bar: a slim full-bleed band on the quiet second
+   neutral, sitting between the header and the hero so a misdirected
+   visitor is rerouted before they scroll. Body size, never smaller. */
+.tool-notice {
+  background: var(--paper-deep);
+  padding-block: 0.85rem;
+}
+
+.tool-notice p {
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.showcase-panel {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.showcase-panel .intro {
+  margin-top: 1rem;
+  color: var(--ink-text);
+  max-width: 52ch;
+}
+
+.export-figure {
+  margin: 2.75rem 0 0;
+}
+
+.export-figure figcaption {
+  color: var(--ink-text);
+  line-height: 1.6;
+  max-width: 60ch;
+  margin-bottom: 1.25rem;
+  text-wrap: pretty;
+}
+
+/* The capture is light-on-light UI, so on ink it needs no border; the
+   radius nests inside the panel's larger one and clips only the report's
+   own page background (the capture ends at a clean gap between findings,
+   so no content is ever cut). Explicit width/height attributes in the
+   markup keep the layout from shifting while it loads. */
+.export-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+
+.showcase-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.showcase-meta {
+  color: var(--ink-meta);
+  font-size: var(--text-sm);
+}
+
+/* Dark-surface pill, same inversion as the sign-off's. */
+.showcase-panel .pill {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.showcase-panel .pill:hover {
+  background: var(--mint-strong);
+  color: var(--ink);
+}
+
+.showcase-note {
+  margin-top: 1.6rem;
+  color: var(--ink-text);
+  line-height: 1.6;
+  max-width: 54ch;
+  text-wrap: pretty;
+}
+
+/* The four guarantees, in the ruled-row grammar. No top rule: the section
+   follows the color block. */
+.features {
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.features-intro {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.feature-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+  gap: 1.5rem;
+  align-items: start;
+  padding-block: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.feature-list h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.18;
+}
+
+.feature-list p {
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 44ch;
+  text-wrap: pretty;
+}
+
+@media (width <= 900px) {
+  .feature-list li {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+/* The honesty section: statement grammar, mint em (the ink page's light
+   accent), hairline rule after a light section. */
+.boundaries {
+  border-top: 1px solid var(--line);
+  padding-block: clamp(3.5rem, 8vw, 6rem);
+}
+
+.boundaries-claim {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.boundaries-claim em {
+  font-style: normal;
+  color: var(--mint-deep);
+}
+
+.boundaries-note {
+  margin-top: 1.1rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+.boundaries-claim + .boundaries-note {
   margin-top: 2rem;
 }
 

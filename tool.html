@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Labrador, our testing platform — Labrador Services</title>
+    <meta
+      name="description"
+      content="Labrador is the guided WCAG conformance testing platform our audits run on: criterion-by-criterion testing, evidence attached to every finding, and interactive HTML reports developers actually enjoy. Download a complete sample report, or visit testwithlabrador.com for the platform itself."
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="fonts.css" />
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap masthead-inner">
+        <!-- Relative, not "/": see index.html. -->
+        <a class="brand" href="index.html">
+          <img
+            class="brand-logo"
+            src="labrador-logo.svg"
+            alt="Labrador Services home"
+            width="759"
+            height="189"
+          />
+        </a>
+        <!-- See index.html for why this button ships hidden: the collapsed nav is
+             progressive enhancement, not a requirement. -->
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <nav class="masthead" id="primary-nav" aria-label="Primary">
+          <ul role="list">
+            <li class="has-submenu">
+              <!-- Same native disclosure as index.html; see the comment there for why
+                   <details>/<summary> and not an ARIA menu. -->
+              <details class="submenu-toggle">
+                <summary>
+                  Services
+                  <span class="chevron" aria-hidden="true"></span>
+                </summary>
+                <!-- All four services have their own pages now. -->
+                <ul class="submenu" role="list">
+                  <li><a href="audits.html">Audits</a></li>
+                  <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+                  <li><a href="remediation.html">Remediation</a></li>
+                  <li><a href="consulting.html">Consulting</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="tool.html" aria-current="page">Our Tool</a></li>
+            <!-- TODO: About and Blog don't exist yet and will 404 until they're built. -->
+            <li><a href="/about">About</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
+               address, which doesn't deliver on "Book a call". -->
+          <a class="pill" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- THE DISAMBIGUATION BAR — this page's first unique element, and it sits
+         before <main> on purpose: two things share the Labrador name (this
+         agency and the testing platform), and a visitor who searched for the
+         platform should be rerouted in their first second on the page, before
+         any scrolling. A complementary landmark, not main content. -->
+    <aside class="tool-notice" aria-label="Looking for the Labrador platform">
+      <div class="wrap">
+        <p>
+          Here for Labrador, the testing platform itself? It has its own site:
+          <a href="https://testwithlabrador.com">testwithlabrador.com</a>.
+        </p>
+      </div>
+    </aside>
+
+    <main id="main" tabindex="-1">
+      <!-- HERO — the homepage tool section's claim, promoted to a page thesis
+           (the same motif move as the remediation page's belief 3). The em runs
+           mint: like the VPATs page, this page's color block is ink, and mint
+           is the brand's voice on its light surfaces. -->
+      <section class="hero" aria-labelledby="hero-h">
+        <div class="wrap">
+          <h1 id="hero-h">We built the <em>software</em> our audits run on.</h1>
+          <p class="lede">
+            Labrador is our guided WCAG conformance testing platform: the reason our audits arrive
+            consistent, evidenced, and genuinely readable. We built it for our own auditors first.
+            Today it's also a product other consultancies use, and every engagement you buy from us
+            gets the full benefit of it.
+          </p>
+          <div class="hero-actions">
+            <a class="pill" href="samples/University_of_Montauk_WCAG_Audit_2026-07-27.html" download
+              >Download a sample report</a
+            >
+            <a class="pill-ghost" href="https://testwithlabrador.com">Visit testwithlabrador.com</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- THE SHOWCASE — the page's one color block, ink, holding the site's
+           first real product imagery: the interactive HTML export, captured
+           from the sample audit and framed like the specimen figures on the
+           VPATs and remediation pages, at full scale. The capture ends at the
+           clean gap after the first complete finding, so nothing is cut off
+           mid-element; the rounded corners clip only the report's page
+           background. -->
+      <section class="showcase-panel" id="export" aria-labelledby="export-h">
+        <div class="wrap">
+          <h2 id="export-h">The export your team actually reads</h2>
+          <p class="intro">
+            Every audit ships as an interactive HTML report generated straight from the tested
+            record. Filter findings by page, severity, or criterion; follow any finding to the exact
+            success criterion it fails; see every claim sitting beside its evidence. One
+            self-contained file your whole team can open.
+          </p>
+          <figure class="export-figure">
+            <figcaption>
+              The top of the sample report, exactly as a client receives it: how it was tested,
+              where conformance stands, and the first finding.
+            </figcaption>
+            <img
+              src="labrador-export.png"
+              alt="The first screen of a Labrador HTML report for the sample site University of Montauk. A masthead with Print and Download buttons, a testing-information card naming the auditor, WCAG 2.2 AA, and the tools used, an overview with four stat cards reading 96% conformance rate, 17 failures, 20 issues, and 385 of 495 criteria covered, severity filter chips, and the first finding: 1.1.1 Non-text Content on the Home page, marked Serious, with its description, additional notes, and an evidence screenshot."
+              width="1600"
+              height="1900"
+              loading="lazy"
+            />
+          </figure>
+          <div class="showcase-cta">
+            <a class="pill" href="samples/University_of_Montauk_WCAG_Audit_2026-07-27.html" download
+              >Download the full sample report</a
+            >
+            <span class="showcase-meta">One self-contained HTML file, about 30&nbsp;MB</span>
+          </div>
+          <p class="showcase-note">
+            The sample is a complete, real audit of University of Montauk, a demonstration site we
+            built so we could audit it in the open. Every filter, link, and piece of evidence in the
+            download works exactly as it does in the reports our clients receive.
+          </p>
+          <p class="showcase-note">
+            Developers keep telling us these are the first audit reports they enjoy working from.
+            Our favorite review so far: an agency developer who, after one audit, asked whether the
+            other auditors they work with could switch to Labrador too.
+          </p>
+        </div>
+      </section>
+
+      <!-- WHAT IT CHANGES — the four guarantees the platform locks in, in the
+           ruled-row grammar. Copy stays consistent with the homepage tool
+           section: guided runs, evidence in the record, exports per audience,
+           remediation status through re-test. No top rule: follows the block. -->
+      <section class="features" id="what-it-changes" aria-labelledby="features-h">
+        <div class="wrap">
+          <h2 id="features-h">What it changes about your audit</h2>
+          <p class="features-intro">
+            Labrador is why the quality of our work survives contact with deadlines. Four things it
+            locks in:
+          </p>
+          <ul class="feature-list" role="list">
+            <li>
+              <h3>Guided, criterion by criterion</h3>
+              <p>
+                Testers work every success criterion in order, page by page and component by
+                component, with the criterion's requirements in view as they test. Nothing gets
+                skipped because someone was tired on a Thursday.
+              </p>
+            </li>
+            <li>
+              <h3>Evidence lives with the finding</h3>
+              <p>
+                Screenshots and video attach to the finding they document. The report is generated
+                from that record, never retyped into it, so nothing is lost between the testing and
+                the delivery.
+              </p>
+            </li>
+            <li>
+              <h3>An export for every audience</h3>
+              <p>
+                Reviewers get the interactive HTML report. Procurement gets a DOCX VPAT. Developers
+                get a Jira-ready export, or an integration that moves findings straight into the
+                backlog.
+              </p>
+            </li>
+            <li>
+              <h3>Remediation, tracked to the end</h3>
+              <p>
+                Every finding carries a remediation status through to the re-test, so "are we done
+                yet?" always has a current, honest answer.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- WHERE IT STOPS — the honesty section, holding the same line the
+           homepage tool section holds: the platform structures manual testing
+           and decides nothing itself, and it never touches the client's site.
+           This is what keeps the tool story consistent with belief 2 and the
+           widgets aside. -->
+      <section class="boundaries" id="boundaries" aria-labelledby="boundaries-h">
+        <div class="wrap">
+          <h2 id="boundaries-h">Where it stops</h2>
+          <p class="boundaries-claim">
+            It <em>structures</em> manual testing; it replaces nothing.
+          </p>
+          <p class="boundaries-note">
+            Labrador never runs on your site. It is not a widget, not an overlay, and nothing about
+            it touches your code: it is the workbench our auditors test at, and the exports are what
+            leave it.
+          </p>
+          <p class="boundaries-note">
+            The judgment stays human. The platform decides nothing about your conformance; it makes
+            sure the people who do decide are looking at everything, in order, with the evidence in
+            reach.
+          </p>
+        </div>
+      </section>
+
+      <!-- FOR YOUR OWN TEAM — the product handoff, on the band. This is where
+           the misdirected visitor from the top notice and the curious client
+           both end up: the platform is a product with its own site, plans, and
+           a free tier. Facts here come from testwithlabrador.com itself. -->
+      <section class="snapshot" id="platform" aria-labelledby="platform-h">
+        <div class="wrap">
+          <h2 id="platform-h">For your own team</h2>
+          <p class="snapshot-claim">Labrador is a <em>product</em>, too.</p>
+          <p class="snapshot-note">
+            We built it for our own auditors, then opened it up: accessibility consultants and
+            in-house teams now use it for guided WCAG 2.1 and 2.2 testing without the spreadsheet
+            sprawl. There's a free plan, and no credit card to start.
+          </p>
+          <p class="snapshot-note">
+            Plans, a demo, and everything else about the platform live on
+            <a href="https://testwithlabrador.com">testwithlabrador.com</a>.
+          </p>
+          <p class="snapshot-cta">
+            <a class="pill" href="https://testwithlabrador.com">Visit testwithlabrador.com</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="say-hi" id="contact" aria-labelledby="cta-h">
+        <div class="wrap">
+          <p class="kicker">Start a conversation</p>
+          <h2 id="cta-h">
+            <!-- data-chat-launch: opens Intercom once its snippet is added (site.js);
+                 until then the heading opens email, same as the address below, so
+                 nothing here is a dead end. -->
+            <a href="mailto:hello@labradoraccessibility.com" data-chat-launch
+              >Say hi <span class="h2-note">(opens chat)</span> <span aria-hidden="true">→</span></a
+            >
+          </h2>
+          <p>
+            Tell us what you're building, and we'll show you what your report would look like. Our
+            founding team spans Maine, Wales, and Delhi, so someone's online through most of your
+            working day. Expect a scoped, fixed-fee proposal within one business day. A call is
+            welcome, never required.
+          </p>
+          <!-- Every way to reach us, in one row. site.js turns the address into a
+               copy-on-click control (visible + announced "Copied!" note); without
+               the script it stays a plain working mailto link. -->
+          <ul class="contact-row" role="list">
+            <li class="contact-email">
+              <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+              <!-- Visible cue for the copy-on-click upgrade; aria-hidden because the
+                   link's own accessible name already carries the same hint for screen
+                   readers. Ships hidden; site.js reveals it with the behavior. -->
+              <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
+              <span class="copy-note" role="status"></span>
+            </li>
+            <!-- TODO: swap both pre-filled mailtos for the real scheduler and quote
+                 form once those exist. -->
+            <li>
+              <a
+                class="pill"
+                href="mailto:hello@labradoraccessibility.com?subject=Booking%20a%20call"
+                >Book a call</a
+              >
+            </li>
+            <li>
+              <a
+                class="pill-ghost"
+                href="mailto:hello@labradoraccessibility.com?subject=Quote%20request"
+                >Get a quote</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- aria-label distinguishes this nav from the header's "Primary" landmark. -->
+      <nav class="wrap footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul role="list">
+            <li><a href="audits.html">Audits</a></li>
+            <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+            <li><a href="remediation.html">Remediation</a></li>
+            <li><a href="consulting.html">Consulting</a></li>
+            <li><a href="audits.html#homepage-audit">The $495 homepage audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Company</h2>
+          <ul role="list">
+            <li><a href="index.html#beliefs">What we believe</a></li>
+            <li><a href="index.html#philosophy">Our philosophy</a></li>
+            <li><a href="tool.html" aria-current="page">Our tool</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="#contact">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Writing</h2>
+          <!-- TODO: these posts don't exist yet. Slugs are proposals; keep them in sync
+               with the real URLs when the blog ships. -->
+          <ul role="list">
+            <li><a href="/blog/manual-vs-automated-testing">Manual vs. automated testing</a></li>
+            <li><a href="/blog/audits-vs-widgets">Accessibility audits vs. widgets</a></li>
+            <li><a href="/blog/what-is-a-vpat">What is a VPAT, and when do you need one?</a></li>
+            <li>
+              <a href="/blog/european-accessibility-act"
+                >The European Accessibility Act (EAA), explained</a
+              >
+            </li>
+            <li>
+              <a href="/blog/how-to-read-an-audit-report">How to read your first audit report</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrap colophon">
+        <span>© 2026 Labrador Services · Maine · Wales · Delhi</span>
+      </div>
+    </footer>
+  </body>
+</html>
