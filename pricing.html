@@ -95,12 +95,16 @@
         </div>
       </section>
 
-      <!-- THE RATE CARD — three grouped strata of the same row grammar the VPATs
-           page's editions panel introduced (term, description, price), here on
-           paper with Hairline Sand rules. Each row is a <dl> group: the service
-           is the term; the description and the price are both definitions.
-           Section padding is deliberately tighter than the site's statement
-           sections so the groups read as one continuous card. -->
+      <!-- THE RATE CARD — three grouped strata, each a <dl> whose groups are
+           rate-sheet rows: the service is the term, and the price and the
+           description are both definitions. The row puts the price on the
+           term's own line, flush right, with the description beneath at full
+           measure — printed-price-list grammar, deliberately NOT the three
+           side-by-side columns the VPATs page's editions panel uses. Two
+           reasons: a narrow term column wrapped every multi-word service name,
+           and per-row column widths could never align the prices with each
+           other. DOM order is term, price, description, matching what the eye
+           sees and putting the price where a screen reader reaches it first. -->
       <section class="rates" id="audit-rates" aria-labelledby="audit-rates-h">
         <div class="wrap">
           <h2 id="audit-rates-h">Audits</h2>
@@ -112,36 +116,36 @@
           <dl class="rate-list">
             <div class="rate">
               <dt>Homepage audit</dt>
-              <dd>
+              <dd class="rate-price">$495</dd>
+              <dd class="rate-note">
                 One page through the full manual treatment: real assistive technology, every
                 applicable success criterion, findings you can act on the day they land. Go on to a
                 complete audit and the full $495 is credited toward it.
               </dd>
-              <dd class="rate-price">$495</dd>
             </div>
             <div class="rate">
               <dt>Small business site</dt>
-              <dd>
+              <dd class="rate-price"><span class="rate-from">from</span> $3,000</dd>
+              <dd class="rate-note">
                 Brochure sites, small stores, and marketing sites built from a modest set of
                 templates. Scoped by the pages and flows that matter.
               </dd>
-              <dd class="rate-price"><span class="rate-from">from</span> $3,000</dd>
             </div>
             <div class="rate">
               <dt>Mid-size site or small web app</dt>
-              <dd>
+              <dd class="rate-price"><span class="rate-from">from</span> $5,500</dd>
+              <dd class="rate-note">
                 Larger sites and products with real interaction: accounts, forms, search, checkout.
                 The scope grows with the states a user can reach.
               </dd>
-              <dd class="rate-price"><span class="rate-from">from</span> $5,500</dd>
             </div>
             <div class="rate">
               <dt>Large site or SaaS product</dt>
-              <dd>
+              <dd class="rate-price"><span class="rate-from">from</span> $9,500</dd>
+              <dd class="rate-note">
                 Authenticated flows, complex components, and the surface area of a full product.
                 Scoped journey by journey with your team.
               </dd>
-              <dd class="rate-price"><span class="rate-from">from</span> $9,500</dd>
             </div>
           </dl>
         </div>
@@ -159,28 +163,30 @@
           <dl class="rate-list">
             <div class="rate">
               <dt>WCAG edition</dt>
-              <dd>
+              <dd class="rate-price">$750</dd>
+              <dd class="rate-note">
                 The Web Content Accessibility Guidelines alone: the edition for buyers who simply
                 want to know the product is accessible.
               </dd>
-              <dd class="rate-price">$750</dd>
             </div>
             <div class="rate">
               <dt>508 edition</dt>
-              <dd>Adds Section 508, for United States federal procurement.</dd>
               <dd class="rate-price">$950</dd>
+              <dd class="rate-note">Adds Section 508, for United States federal procurement.</dd>
             </div>
             <div class="rate">
               <dt>EU edition</dt>
-              <dd>Adds EN 301 549, for public procurement across the European Union.</dd>
               <dd class="rate-price">$950</dd>
+              <dd class="rate-note">
+                Adds EN 301 549, for public procurement across the European Union.
+              </dd>
             </div>
             <div class="rate">
               <dt>INT edition</dt>
-              <dd>
+              <dd class="rate-price">$1,500</dd>
+              <dd class="rate-note">
                 All three standards in one document, for products sold into more than one market.
               </dd>
-              <dd class="rate-price">$1,500</dd>
             </div>
           </dl>
         </div>
@@ -192,20 +198,20 @@
           <dl class="rate-list">
             <div class="rate">
               <dt>Remediation</dt>
-              <dd>
+              <dd class="rate-price"><span class="rate-from">from</span> $2,000</dd>
+              <dd class="rate-note">
                 We fix what the audit found, ourselves or embedded with your team, and stay until
                 the re-test comes back clean. Scoped from your findings list.
               </dd>
-              <dd class="rate-price"><span class="rate-from">from</span> $2,000</dd>
             </div>
             <div class="rate">
               <dt>Consulting</dt>
-              <dd>
+              <dd class="rate-price rate-price-words">Scoped individually</dd>
+              <dd class="rate-note">
                 Accessibility built into how you already design and ship: reviews, training, and a
                 practice that keeps running after we leave. No two engagements match, so each is
                 priced on its shape.
               </dd>
-              <dd class="rate-price">Scoped individually</dd>
             </div>
           </dl>
         </div>

@@ -494,9 +494,7 @@ nav.masthead > ul > li > a:hover,
 .deliverables h2,
 .terms h2,
 .evidence h2,
-.buyers h2,
-.rates h2,
-.includes h2 {
+.buyers h2 {
   font-size: var(--text-base);
   font-weight: 600;
   color: var(--ink-soft);
@@ -695,8 +693,7 @@ nav.masthead > ul > li > a:hover,
    flex-wrap grammar, same reason there are no separators between items (a
    wrapped row must never strand a divider). */
 .sector-list,
-.at-list,
-.includes-list {
+.at-list {
   list-style: none;
   padding: 0;
   margin-block: 2.2rem 0;
@@ -1869,61 +1866,95 @@ footer {
   padding-block: clamp(2.75rem, 6vw, 4.5rem);
 }
 
+/* Group headings break the site's quiet section-label convention on purpose,
+   and this is the one page where that is right: they are the rate card's
+   organizing structure, not metadata about a statement. At label size and Soft
+   Ink they read *smaller and weaker than the rows they contain*, which is
+   exactly what made this page feel unsorted. Display face and full Ink put
+   them a clear step above the row titles below (--text-xl over the rows'
+   --text-lg), so the page reads group, item, price in that order. The
+   headline tier one step up was tried and rejected: four 48px headings shout,
+   and quiet is this page's whole argument. */
+.rates h2,
+.includes h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+  text-wrap: balance;
+}
+
 .rates-intro {
   color: var(--ink-soft);
   line-height: 1.6;
-  max-width: 54ch;
+  max-width: 60ch;
   text-wrap: pretty;
 }
 
-/* The rate rows: the editions-panel grammar (term, description, price) on
-   paper. Same dl-with-wrapper-div structure as .jurisdictions and
-   .edition-list — the divs are load-bearing; never display: contents. */
+/* Same dl-with-wrapper-div structure as .jurisdictions and .edition-list —
+   the divs are load-bearing; never display: contents. */
 .rate-list {
-  margin: 2.5rem 0 0;
+  margin: 2.25rem 0 0;
   border-top: 1px solid var(--line);
 }
 
-/* The section heading's 2.5rem gap does the work when there's no intro. */
-.rates h2 + .rate-list {
-  margin-top: 0;
-}
-
+/* Two columns, not three: the name and its price share the top line, and the
+   description spans the full width beneath them. Because the price column is
+   a fixed width rather than auto, every price in every group aligns on the
+   same right edge — with auto they were sized per row, so "Scoped
+   individually" pushed its own row's columns out of step with the row above
+   it. That misalignment was most of what read as sloppy here. */
 .rate {
   display: grid;
-  grid-template-columns: minmax(11rem, 15rem) minmax(0, 1fr) auto;
-  gap: 0.35rem clamp(1.5rem, 3vw, 2.5rem);
-  padding-block: 1.5rem;
+  /* 11.5rem, not less: the column is sized so the one worded price ("Scoped
+     individually", measured at 169px) sits on a single line like every figure
+     above it. Re-measure if that wording or the body size changes. */
+  grid-template-columns: minmax(0, 1fr) 11.5rem;
+  gap: 0.5rem clamp(1.5rem, 4vw, 3rem);
+  align-items: baseline;
+  padding-block: 1.6rem;
   border-bottom: 1px solid var(--line);
 }
 
 .rate dt {
+  grid-column: 1;
   font-family: var(--font-display);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 1.18;
+  line-height: 1.25;
 }
 
-.rate dd {
-  margin: 0;
-  color: var(--ink-soft);
-  line-height: 1.6;
-  max-width: 44ch;
-  text-wrap: pretty;
-}
-
-/* The price definition. Mint-deep is the established money color on light
-   surfaces (the snapshot bands' em); 5.90:1 on paper. nowrap so "from
-   $3,000" can never split against the right edge. */
+/* The price. Mint-deep is the established money color on light surfaces (the
+   snapshot bands' em); 5.90:1 on paper. Right-aligned and nowrap so the
+   figures form a clean column and "from $3,000" never breaks across lines. */
 .rate dd.rate-price {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  text-align: right;
   font-family: var(--font-display);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: 600;
   letter-spacing: -0.015em;
-  line-height: 1.18;
+  line-height: 1.25;
   color: var(--mint-deep);
   white-space: nowrap;
+}
+
+/* The one price that is words rather than a figure. It takes the reading face
+   at body size so it reads as a note, not as a number to compare against the
+   column above it, and it is allowed to wrap inside its column. */
+.rate dd.rate-price-words {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 500;
+  letter-spacing: normal;
+  line-height: 1.4;
+  white-space: normal;
 }
 
 /* "from" stays in the reading face at body scale: the number is the display
@@ -1935,23 +1966,78 @@ footer {
   letter-spacing: normal;
 }
 
-@media (width <= 900px) {
+/* The description sits under both columns at a full, comfortable measure —
+   the old layout squeezed it into a middle column between the name and the
+   price, where long copy stacked into five or six short lines. */
+.rate dd.rate-note {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 68ch;
+  text-wrap: pretty;
+}
+
+/* Narrow screens keep the price on its own line under the name rather than
+   holding a 9.5rem column hostage next to a wrapping title. */
+@media (width <= 700px) {
   .rate {
     grid-template-columns: 1fr;
-    gap: 0.4rem;
+    row-gap: 0.3rem;
+  }
+
+  .rate dd.rate-price {
+    grid-column: 1;
+    grid-row: auto;
+    text-align: left;
+  }
+
+  .rate dd.rate-note {
+    grid-row: auto;
+    margin-top: 0.35rem;
   }
 }
 
-/* The reassurance strip: quiet second neutral, same role as the snapshot
-   bands (a surface change marks "this is the offer's fine print, in full
-   size"). The list itself reuses the sector-strip grammar. */
+/* The reassurance strip closing the card, on the quiet second neutral. The
+   list is a real grid of equal columns, not the flex-wrap sector strip it
+   started as: with six items of unequal length, flex-wrap left a ragged 2 / 3
+   / 1 stagger with nothing aligning to anything. Three fixed columns divide
+   six items into two even rows, and the hairline under each cell continues
+   the rate rows' ruled grammar. */
 .includes {
   background: var(--paper-deep);
   padding-block: clamp(3.5rem, 8vw, 6rem);
 }
 
-.includes .includes-list {
-  margin-block: 0;
+.includes-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  list-style: none;
+  padding: 0;
+  margin: 2.25rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.includes-list li {
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--line);
+  font-weight: 500;
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+@media (width <= 900px) {
+  .includes-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width <= 560px) {
+  .includes-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Current-page marker in the nav submenu and footer. Two signals in both
