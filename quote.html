@@ -18,10 +18,10 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="fonts.css?v=8" />
-    <link rel="stylesheet" href="base.css?v=8" />
-    <link rel="stylesheet" href="style.css?v=8" />
-    <script src="site.js?v=8" defer></script>
+    <link rel="stylesheet" href="fonts.css?v=9" />
+    <link rel="stylesheet" href="base.css?v=9" />
+    <link rel="stylesheet" href="style.css?v=9" />
+    <script src="site.js?v=9" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -222,20 +222,25 @@
               <fieldset class="field-group">
                 <legend>Conformance level</legend>
                 <p class="field-hint">
-                  The version of the Web Content Accessibility Guidelines (WCAG) we test against.
-                  Not sure? Leave it with us and we'll recommend one.
+                  The version and level of the Web Content Accessibility Guidelines (WCAG) we test
+                  against. Most accessibility laws point to 2.2 AA, so that's where we start unless
+                  you have a reason to go further. Not sure? Leave it with us.
                 </p>
                 <div class="choice-list">
                   <label class="choice">
-                    <input type="radio" name="Conformance level" value="WCAG 2.2" />
-                    <span>WCAG 2.2</span>
+                    <input type="radio" name="Conformance level" value="WCAG 2.2 AA" checked />
+                    <span>WCAG 2.2 AA <span class="choice-note">(our suggestion)</span></span>
                   </label>
                   <label class="choice">
-                    <input type="radio" name="Conformance level" value="WCAG 2.1" />
-                    <span>WCAG 2.1</span>
+                    <input type="radio" name="Conformance level" value="WCAG 2.2 AAA" />
+                    <span>WCAG 2.2 AAA</span>
                   </label>
                   <label class="choice">
-                    <input type="radio" name="Conformance level" value="Not sure yet" checked />
+                    <input type="radio" name="Conformance level" value="WCAG 2.1 AA" />
+                    <span>WCAG 2.1 AA</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="Conformance level" value="Not sure yet" />
                     <span>Not sure yet</span>
                   </label>
                 </div>

@@ -17,6 +17,14 @@
 
   --mint: #cdf7e5; /* Mint 100 — safe for large surfaces with ink text */
   --mint-strong: #6fe3b4; /* Mint 400 — brand accent / marks */
+  /* Mint 600 — the quote form's pointer-focus indicator, and nothing else.
+     Mint 800 was the obvious pick there and it failed in practice: at 1.04:1
+     against the fields' Soft Ink border the two tones are the same lightness,
+     so the focused state read as mud rather than as mint. This sits between
+     the two: 3.58:1 on Paper (past the 3:1 floor for focus indicators, which
+     rules out anything brighter — Mint 400 manages only 1.48:1 there) while
+     standing clear of the resting border. Not a text color. */
+  --mint-mid: #189470;
   --mint-deep: #166d51; /* Mint 800 — text floor on light */
   --gold: #e0a23c; /* Gold 400 — cameo */
   --gold-deep: #855713; /* Gold 700 — text floor on light */
@@ -3075,14 +3083,18 @@ nav.masthead > ul > li > a[aria-current="page"] {
    where you'll type), which fires the sitewide yellow/black ring on every
    mouse click into the form. That ring is calibrated for keyboard wayfinding;
    on pointer focus it reads as noise. site.js marks pointer-focused fields
-   with .pointer-focus, and they step down to a quiet mint outline that hugs
-   the field border — still a clearly visible indicator (mint-deep is 5.9:1 on
-   paper, past the 3:1 floor for UI components), just not the shout. Keyboard
-   focus keeps the full ring, and with JS off nothing changes: the loud, safe
-   default stays everywhere. */
+   with .pointer-focus, and they step down to a quiet mint outline, just not
+   the shout. Keyboard focus keeps the full ring, and with JS off nothing
+   changes: the loud, safe default stays everywhere.
+
+   The border switches to the same Mint 600 as the outline: the resting
+   border is Soft Ink, and leaving a gray line under a green ring was what
+   made the old treatment read muddy. Recoloring it means the whole field
+   edge changes state at once, in one tone, against Paper on both sides. */
 .quote-widget input.pointer-focus:focus-visible,
 .quote-widget textarea.pointer-focus:focus-visible {
-  outline: 2px solid var(--mint-deep);
+  border-color: var(--mint-mid);
+  outline: 2px solid var(--mint-mid);
   outline-offset: -1px;
   box-shadow: none;
 }
@@ -3133,6 +3145,14 @@ nav.masthead > ul > li > a[aria-current="page"] {
   width: 1.1rem;
   height: 1.1rem;
   accent-color: var(--mint-deep);
+}
+
+/* The recommendation marker on a choice row. Weight and color separate it
+   from the option's own name; it stays inside the label so it's part of the
+   announced accessible name, which is the point of it. */
+.choice-note {
+  font-weight: 400;
+  color: var(--ink-soft);
 }
 
 /* The VPAT edition detail: indented under its checkbox row, clearly its
