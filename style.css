@@ -477,7 +477,7 @@ nav.masthead > ul > li > a:hover,
    opening. On top of the shared scale, each interior hero
    carries ONE structural signature of its own: audits its fact
    rail, VPATs the definition strip, remediation the micro-diff,
-   consulting the format chips, the tool page its notice bar,
+   consulting the format list, the tool page its notice bar,
    and pricing deliberately nothing (the rate card directly
    below is its structure). About has its own custom hero.
    ============================================================ */
@@ -559,27 +559,39 @@ nav.masthead > ul > li > a:hover,
   color: var(--mint-strong);
 }
 
-/* Consulting hero signature: the formats as gold chips, the one place
-   the site uses tag-shaped elements. Gold Mist carries Ink at 13.4:1;
-   pill radius is the site's own shape. Labels match the formats panel's
-   rows, which hold the full descriptions. */
-.hero-chips {
+/* Consulting hero signature: the formats as a marked list. These were
+   gold pills once, but pill-shaped text is the exact costume of the
+   site's buttons, so they read as controls. A small gold square in
+   front of each label keeps the page's hue without the button shape;
+   the markers are empty generated content, so nothing is announced.
+   Labels match the formats panel's rows, which hold the full
+   descriptions. */
+.hero-formats {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.5rem 1.8rem;
   list-style: none;
   padding: 0;
   margin: 1.8rem 0 0;
 }
 
-.hero-chips li {
-  background: var(--gold-mist);
-  color: var(--ink);
+.hero-formats li {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
   font-size: var(--text-sm);
   font-weight: 500;
-  padding: 0.35rem 0.9rem;
-  border-radius: 999px;
+  color: var(--ink-soft);
   white-space: nowrap;
+}
+
+.hero-formats li::before {
+  content: "";
+  flex: none;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 0.125rem;
+  background: var(--gold);
 }
 
 /* ============================================================
@@ -2771,23 +2783,34 @@ footer {
 /* ============================================================
    ABOUT PAGE (about.html) — the people page. No color block: the
    photographs are the color, three uniform landscape frames
-   (1200 by 800) hand-cropped from the founders' originals. The
-   hero deliberately breaks the sitewide formula (headline, lede,
-   pills, fact strip): a display line, one sentence, and straight
-   into the faces. Ems run mint, the brand default.
+   (1200 by 1080) hand-cropped from the founders' originals. The
+   hero breaks the sitewide formula structurally: the site's only
+   baseline-seated split — display line left, the one-sentence
+   intro bottom-aligned in the right column — at the compact
+   scale, so the homepage keeps the only billboard. (The audits
+   split is the near neighbor; its right column is a top-aligned
+   ruled fact rail, this one is plain prose on the baseline.)
+   Ems run mint, the brand default.
    ============================================================ */
 
 .about-hero {
-  padding-block: clamp(4rem, 10vw, 8rem) clamp(2.5rem, 6vw, 4rem);
+  padding-block: clamp(3rem, 7vw, 5rem) clamp(2.5rem, 6vw, 4rem);
+}
+
+.about-hero .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  column-gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: end;
 }
 
 .about-hero h1 {
   font-family: var(--font-display);
-  font-size: var(--text-hero);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
   font-weight: 600;
-  line-height: 1.04;
+  line-height: 1.06;
   letter-spacing: -0.03em;
-  max-width: 18ch;
+  max-width: 14ch;
   text-wrap: balance;
 }
 
@@ -2797,12 +2820,22 @@ footer {
 }
 
 .about-line {
-  margin-top: 1.6rem;
-  font-size: var(--text-lg);
+  margin: 0;
+  font-size: var(--text-base);
   line-height: 1.6;
   color: var(--ink-soft);
-  max-width: 50ch;
+  max-width: 46ch;
   text-wrap: pretty;
+}
+
+@media (width <= 900px) {
+  .about-hero .wrap {
+    display: block;
+  }
+
+  .about-line {
+    margin-top: 1.4rem;
+  }
 }
 
 .founders {

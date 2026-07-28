@@ -18,9 +18,9 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="fonts.css?v=4" />
-    <link rel="stylesheet" href="base.css?v=4" />
-    <link rel="stylesheet" href="style.css?v=4" />
+    <link rel="stylesheet" href="fonts.css?v=5" />
+    <link rel="stylesheet" href="base.css?v=5" />
+    <link rel="stylesheet" href="style.css?v=5" />
     <script src="site.js" defer></script>
   </head>
   <body>
@@ -96,9 +96,11 @@
             <a class="pill" href="#contact">Book a call</a>
             <a class="pill-ghost" href="#formats">Ways to bring us in</a>
           </div>
-          <!-- This hero's structural signature: four of the formats as gold
-               chips. The panel below carries all six with descriptions. -->
-          <ul class="hero-chips" role="list">
+          <!-- This hero's structural signature: four of the formats as a
+               marked list (gold square markers, no pill shapes — pills are
+               the buttons' costume). The panel below carries all six with
+               descriptions. -->
+          <ul class="hero-formats" role="list">
             <li>Lunch and learns</li>
             <li>Speaking</li>
             <li>Full-day trainings</li>

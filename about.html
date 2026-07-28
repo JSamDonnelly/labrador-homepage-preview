@@ -18,9 +18,9 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="fonts.css?v=4" />
-    <link rel="stylesheet" href="base.css?v=4" />
-    <link rel="stylesheet" href="style.css?v=4" />
+    <link rel="stylesheet" href="fonts.css?v=5" />
+    <link rel="stylesheet" href="base.css?v=5" />
+    <link rel="stylesheet" href="style.css?v=5" />
     <script src="site.js" defer></script>
   </head>
   <body>
@@ -76,10 +76,11 @@
     </header>
 
     <main id="main" tabindex="-1">
-      <!-- HERO — deliberately NOT the sitewide hero formula (headline, lede,
-           two pills, fact strip). This page's payoff is the people, so the
-           opening is a compact statement that hands over to the photos as
-           fast as possible: display line, one sentence, a rule, done. No
+      <!-- HERO — deliberately NOT the sitewide hero formula. The site's only
+           baseline-seated split: display line left, the one-sentence intro
+           bottom-aligned beside it (see style.css for how it differs from
+           the audits split). This page's payoff is the people, so it runs
+           at the compact scale and hands over to the photos fast. No
            buttons; the contact block at the foot does that work. -->
       <section class="about-hero" aria-labelledby="hero-h">
         <div class="wrap">
