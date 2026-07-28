@@ -18,10 +18,10 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="../fonts.css?v=10" />
-    <link rel="stylesheet" href="../base.css?v=10" />
-    <link rel="stylesheet" href="../style.css?v=10" />
-    <script src="../site.js?v=10" defer></script>
+    <link rel="stylesheet" href="../fonts.css?v=11" />
+    <link rel="stylesheet" href="../base.css?v=11" />
+    <link rel="stylesheet" href="../style.css?v=11" />
+    <script src="../site.js?v=11" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -91,13 +91,13 @@
         </div>
       </section>
 
-      <!-- THE POSTS — deliberately not a card grid. The newest post runs as a
-           lead entry (wide image, display-scale title); everything older is a
-           compact ruled row. The hierarchy stays honest as real posts
-           accumulate: one lead, then the archive. Each entry's real link is
-           its title; the image is a click convenience only (aria-hidden,
-           tabindex=-1, empty alt), so keyboard and screen reader users get
-           exactly one stop per post.
+      <!-- THE POSTS — every entry carries the same weight: image, meta, title,
+           excerpt, in an even two-up grid (newest first, stacking on narrow
+           viewports). No card chrome — whitespace and the shared image
+           geometry do the grouping. Each entry's real link is its title; the
+           image is a click convenience only (aria-hidden, tabindex=-1, empty
+           alt), so keyboard and screen reader users get exactly one stop per
+           post.
 
            Both posts are PLACEHOLDERS: real titles from the editorial plan,
            lorem ipsum bodies on the article pages. Replace the bodies before
@@ -106,22 +106,22 @@
       <div class="blog-index">
         <div class="wrap">
           <h2 class="visually-hidden">All posts</h2>
-          <article class="post-lead">
-            <a
-              class="post-lead-media"
-              href="manual-vs-automated-testing.html"
-              tabindex="-1"
-              aria-hidden="true"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1574887427561-d3d5d58c9273?auto=format&fit=crop&w=1600&h=1000&q=80"
-                alt=""
-                width="1600"
-                height="1000"
-                loading="lazy"
-              />
-            </a>
-            <div class="post-lead-body">
+          <div class="post-grid">
+            <article class="post-entry">
+              <a
+                class="post-entry-media"
+                href="manual-vs-automated-testing.html"
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1574887427561-d3d5d58c9273?auto=format&fit=crop&w=1200&h=750&q=80"
+                  alt=""
+                  width="1200"
+                  height="750"
+                  loading="lazy"
+                />
+              </a>
               <p class="post-meta">
                 <time datetime="2026-07-21">July 21, 2026</time> · Grant Broome · 7 minute read
               </p>
@@ -131,11 +131,23 @@
                 where it falls short, and why every audit still starts with a person and a screen
                 reader.
               </p>
-            </div>
-          </article>
+            </article>
 
-          <article class="post-row">
-            <div class="post-row-body">
+            <article class="post-entry">
+              <a
+                class="post-entry-media"
+                href="what-is-a-vpat.html"
+                tabindex="-1"
+                aria-hidden="true"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?auto=format&fit=crop&w=1200&h=750&q=80"
+                  alt=""
+                  width="1200"
+                  height="750"
+                  loading="lazy"
+                />
+              </a>
               <p class="post-meta">
                 <time datetime="2026-07-14">July 14, 2026</time> · Shadab Saifi · 6 minute read
               </p>
@@ -144,17 +156,8 @@
                 The template, the report it becomes, and the buyers who ask for it by name: a
                 plain-language tour of the document procurement wants to see.
               </p>
-            </div>
-            <a class="post-row-media" href="what-is-a-vpat.html" tabindex="-1" aria-hidden="true">
-              <img
-                src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?auto=format&fit=crop&w=1600&h=1000&q=80"
-                alt=""
-                width="1600"
-                height="1000"
-                loading="lazy"
-              />
-            </a>
-          </article>
+            </article>
+          </div>
         </div>
       </div>
 

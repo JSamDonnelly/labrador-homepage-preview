@@ -3288,29 +3288,30 @@ body:has(.quote-dialog[open]) {
 
 /* ============================================================
    BLOG (blog/) — the writing pages. No color block: like the
-   About page, the photographs are the color. The index is
-   deliberately not a card grid: the newest post is a lead entry
-   (wide image, display-scale title), everything older a compact
-   ruled row, so the hierarchy stays honest as posts accumulate.
-   Post pages are a measured article column. Both posts are
-   placeholders (lorem bodies, hotlinked Unsplash art) until the
-   real articles ship.
+   About page, the photographs are the color. The index gives
+   every post the same weight: an even two-up grid of chromeless
+   entries (image, meta, title, excerpt), newest first, stacking
+   on narrow viewports — whitespace and the shared image geometry
+   do the grouping, not card boxes. Post pages are a measured
+   article column. Both posts are placeholders (lorem bodies,
+   hotlinked Unsplash art) until the real articles ship.
    ============================================================ */
 .blog-index {
   padding-block: clamp(1rem, 3vw, 2rem) clamp(3.5rem, 8vw, 6rem);
 }
 
-.post-lead-media img,
-.post-row-media img,
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: clamp(2.5rem, 6vw, 4rem) clamp(2rem, 4vw, 3rem);
+}
+
+.post-entry-media img,
 .post-figure img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 1rem;
-}
-
-.post-lead-body {
-  margin-top: 1.5rem;
 }
 
 .post-meta {
@@ -3329,38 +3330,31 @@ body:has(.quote-dialog[open]) {
   color: var(--mint-deep);
 }
 
-.post-lead h3,
-.post-row h3 {
-  margin-top: 0.6rem;
+.post-entry .post-meta {
+  margin-top: 1.1rem;
+}
+
+.post-entry h3 {
+  margin-top: 0.5rem;
   font-family: var(--font-display);
+  font-size: var(--text-xl);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.14;
-  text-wrap: balance;
-}
-
-.post-lead h3 {
-  font-size: var(--text-2xl);
-  max-width: 22ch;
-}
-
-.post-row h3 {
-  font-size: var(--text-xl);
   max-width: 24ch;
+  text-wrap: balance;
 }
 
 /* The title is the entry's one real link; ink at rest so the list reads as
    editorial contents rather than a wall of green, with the site's link
    grammar arriving on hover/focus. Underlines are the second signal beside
    color, per the palette rules. */
-.post-lead h3 a,
-.post-row h3 a {
+.post-entry h3 a {
   color: var(--ink);
   text-decoration: none;
 }
 
-.post-lead h3 a:hover,
-.post-row h3 a:hover {
+.post-entry h3 a:hover {
   color: var(--mint-deep);
   text-decoration: underline;
   text-underline-offset: 0.12em;
@@ -3372,30 +3366,6 @@ body:has(.quote-dialog[open]) {
   line-height: 1.6;
   max-width: 58ch;
   text-wrap: pretty;
-}
-
-/* Older posts: a ruled row, text beside a modest image — the About-page
-   row rhythm, not a repeated card. */
-.post-row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(13rem, 24vw, 19rem);
-  gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
-  margin-top: clamp(2.5rem, 6vw, 4rem);
-  padding-top: clamp(2.5rem, 6vw, 4rem);
-  border-top: 1px solid var(--line);
-}
-
-@media (width <= 700px) {
-  .post-row {
-    grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  /* Stacked, the image reads as a footnote to the entry, not a banner. */
-  .post-row-media img {
-    max-width: 22rem;
-  }
 }
 
 /* ---- Post pages ---- */
