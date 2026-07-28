@@ -18,10 +18,10 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="fonts.css?v=13" />
-    <link rel="stylesheet" href="base.css?v=13" />
-    <link rel="stylesheet" href="style.css?v=13" />
-    <script src="site.js?v=13" defer></script>
+    <link rel="stylesheet" href="fonts.css?v=14" />
+    <link rel="stylesheet" href="base.css?v=14" />
+    <link rel="stylesheet" href="style.css?v=14" />
+    <script src="site.js?v=14" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -207,20 +207,24 @@
                     <span>Web app</span>
                   </label>
                   <label class="choice">
-                    <input type="radio" name="Product type" value="App" />
-                    <span>App (iOS or Android)</span>
+                    <input type="radio" name="Product type" value="Mobile app" />
+                    <span>Mobile app (iOS or Android)</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="Product type" value="Desktop app" />
+                    <span>Desktop app</span>
                   </label>
                 </div>
               </fieldset>
 
               <div class="field">
                 <label for="svc-url">Website URL</label>
-                <!-- Required, but the question above allows "App", and an app-only
+                <!-- Required, but the question above allows apps, and an app-only
                      client would otherwise be stuck here: the hint gives them
                      somewhere real to point. type stays "text", not "url", so a
                      plain "example.com" is accepted without demanding a scheme. -->
                 <p class="field-hint" id="svc-url-hint">
-                  Testing a mobile app? Link its store page, or your company site.
+                  Testing an app? Link its store or download page, or your company site.
                 </p>
                 <input
                   id="svc-url"
@@ -367,6 +371,15 @@
                 />
               </div>
 
+              <div class="field">
+                <label for="cons-url">Website URL</label>
+                <!-- Same forgiving type="text" as the services branch: a bare
+                     "example.com" is accepted without demanding a scheme. Shares
+                     the "Website URL" name with that branch, so site.js mirrors
+                     it when someone switches paths. -->
+                <input id="cons-url" name="Website URL" type="text" autocomplete="url" required />
+              </div>
+
               <fieldset class="field-group">
                 <legend>What kind of consulting? (check at least one)</legend>
                 <p class="field-hint">Check anything that sounds right; most teams mix formats.</p>
@@ -430,9 +443,10 @@
 
               <div class="field">
                 <label for="cons-notes">
-                  Additional notes or goals <span class="field-optional">(optional)</span>
+                  Tell us in detail about how you are currently approaching accessibility, and what
+                  type of improvements you'd like to make
                 </label>
-                <textarea id="cons-notes" name="Notes" rows="4"></textarea>
+                <textarea id="cons-notes" name="Notes" rows="6" required></textarea>
               </div>
 
               <div class="quote-submit">
