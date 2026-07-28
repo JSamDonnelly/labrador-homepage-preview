@@ -1359,13 +1359,13 @@ nav.masthead > ul > li > a:hover,
   /* Anchors the floating "Copied!" note. */
   position: relative;
   display: inline-flex;
-  /* The "(click to copy)" hint must be able to drop under the address: on a
-     375px screen the two don't fit side by side, and without the wrap the
-     hint is clipped at the viewport edge (body's overflow-x: clip masks the
-     scrollbar but not the cropped text). */
+  /* The Copy button must be able to drop under the address: on a 375px
+     screen the two don't always fit side by side, and without the wrap the
+     button is clipped at the viewport edge (body's overflow-x: clip masks
+     the scrollbar but not the cropped control). */
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.2rem 0.7rem;
+  gap: 0.35rem 0.7rem;
 }
 
 /* Sign-off Body with a quiet metadata underline; hover brightens both, the
@@ -1386,14 +1386,30 @@ nav.masthead > ul > li > a:hover,
   text-decoration-color: var(--mint-strong);
 }
 
-/* The visible "(click to copy)" cue. Ships hidden; site.js reveals it with
-   the copy behavior itself, and it is aria-hidden because the link's
-   accessible name already carries the same hint. Sign-off Metadata on Ink:
-   7.89:1. */
-.copy-hint {
-  color: var(--ink-meta);
+/* The Copy control: a real, visibly labelled button beside the address. The
+   mailto link is never hijacked — people whose machines open a mail app get
+   exactly that — and copying lives here instead. Ships hidden (without JS it
+   could do nothing, and a dead control is worse than none); site.js reveals
+   it with the behavior. Ghost-pill costume at label size; the Sign-off
+   Metadata border reads 7.89:1 on Ink. */
+.copy-button {
+  font: inherit;
   font-size: var(--text-sm);
-  white-space: nowrap;
+  font-weight: 600;
+  padding: 0.2rem 0.9rem;
+  border: 1.5px solid var(--ink-meta);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink-text);
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    color 0.18s ease;
+}
+
+.copy-button:hover {
+  border-color: var(--mint-strong);
+  color: var(--mint-strong);
 }
 
 /* Copy feedback: a small note floating above the address (site.js populates

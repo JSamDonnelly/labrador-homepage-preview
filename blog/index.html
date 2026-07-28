@@ -18,10 +18,10 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="../fonts.css?v=11" />
-    <link rel="stylesheet" href="../base.css?v=11" />
-    <link rel="stylesheet" href="../style.css?v=11" />
-    <script src="../site.js?v=11" defer></script>
+    <link rel="stylesheet" href="../fonts.css?v=12" />
+    <link rel="stylesheet" href="../base.css?v=12" />
+    <link rel="stylesheet" href="../style.css?v=12" />
+    <script src="../site.js?v=12" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -68,9 +68,11 @@
             <li><a href="../pricing.html">Pricing</a></li>
             <li><a href="index.html" aria-current="page">Blog</a></li>
           </ul>
-          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
-               address, which doesn't deliver on "Book a call". -->
-          <a class="pill" href="#contact">Book a call</a>
+          <!-- Booking runs through Calendly. PLACEHOLDER EVENT: this is the product-demo
+               link; swap for the real booking event when it exists. -->
+          <a class="pill" href="https://calendly.com/sam-testwithlabrador/product-demo"
+            >Book a call</a
+          >
         </nav>
       </div>
     </header>
@@ -184,19 +186,19 @@
           <ul class="contact-row" role="list">
             <li class="contact-email">
               <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
-              <!-- Visible cue for the copy-on-click upgrade; aria-hidden because the
-                   link's own accessible name already carries the same hint for screen
-                   readers. Ships hidden; site.js reveals it with the behavior. -->
-              <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
+              <!-- The address stays a plain mailto link (it opens your mail app);
+                   copying lives on this real button instead. Ships hidden because
+                   without JS it could do nothing; site.js reveals and wires it. -->
+              <button class="copy-button" type="button" hidden>
+                Copy<span class="visually-hidden"> the email address</span>
+              </button>
               <span class="copy-note" role="status"></span>
             </li>
-            <!-- TODO: swap the Book a call mailto for the real scheduler once it exists.
+            <!-- Booking runs through Calendly (placeholder event, see the header).
                  Get a quote is a real page (quote.html); site.js upgrades the link
                  to open the form in a dialog. -->
             <li>
-              <a
-                class="pill"
-                href="mailto:hello@labradoraccessibility.com?subject=Booking%20a%20call"
+              <a class="pill" href="https://calendly.com/sam-testwithlabrador/product-demo"
                 >Book a call</a
               >
             </li>
@@ -227,7 +229,9 @@
             <li><a href="../index.html#philosophy">Our philosophy</a></li>
             <li><a href="../tool.html">Our tool</a></li>
             <li><a href="../pricing.html">Pricing</a></li>
-            <li><a href="#contact">Book a call</a></li>
+            <li>
+              <a href="https://calendly.com/sam-testwithlabrador/product-demo">Book a call</a>
+            </li>
           </ul>
         </div>
         <div class="footer-col">

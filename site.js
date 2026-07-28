@@ -323,25 +323,24 @@ let clearPointerFocusMode = () => {};
   });
 })();
 
+// ---------------------------------------------------------------------------
+// The Copy button beside the contact address
+//
+// The mailto link is never hijacked: people whose machines open a mail app
+// on click get exactly that, always. Copying lives on a real <button> that
+// ships hidden — without this script it could do nothing — and is revealed
+// here with the behavior.
+// ---------------------------------------------------------------------------
 document.querySelectorAll(".contact-email").forEach((item) => {
-  if (!navigator.clipboard) return;
+  const button = item.querySelector(".copy-button");
+  if (!button || !navigator.clipboard) return;
 
   const link = item.querySelector("a");
   const note = item.querySelector(".copy-note");
-  const clickHint = item.querySelector(".copy-hint");
   const address = link.textContent.trim();
   let timer;
 
-  // The visible "(click to copy)" cue only appears once the behavior it
-  // describes actually exists.
-  if (clickHint) clickHint.hidden = false;
-
-  // Once JS is in charge the link copies instead of navigating, so say so in
-  // its accessible name before anyone commits to a click.
-  const nameHint = document.createElement("span");
-  nameHint.className = "visually-hidden";
-  nameHint.textContent = " (copies the address to your clipboard)";
-  link.append(nameHint);
+  button.hidden = false;
 
   const settle = (message, holdMs) => {
     // One element does both jobs: visible note for sighted users, and a
@@ -358,14 +357,12 @@ document.querySelectorAll(".contact-email").forEach((item) => {
     }
   };
 
-  link.addEventListener("click", (event) => {
-    event.preventDefault();
+  button.addEventListener("click", () => {
     navigator.clipboard.writeText(address).then(
       () => settle("Copied!", 2400),
       () => {
         // Clipboard refused (blocked permission, unfocused document): select
         // the address so one keystroke finishes the job. Never fail silently.
-        // The range covers only the address text node, not the hidden hint.
         const selection = document.getSelection();
         const range = document.createRange();
         range.selectNode(link.firstChild);
