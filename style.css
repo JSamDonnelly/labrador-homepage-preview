@@ -468,6 +468,121 @@ nav.masthead > ul > li > a:hover,
 }
 
 /* ============================================================
+   THE TWO-TIER HERO SYSTEM. The homepage keeps the grand
+   billboard hero (biggest type, sub-line, fact strip); interior
+   pages run this compact variant: same grammar (display h1, one
+   colored em, warm lede), one type tier down and roughly half
+   the vertical padding, so each page reaches its signature
+   section a beat sooner and the site stops replaying the same
+   opening. On top of the shared scale, each interior hero
+   carries ONE structural signature of its own: audits its fact
+   rail, VPATs the definition strip, remediation the micro-diff,
+   consulting the format chips, the tool page its notice bar,
+   and pricing deliberately nothing (the rate card directly
+   below is its structure). About has its own custom hero.
+   ============================================================ */
+.hero-compact {
+  padding-block: clamp(3rem, 7vw, 5rem) clamp(2.5rem, 6vw, 4rem);
+}
+
+/* Sits between the billboard h1 (5.2rem max) and the section-claim tier
+   (3rem max): still unmistakably the page's h1, no longer a shout. */
+.hero-compact h1 {
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+}
+
+.hero-compact .lede {
+  margin-top: 1.4rem;
+  font-size: var(--text-base);
+  max-width: 52ch;
+}
+
+.hero-compact .hero-actions {
+  margin-top: 2rem;
+}
+
+/* VPATs hero signature: the two acronyms as an inline definition strip
+   (a real <dl>, like every term pairing on the site), bounded by the
+   strip grammar's hairlines. It surfaces the page's signature section;
+   the full definitions live there. */
+.hero-terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2.5rem;
+  margin: 1.8rem 0 0;
+  padding-block: 0.9rem;
+  border-block: 1px solid var(--line);
+}
+
+.hero-terms > div {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.hero-terms dt {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.hero-terms dd {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+/* Remediation hero signature: the page's diffs in miniature. Two code
+   chips on ink; the -/+ prefixes carry the meaning in plain text, the
+   colors (Sign-off Metadata out, Mint 400 in) repeat the specimen
+   palette. System mono stack, same reasoning as the fix figures. */
+.hero-diff {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.8rem;
+}
+
+.hero-diff code {
+  font-family: ui-monospace, "SF Mono", menlo, consolas, "Liberation Mono", monospace;
+  font-size: var(--text-sm);
+  background: var(--ink);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+}
+
+.hero-diff .diff-out {
+  color: var(--ink-meta);
+}
+
+.hero-diff .diff-in {
+  color: var(--mint-strong);
+}
+
+/* Consulting hero signature: the formats as gold chips, the one place
+   the site uses tag-shaped elements. Gold Mist carries Ink at 13.4:1;
+   pill radius is the site's own shape. Labels match the formats panel's
+   rows, which hold the full descriptions. */
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 1.8rem 0 0;
+}
+
+.hero-chips li {
+  background: var(--gold-mist);
+  color: var(--ink);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* ============================================================
    BELIEFS — manifesto trio
    ============================================================ */
 .beliefs {

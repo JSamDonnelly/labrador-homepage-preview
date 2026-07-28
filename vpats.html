@@ -18,9 +18,9 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="fonts.css?v=3" />
-    <link rel="stylesheet" href="base.css?v=3" />
-    <link rel="stylesheet" href="style.css?v=3" />
+    <link rel="stylesheet" href="fonts.css?v=4" />
+    <link rel="stylesheet" href="base.css?v=4" />
+    <link rel="stylesheet" href="style.css?v=4" />
     <script src="site.js" defer></script>
   </head>
   <body>
@@ -82,7 +82,7 @@
            is the ink page (its color block is the dark editions panel), and mint
            is the brand's voice on light surfaces here. Gold stays spent on the
            audits page. -->
-      <section class="hero" aria-labelledby="hero-h">
+      <section class="hero hero-compact" aria-labelledby="hero-h">
         <div class="wrap">
           <h1 id="hero-h">The <em>proof</em> procurement asks for.</h1>
           <p class="lede">
@@ -96,6 +96,18 @@
             <a class="pill" href="#contact">Book a call</a>
             <a class="pill-ghost" href="#price">Get yours from $750</a>
           </div>
+          <!-- This hero's structural signature: the two acronyms as an inline
+               definition strip. The full definitions are the section below. -->
+          <dl class="hero-terms">
+            <div>
+              <dt>VPAT</dt>
+              <dd>the blank form</dd>
+            </div>
+            <div>
+              <dt>ACR</dt>
+              <dd>the form, filled out</dd>
+            </div>
+          </dl>
         </div>
       </section>
 

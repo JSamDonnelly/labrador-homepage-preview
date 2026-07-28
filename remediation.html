@@ -18,9 +18,9 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="fonts.css?v=3" />
-    <link rel="stylesheet" href="base.css?v=3" />
-    <link rel="stylesheet" href="style.css?v=3" />
+    <link rel="stylesheet" href="fonts.css?v=4" />
+    <link rel="stylesheet" href="base.css?v=4" />
+    <link rel="stylesheet" href="style.css?v=4" />
     <script src="site.js" defer></script>
   </head>
   <body>
@@ -81,7 +81,7 @@
            (the lede's first clause quotes the belief's body copy the same way),
            and the em runs mint: this is the mint page. Gold stays on audits,
            ink on VPATs. -->
-      <section class="hero" aria-labelledby="hero-h">
+      <section class="hero hero-compact" aria-labelledby="hero-h">
         <div class="wrap">
           <h1 id="hero-h">The <em>fix</em> matters more than the finding.</h1>
           <p class="lede">
@@ -94,6 +94,15 @@
             <a class="pill" href="#contact">Book a call</a>
             <a class="pill-ghost" href="audits.html">Start with an audit</a>
           </div>
+          <!-- This hero's structural signature: the page's diffs in miniature.
+               The visible chips are decorative for screen readers; the hidden
+               sentence carries the meaning (same pattern as the process-step
+               digits on the audits page). Full specimens live below. -->
+          <p class="hero-diff">
+            <span class="visually-hidden">The shape of a typical fix: a div becomes a button.</span>
+            <code class="diff-out" aria-hidden="true">- &lt;div&gt;</code>
+            <code class="diff-in" aria-hidden="true">+ &lt;button&gt;</code>
+          </p>
         </div>
       </section>
 
