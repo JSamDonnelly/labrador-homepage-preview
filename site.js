@@ -47,8 +47,27 @@
     if (narrow.matches && event.target.closest("a")) setOpen(false);
   });
 
+  // A native <details> stays open until its own summary is clicked again, which
+  // is wrong for a nav dropdown: it hangs over the page after the reader has
+  // plainly moved on. Close it when a click lands anywhere outside it. Pointer
+  // only by nature — the keyboard equivalent is Escape, below.
+  document.addEventListener("click", (event) => {
+    panel.querySelectorAll("details.submenu-toggle[open]").forEach((disclosure) => {
+      if (!disclosure.contains(event.target)) disclosure.open = false;
+    });
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
+    // Innermost first: an open Services disclosure closes on its own, leaving
+    // the menu panel around it alone. Focus returns to the summary, which is
+    // the control that reopens it.
+    const openDisclosure = panel.querySelector("details.submenu-toggle[open]");
+    if (openDisclosure) {
+      openDisclosure.open = false;
+      openDisclosure.querySelector("summary").focus();
+      return;
+    }
     if (button.getAttribute("aria-expanded") !== "true") return;
     setOpen(false);
     // Escape must leave focus somewhere sensible, not on a link that just
