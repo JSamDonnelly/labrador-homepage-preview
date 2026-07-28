@@ -106,6 +106,29 @@ document.querySelectorAll("[data-chat-launch]").forEach((control) => {
 const QUOTE_EMAIL = "hello@labradoraccessibility.com";
 
 const wireQuoteForms = (root) => {
+  // Both branches open with the same four questions (name, email, company,
+  // country). Someone who fills them in, then realises they picked the wrong
+  // path, shouldn't have to type them again — mirror them across the two
+  // forms as they're typed. Autofill already offers the same values, so this
+  // is a convenience on top, not something the form depends on.
+  root.querySelectorAll(".quote-widget").forEach((widget) => {
+    const forms = Array.from(widget.querySelectorAll("form.quote-form"));
+    if (forms.length < 2) return;
+    widget.addEventListener("input", (event) => {
+      const field = event.target;
+      if (!field.name || field.type === "checkbox" || field.type === "radio") return;
+      const home = field.closest("form.quote-form");
+      if (!home) return;
+      forms.forEach((form) => {
+        if (form === home) return;
+        const twin = form.elements[field.name];
+        // Skip anything that isn't a single matching text field (the shared
+        // four); a RadioNodeList here would mean a same-named group.
+        if (twin && !(twin instanceof RadioNodeList) && twin !== field) twin.value = field.value;
+      });
+    });
+  });
+
   root.querySelectorAll("form.quote-form").forEach((form) => {
     // "Check at least one": all boxes in the group are required until any one
     // is checked. The browser then does the messaging in its own words, in
@@ -120,9 +143,21 @@ const wireQuoteForms = (root) => {
         const any = boxes.some((box) => box.checked);
         boxes.forEach((box) => {
           box.required = !any;
+          // Clearing on every change is essential: a custom validity message
+          // sticks until it's set back to "", which would leave the whole
+          // group permanently invalid.
+          box.setCustomValidity("");
         });
       };
-      boxes.forEach((box) => box.addEventListener("change", sync));
+      boxes.forEach((box) => {
+        box.addEventListener("change", sync);
+        // The browser's own wording for a required checkbox is "check THIS
+        // box", which is wrong for a group where any one box satisfies the
+        // constraint. Say what's actually being asked.
+        box.addEventListener("invalid", () => {
+          box.setCustomValidity("Check at least one option in this list.");
+        });
+      });
       sync();
     });
 
@@ -168,6 +203,36 @@ const wireQuoteForms = (root) => {
 
 wireQuoteForms(document);
 
+// Pointer-vs-keyboard focus for the quote form's text fields. Text inputs
+// match :focus-visible on mouse click by spec, so CSS alone cannot tell the
+// two modalities apart; this tracks the last interaction and marks fields
+// focused by pointer, which the stylesheet steps down to a quieter (still
+// visible) indicator. Keyboard focus keeps the full yellow/black ring. One
+// document-level listener covers the quote page and the dialog alike.
+let clearPointerFocusMode = () => {};
+
+(() => {
+  let byPointer = false;
+  document.addEventListener("pointerdown", () => {
+    byPointer = true;
+  });
+  document.addEventListener("keydown", () => {
+    byPointer = false;
+  });
+  document.addEventListener("focusin", (event) => {
+    const field = event.target;
+    if (field.matches("input, textarea") && field.closest(".quote-widget")) {
+      field.classList.toggle("pointer-focus", byPointer);
+    }
+  });
+  // Moving focus programmatically (the dialog's opening focus) is a
+  // wayfinding moment for pointer users too: they need to see where Tab will
+  // start. The opener resets to keyboard mode so the full ring shows.
+  clearPointerFocusMode = () => {
+    byPointer = false;
+  };
+})();
+
 (() => {
   const launchers = document.querySelectorAll("a[data-quote-launch]");
   if (!launchers.length || typeof HTMLDialogElement === "undefined") return;
@@ -212,11 +277,18 @@ wireQuoteForms(document);
     dialog.showModal();
     // Land on the path chooser, past the Close button: the task, not the exit.
     const first = dialog.querySelector('input[name="quote-path"]:checked');
-    if (first) first.focus();
+    if (first) {
+      clearPointerFocusMode();
+      first.focus();
+    }
   };
 
   launchers.forEach((link) => {
     link.addEventListener("click", (event) => {
+      // These are real links: Cmd/Ctrl/Shift-click and middle-click must keep
+      // opening quote.html in a new tab or window, not the dialog.
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (typeof event.button === "number" && event.button !== 0) return;
       if (dialog) {
         event.preventDefault();
         open();

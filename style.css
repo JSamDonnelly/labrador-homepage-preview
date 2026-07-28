@@ -3071,13 +3071,33 @@ nav.masthead > ul > li > a[aria-current="page"] {
   min-height: 7rem;
 }
 
+/* Text fields match :focus-visible even when clicked (by spec: you must see
+   where you'll type), which fires the sitewide yellow/black ring on every
+   mouse click into the form. That ring is calibrated for keyboard wayfinding;
+   on pointer focus it reads as noise. site.js marks pointer-focused fields
+   with .pointer-focus, and they step down to a quiet mint outline that hugs
+   the field border — still a clearly visible indicator (mint-deep is 5.9:1 on
+   paper, past the 3:1 floor for UI components), just not the shout. Keyboard
+   focus keeps the full ring, and with JS off nothing changes: the loud, safe
+   default stays everywhere. */
+.quote-widget input.pointer-focus:focus-visible,
+.quote-widget textarea.pointer-focus:focus-visible {
+  outline: 2px solid var(--mint-deep);
+  outline-offset: -1px;
+  box-shadow: none;
+}
+
 /* Only after the visitor has interacted with the field — never on load. The
-   red border reinforces the browser's own text message; it never replaces it. */
+   red border reinforces the browser's own text message; it never replaces it.
+   Border only, deliberately: recoloring the outline would repaint the
+   sitewide yellow/black focus ring rust while an invalid field is focused,
+   and that ring is non-negotiable (DESIGN.md). Checkboxes are omitted too —
+   native-appearance boxes don't paint an author border-color, so the rule
+   would be dead weight; their group's validity is carried by the browser's
+   own message instead. */
 .field input:user-invalid,
-.field textarea:user-invalid,
-.quote-form .choice input:user-invalid {
+.field textarea:user-invalid {
   border-color: var(--rust-deep);
-  outline-color: var(--rust-deep);
 }
 
 .field-group {
