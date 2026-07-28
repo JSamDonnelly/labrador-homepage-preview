@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What is a VPAT, and when do you need one? — Labrador Services</title>
+    <meta
+      name="description"
+      content="The Voluntary Product Accessibility Template, the Accessibility Conformance Report it becomes, and the buyers who ask for it by name. Shadab Saifi's plain-language tour of the document procurement wants to see."
+    />
+    <link rel="icon" href="../favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
+         a cached stylesheet can never pair with newer markup. In WordPress this
+         job moves to wp_enqueue_style's version parameter. -->
+    <link rel="stylesheet" href="../fonts.css?v=10" />
+    <link rel="stylesheet" href="../base.css?v=10" />
+    <link rel="stylesheet" href="../style.css?v=10" />
+    <script src="../site.js?v=10" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap masthead-inner">
+        <!-- Relative, not "/": see index.html. ../ throughout — see blog/index.html. -->
+        <a class="brand" href="../index.html">
+          <img
+            class="brand-logo"
+            src="../labrador-logo.svg"
+            alt="Labrador Services home"
+            width="759"
+            height="189"
+          />
+        </a>
+        <!-- See index.html for why this button ships hidden: the collapsed nav is
+             progressive enhancement, not a requirement. -->
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <nav class="masthead" id="primary-nav" aria-label="Primary">
+          <ul role="list">
+            <li class="has-submenu">
+              <!-- Same native disclosure as index.html; see the comment there for why
+                   <details>/<summary> and not an ARIA menu. -->
+              <details class="submenu-toggle">
+                <summary>
+                  Services
+                  <span class="chevron" aria-hidden="true"></span>
+                </summary>
+                <ul class="submenu" role="list">
+                  <li><a href="../audits.html">Audits</a></li>
+                  <li><a href="../vpats.html">VPATs &amp; ACRs</a></li>
+                  <li><a href="../remediation.html">Remediation</a></li>
+                  <li><a href="../consulting.html">Consulting</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="../tool.html">Our Tool</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../pricing.html">Pricing</a></li>
+            <li><a href="index.html">Blog</a></li>
+          </ul>
+          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
+               address, which doesn't deliver on "Book a call". -->
+          <a class="pill" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- THE ARTICLE — same template as manual-vs-automated-testing.html.
+
+           PLACEHOLDER: the body copy below is lorem ipsum under the planned
+           section headings. Replace with the real article before launch. The
+           image is a hotlinked Unsplash placeholder — swap for owned or
+           licensed art when the real post ships. -->
+      <article class="post">
+        <div class="wrap post-head">
+          <p class="post-back">
+            <a href="index.html"><span aria-hidden="true">←</span> All posts</a>
+          </p>
+          <h1>What is a VPAT, and when do you need one?</h1>
+          <p class="post-meta">
+            By <a href="../about.html">Shadab Saifi</a> ·
+            <time datetime="2026-07-14">July 14, 2026</time> · 6 minute read
+          </p>
+        </div>
+        <div class="wrap">
+          <figure class="post-figure">
+            <img
+              src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?auto=format&fit=crop&w=1600&h=1000&q=80"
+              alt="Two people at a table working through a stack of printed documents."
+              width="1600"
+              height="1000"
+            />
+          </figure>
+        </div>
+        <div class="wrap post-body">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis
+            interdum. Nullam quis risus eget urna mollis ornare vel eu leo. Donec ullamcorper nulla
+            non metus auctor fringilla. Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+          </p>
+          <p>
+            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est
+            non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
+          </p>
+          <h2>The template</h2>
+          <p>
+            Aenean lacinia bibendum nulla sed consectetur. Vestibulum id ligula porta felis euismod
+            semper. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus
+            mus. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+          </p>
+          <h2>From VPAT to ACR</h2>
+          <p>
+            Etiam porta sem malesuada magna mollis euismod. Morbi leo risus, porta ac consectetur
+            ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris
+            condimentum nibh, ut fermentum massa justo sit amet risus.
+          </p>
+          <p>
+            Maecenas sed diam eget risus varius blandit sit amet non magna. Nulla vitae elit libero,
+            a pharetra augue. Donec id elit non mi porta gravida at eget metus.
+          </p>
+          <h2>When procurement asks</h2>
+          <p>
+            Curabitur blandit tempus porttitor. Sed posuere consectetur est at lobortis. Integer
+            posuere erat a ante venenatis dapibus posuere velit aliquet. Pellentesque ornare sem
+            lacinia quam venenatis vestibulum. Donec sed odio dui.
+          </p>
+        </div>
+      </article>
+
+      <!-- CTA -->
+      <section class="say-hi" id="contact" aria-labelledby="cta-h">
+        <div class="wrap">
+          <p class="kicker">Start a conversation</p>
+          <h2 id="cta-h">
+            <!-- data-chat-launch: opens Intercom once its snippet is added (site.js);
+                 until then the heading opens email, same as the address below, so
+                 nothing here is a dead end. -->
+            <a href="mailto:hello@labradoraccessibility.com" data-chat-launch
+              >Say hi <span class="h2-note">(opens chat)</span> <span aria-hidden="true">→</span></a
+            >
+          </h2>
+          <p>
+            If this is the problem you're staring at, it's the one we solve for a living. Our
+            founding team spans Maine, Wales, and Delhi, so someone's online through most of your
+            working day. Expect a scoped, fixed-fee proposal within one business day. A call is
+            welcome, never required.
+          </p>
+          <!-- Every way to reach us, in one row. site.js turns the address into a
+               copy-on-click control (visible + announced "Copied!" note); without
+               the script it stays a plain working mailto link. -->
+          <ul class="contact-row" role="list">
+            <li class="contact-email">
+              <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+              <!-- Visible cue for the copy-on-click upgrade; aria-hidden because the
+                   link's own accessible name already carries the same hint for screen
+                   readers. Ships hidden; site.js reveals it with the behavior. -->
+              <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
+              <span class="copy-note" role="status"></span>
+            </li>
+            <!-- TODO: swap the Book a call mailto for the real scheduler once it exists.
+                 Get a quote is a real page (quote.html); site.js upgrades the link
+                 to open the form in a dialog. -->
+            <li>
+              <a
+                class="pill"
+                href="mailto:hello@labradoraccessibility.com?subject=Booking%20a%20call"
+                >Book a call</a
+              >
+            </li>
+            <li><a class="pill-ghost" href="../quote.html" data-quote-launch>Get a quote</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- aria-label distinguishes this nav from the header's "Primary" landmark. -->
+      <nav class="wrap footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul role="list">
+            <li><a href="../audits.html">Audits</a></li>
+            <li><a href="../vpats.html">VPATs &amp; ACRs</a></li>
+            <li><a href="../remediation.html">Remediation</a></li>
+            <li><a href="../consulting.html">Consulting</a></li>
+            <li><a href="../audits.html#homepage-audit">The $495 homepage audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Company</h2>
+          <ul role="list">
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../index.html#beliefs">What we believe</a></li>
+            <li><a href="../index.html#philosophy">Our philosophy</a></li>
+            <li><a href="../tool.html">Our tool</a></li>
+            <li><a href="../pricing.html">Pricing</a></li>
+            <li><a href="#contact">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Writing</h2>
+          <!-- The blog is live with placeholder posts; in WordPress these move
+               to /blog/<slug>/ permalinks. -->
+          <ul role="list">
+            <li>
+              <a href="manual-vs-automated-testing.html">Manual vs. automated testing</a>
+            </li>
+            <li>
+              <a href="what-is-a-vpat.html" aria-current="page"
+                >What is a VPAT, and when do you need one?</a
+              >
+            </li>
+            <li><a href="index.html">All posts</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrap colophon">
+        <span>© 2026 Labrador Services · Maine · Wales · Delhi</span>
+      </div>
+    </footer>
+  </body>
+</html>
