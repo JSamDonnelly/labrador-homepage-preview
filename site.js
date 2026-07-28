@@ -82,6 +82,175 @@ document.querySelectorAll("[data-chat-launch]").forEach((control) => {
   });
 });
 
+// ---------------------------------------------------------------------------
+// The quote form (quote.html) and its sitewide dialog
+//
+// The form works with JavaScript off: quote.html is a real page, its two
+// branches switch on the path radios via :has() in CSS, and each form's
+// action is a plain-text mailto. This block is the upgrade on top:
+//
+//   1. wireQuoteForms — replaces the flaky native mailto POST with a composed,
+//      readable email (subject from data-subject, one "Label: answer" line per
+//      field), and enforces "at least one" on checkbox groups marked
+//      data-choose-one, which HTML alone cannot express.
+//   2. The launcher — any link carrying data-quote-launch (every "Get a quote"
+//      control) fetches quote.html once, lifts out .quote-widget, and opens it
+//      in a native <dialog>: focus trap, Escape-to-close, and focus return all
+//      come from the platform. If the fetch fails (older browser, file://),
+//      the click falls back to plain navigation. quote.html itself has no
+//      launchers, so the widget's ids are never duplicated in one document.
+//
+// TODO (WordPress): the real form handler replaces the mailto composition;
+// everything else here carries over.
+// ---------------------------------------------------------------------------
+const QUOTE_EMAIL = "hello@labradoraccessibility.com";
+
+const wireQuoteForms = (root) => {
+  root.querySelectorAll("form.quote-form").forEach((form) => {
+    // "Check at least one": all boxes in the group are required until any one
+    // is checked. The browser then does the messaging in its own words, in
+    // the visitor's own language.
+    const groups = new Map();
+    form.querySelectorAll('input[type="checkbox"][data-choose-one]').forEach((box) => {
+      if (!groups.has(box.name)) groups.set(box.name, []);
+      groups.get(box.name).push(box);
+    });
+    groups.forEach((boxes) => {
+      const sync = () => {
+        const any = boxes.some((box) => box.checked);
+        boxes.forEach((box) => {
+          box.required = !any;
+        });
+      };
+      boxes.forEach((box) => box.addEventListener("change", sync));
+      sync();
+    });
+
+    // Only fires once the form is valid — native validation runs first.
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const seen = new Set();
+      const lines = [];
+      Array.from(form.elements).forEach((el) => {
+        if (!el.name || seen.has(el.name)) return;
+        if (el.type === "submit" || el.type === "button") return;
+        let value = "";
+        if (el.type === "checkbox" || el.type === "radio") {
+          // form.elements[name] is a RadioNodeList when the name is shared
+          // (radio groups, the service checklists) and a lone element when not.
+          const named = form.elements[el.name];
+          const inputs = named instanceof RadioNodeList ? Array.from(named) : [named];
+          value = inputs
+            .filter((input) => input.checked)
+            .map((input) => input.value)
+            .join(", ");
+        } else {
+          value = el.value.trim();
+        }
+        seen.add(el.name);
+        if (value) lines.push(`${el.name}: ${value}`);
+      });
+
+      const subject = form.dataset.subject || "Quote request";
+      const body = lines.join("\r\n");
+      window.location.href = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      const status = form.querySelector(".quote-status");
+      if (status) {
+        status.textContent =
+          "Your email app should now be open with everything filled in. If nothing opened, " +
+          `email us at ${QUOTE_EMAIL}.`;
+      }
+    });
+  });
+};
+
+wireQuoteForms(document);
+
+(() => {
+  const launchers = document.querySelectorAll("a[data-quote-launch]");
+  if (!launchers.length || typeof HTMLDialogElement === "undefined") return;
+
+  let dialog = null;
+  let fetching = false;
+
+  const build = (widget) => {
+    dialog = document.createElement("dialog");
+    dialog.className = "quote-dialog";
+    dialog.setAttribute("aria-labelledby", "quote-dialog-title");
+
+    const inner = document.createElement("div");
+    inner.className = "quote-dialog-inner";
+
+    const head = document.createElement("div");
+    head.className = "quote-dialog-head";
+    const title = document.createElement("h2");
+    title.id = "quote-dialog-title";
+    title.textContent = "Get a quote";
+    const close = document.createElement("button");
+    close.type = "button";
+    close.className = "quote-close";
+    close.textContent = "Close";
+    close.addEventListener("click", () => dialog.close());
+    head.append(title, close);
+
+    inner.append(head, widget);
+    dialog.append(inner);
+
+    // A click on the dialog element itself is a click on the backdrop — the
+    // content sits entirely inside .quote-dialog-inner.
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    document.body.append(dialog);
+    wireQuoteForms(dialog);
+  };
+
+  const open = () => {
+    dialog.showModal();
+    // Land on the path chooser, past the Close button: the task, not the exit.
+    const first = dialog.querySelector('input[name="quote-path"]:checked');
+    if (first) first.focus();
+  };
+
+  launchers.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (dialog) {
+        event.preventDefault();
+        open();
+        return;
+      }
+      if (fetching) {
+        event.preventDefault();
+        return;
+      }
+      event.preventDefault();
+      fetching = true;
+      fetch(link.getAttribute("href"))
+        .then((response) => {
+          if (!response.ok) throw new Error(String(response.status));
+          return response.text();
+        })
+        .then((html) => {
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const widget = doc.querySelector(".quote-widget");
+          if (!widget) throw new Error("no widget");
+          build(document.importNode(widget, true));
+          open();
+        })
+        .catch(() => {
+          // Anything went wrong: behave like the link this is.
+          window.location.href = link.href;
+        })
+        .finally(() => {
+          fetching = false;
+        });
+    });
+  });
+})();
+
 document.querySelectorAll(".contact-email").forEach((item) => {
   if (!navigator.clipboard) return;
 

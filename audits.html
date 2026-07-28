@@ -18,10 +18,10 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="fonts.css?v=5" />
-    <link rel="stylesheet" href="base.css?v=5" />
-    <link rel="stylesheet" href="style.css?v=5" />
-    <script src="site.js" defer></script>
+    <link rel="stylesheet" href="fonts.css?v=6" />
+    <link rel="stylesheet" href="base.css?v=6" />
+    <link rel="stylesheet" href="style.css?v=6" />
+    <script src="site.js?v=6" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -91,7 +91,7 @@
               accessibility laws point to.
             </p>
             <div class="hero-actions">
-              <a class="pill" href="#contact">Get a quote</a>
+              <a class="pill" href="quote.html" data-quote-launch>Get a quote</a>
               <a class="pill-ghost" href="#homepage-audit">Start small for $495</a>
             </div>
           </div>
@@ -327,8 +327,9 @@
               <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
               <span class="copy-note" role="status"></span>
             </li>
-            <!-- TODO: swap both pre-filled mailtos for the real scheduler and quote
-                 form once those exist. -->
+            <!-- TODO: swap the Book a call mailto for the real scheduler once it exists.
+                 Get a quote is a real page (quote.html); site.js upgrades the link
+                 to open the form in a dialog. -->
             <li>
               <a
                 class="pill"
@@ -336,13 +337,7 @@
                 >Book a call</a
               >
             </li>
-            <li>
-              <a
-                class="pill-ghost"
-                href="mailto:hello@labradoraccessibility.com?subject=Quote%20request"
-                >Get a quote</a
-              >
-            </li>
+            <li><a class="pill-ghost" href="quote.html" data-quote-launch>Get a quote</a></li>
           </ul>
         </div>
       </section>

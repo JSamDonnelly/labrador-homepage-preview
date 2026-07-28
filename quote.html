@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get a quote — Labrador Services</title>
+    <meta
+      name="description"
+      content="Request a fixed-fee quote from Labrador: WCAG audits, VPATs and ACRs, remediation, or consulting and training. Answer a short form and get a scoped proposal within one business day."
+    />
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
+         a cached stylesheet can never pair with newer markup. In WordPress this
+         job moves to wp_enqueue_style's version parameter. -->
+    <link rel="stylesheet" href="fonts.css?v=6" />
+    <link rel="stylesheet" href="base.css?v=6" />
+    <link rel="stylesheet" href="style.css?v=6" />
+    <script src="site.js?v=6" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="wrap masthead-inner">
+        <!-- Relative, not "/": see index.html. -->
+        <a class="brand" href="index.html">
+          <img
+            class="brand-logo"
+            src="labrador-logo.svg"
+            alt="Labrador Services home"
+            width="759"
+            height="189"
+          />
+        </a>
+        <!-- See index.html for why this button ships hidden: the collapsed nav is
+             progressive enhancement, not a requirement. -->
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <nav class="masthead" id="primary-nav" aria-label="Primary">
+          <ul role="list">
+            <li class="has-submenu">
+              <!-- Same native disclosure as index.html; see the comment there for why
+                   <details>/<summary> and not an ARIA menu. -->
+              <details class="submenu-toggle">
+                <summary>
+                  Services
+                  <span class="chevron" aria-hidden="true"></span>
+                </summary>
+                <!-- All four services have their own pages now. -->
+                <ul class="submenu" role="list">
+                  <li><a href="audits.html">Audits</a></li>
+                  <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+                  <li><a href="remediation.html">Remediation</a></li>
+                  <li><a href="consulting.html">Consulting</a></li>
+                </ul>
+              </details>
+            </li>
+            <li><a href="tool.html">Our Tool</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <!-- TODO: the blog doesn't exist yet and will 404 until it's built. -->
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+          <!-- TODO: point at the real scheduling link once it exists; #contact is an email
+               address, which doesn't deliver on "Book a call". -->
+          <a class="pill" href="#contact">Book a call</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- HERO — the utility-page treatment, like pricing: compact scale and no
+           structural garnish, because the form directly below IS the page's
+           structure. -->
+      <section class="hero hero-compact" aria-labelledby="hero-h">
+        <div class="wrap">
+          <h1 id="hero-h">Two minutes to a <em>real number</em>.</h1>
+          <p class="lede">
+            Tell us what you need below, and we'll reply within one business day with a scoped,
+            fixed-fee proposal. A person reads every answer. If a plain email is easier, write to
+            <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+            instead; it reaches the same people.
+          </p>
+        </div>
+      </section>
+
+      <!-- THE FORM — one widget, two branches. The path chooser is a real radio
+           pair; the switch between the two forms below it is pure CSS (:has, in
+           style.css), so the whole page works with JavaScript off. In a browser
+           without :has() both branches render stacked, each under its own
+           heading — degraded but fully usable. They are two separate <form>
+           elements on purpose: a hidden branch's required fields can never
+           block the visible branch's submission.
+
+           Submission is mailto-based while the site is static: without JS the
+           forms post to the contact address as plain text (enctype below);
+           site.js upgrades submit to compose a readable, structured email.
+           TODO (WordPress): swap both actions for the real form handler.
+
+           site.js also fetches this widget into a <dialog> when a visitor
+           clicks any "Get a quote" control elsewhere on the site — this page
+           is the single source of the form markup. -->
+      <div class="quote-section">
+        <div class="wrap">
+          <div class="quote-widget">
+            <fieldset class="quote-path">
+              <legend>What's this quote for?</legend>
+              <p class="field-hint">
+                Consulting is scoped differently from testing work, so we ask different questions.
+              </p>
+              <div class="quote-path-options">
+                <label class="quote-path-option">
+                  <input type="radio" name="quote-path" id="path-services" checked />
+                  <span class="quote-path-text">
+                    <span class="quote-path-name">Audits, VPATs &amp; remediation</span>
+                    <span class="quote-path-desc">
+                      Testing your product, the reports, and the fixes.
+                    </span>
+                  </span>
+                </label>
+                <label class="quote-path-option">
+                  <input type="radio" name="quote-path" id="path-consulting" />
+                  <span class="quote-path-text">
+                    <span class="quote-path-name">Consulting &amp; training</span>
+                    <span class="quote-path-desc">
+                      Lunch and learns, trainings, reviews, office hours.
+                    </span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <form
+              class="quote-form quote-form-services"
+              aria-labelledby="svc-h"
+              action="mailto:hello@labradoraccessibility.com?subject=Quote%20request:%20audits,%20VPATs,%20remediation"
+              method="post"
+              enctype="text/plain"
+              data-subject="Quote request: audits, VPATs, remediation"
+            >
+              <h2 id="svc-h">Audits, VPATs &amp; remediation</h2>
+
+              <div class="field">
+                <label for="svc-name">Full name</label>
+                <input id="svc-name" name="Full name" type="text" autocomplete="name" required />
+              </div>
+
+              <div class="field">
+                <label for="svc-email">Email</label>
+                <input id="svc-email" name="Email" type="email" autocomplete="email" required />
+              </div>
+
+              <div class="field">
+                <label for="svc-company">Company</label>
+                <input
+                  id="svc-company"
+                  name="Company"
+                  type="text"
+                  autocomplete="organization"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="svc-country">Company's country</label>
+                <input
+                  id="svc-country"
+                  name="Company's country"
+                  type="text"
+                  autocomplete="country-name"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="svc-markets">Which markets do you serve?</label>
+                <p class="field-hint" id="svc-markets-hint">
+                  Domestic, global, or a list of countries. This decides which standards matter for
+                  you.
+                </p>
+                <input
+                  id="svc-markets"
+                  name="Markets served"
+                  type="text"
+                  aria-describedby="svc-markets-hint"
+                  required
+                />
+              </div>
+
+              <fieldset class="field-group">
+                <legend>What are we looking at?</legend>
+                <div class="choice-list">
+                  <label class="choice">
+                    <input type="radio" name="Product type" value="Website" required />
+                    <span>Website</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="Product type" value="Web app" />
+                    <span>Web app</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="Product type" value="App" />
+                    <span>App (iOS or Android)</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="field">
+                <label for="svc-url">
+                  Website URL <span class="field-optional">(if applicable)</span>
+                </label>
+                <input id="svc-url" name="Website URL" type="text" autocomplete="url" />
+              </div>
+
+              <fieldset class="field-group">
+                <legend>Conformance level</legend>
+                <p class="field-hint">
+                  The version of the Web Content Accessibility Guidelines (WCAG) we test against.
+                  Not sure? Leave it with us and we'll recommend one.
+                </p>
+                <div class="choice-list">
+                  <label class="choice">
+                    <input type="radio" name="Conformance level" value="WCAG 2.2" />
+                    <span>WCAG 2.2</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="Conformance level" value="WCAG 2.1" />
+                    <span>WCAG 2.1</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="Conformance level" value="Not sure yet" checked />
+                    <span>Not sure yet</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset class="field-group">
+                <legend>Which services?</legend>
+                <p class="field-hint">
+                  Check everything you're interested in. A VPAT (Voluntary Product Accessibility
+                  Template), once filled out from your audit, becomes the conformance report buyers
+                  ask for.
+                </p>
+                <div class="choice-list">
+                  <label class="choice">
+                    <input type="checkbox" name="Services" value="Audit" data-choose-one />
+                    <span>Audit</span>
+                  </label>
+                  <label class="choice">
+                    <input type="checkbox" name="Services" value="VPAT / ACR" data-choose-one />
+                    <span>VPAT / ACR</span>
+                  </label>
+                  <div class="choice-detail">
+                    <label for="svc-vpat-edition">
+                      Which edition, if you know it <span class="field-optional">(optional)</span>
+                    </label>
+                    <p class="field-hint" id="svc-vpat-edition-hint">WCAG, 508, EU, or INT.</p>
+                    <input
+                      id="svc-vpat-edition"
+                      name="VPAT edition"
+                      type="text"
+                      aria-describedby="svc-vpat-edition-hint"
+                    />
+                  </div>
+                  <label class="choice">
+                    <input type="checkbox" name="Services" value="Remediation" data-choose-one />
+                    <span>Remediation</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="field">
+                <label for="svc-notes">
+                  Additional notes or questions <span class="field-optional">(optional)</span>
+                </label>
+                <textarea id="svc-notes" name="Notes" rows="4"></textarea>
+              </div>
+
+              <div class="quote-submit">
+                <button class="pill" type="submit">Send your request</button>
+                <p class="quote-submit-note">
+                  Submitting opens your email app with everything filled in. Nothing goes anywhere
+                  until you press Send there.
+                </p>
+                <p class="quote-status" role="status"></p>
+              </div>
+            </form>
+
+            <form
+              class="quote-form quote-form-consulting"
+              aria-labelledby="cons-h"
+              action="mailto:hello@labradoraccessibility.com?subject=Quote%20request:%20consulting"
+              method="post"
+              enctype="text/plain"
+              data-subject="Quote request: consulting"
+            >
+              <h2 id="cons-h">Consulting &amp; training</h2>
+
+              <div class="field">
+                <label for="cons-name">Full name</label>
+                <input id="cons-name" name="Full name" type="text" autocomplete="name" required />
+              </div>
+
+              <div class="field">
+                <label for="cons-email">Email</label>
+                <input id="cons-email" name="Email" type="email" autocomplete="email" required />
+              </div>
+
+              <div class="field">
+                <label for="cons-company">Company</label>
+                <input
+                  id="cons-company"
+                  name="Company"
+                  type="text"
+                  autocomplete="organization"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="cons-country">Country</label>
+                <input
+                  id="cons-country"
+                  name="Country"
+                  type="text"
+                  autocomplete="country-name"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label for="cons-sector">Sector</label>
+                <p class="field-hint" id="cons-sector-hint">
+                  Government, healthcare, higher education, retail: whatever describes you best.
+                </p>
+                <input
+                  id="cons-sector"
+                  name="Sector"
+                  type="text"
+                  aria-describedby="cons-sector-hint"
+                  required
+                />
+              </div>
+
+              <fieldset class="field-group">
+                <legend>What kind of consulting?</legend>
+                <p class="field-hint">Check anything that sounds right; most teams mix formats.</p>
+                <div class="choice-list">
+                  <label class="choice">
+                    <input
+                      type="checkbox"
+                      name="Consulting formats"
+                      value="Lunch and learn"
+                      data-choose-one
+                    />
+                    <span>Lunch and learn</span>
+                  </label>
+                  <label class="choice">
+                    <input
+                      type="checkbox"
+                      name="Consulting formats"
+                      value="Speaking"
+                      data-choose-one
+                    />
+                    <span>Speaking</span>
+                  </label>
+                  <label class="choice">
+                    <input
+                      type="checkbox"
+                      name="Consulting formats"
+                      value="Full-day training"
+                      data-choose-one
+                    />
+                    <span>Full-day training</span>
+                  </label>
+                  <label class="choice">
+                    <input
+                      type="checkbox"
+                      name="Consulting formats"
+                      value="Design and code reviews"
+                      data-choose-one
+                    />
+                    <span>Design and code reviews</span>
+                  </label>
+                  <label class="choice">
+                    <input
+                      type="checkbox"
+                      name="Consulting formats"
+                      value="Office hours"
+                      data-choose-one
+                    />
+                    <span>Office hours</span>
+                  </label>
+                  <label class="choice">
+                    <input
+                      type="checkbox"
+                      name="Consulting formats"
+                      value="Program building"
+                      data-choose-one
+                    />
+                    <span>Program building</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="field">
+                <label for="cons-notes">
+                  Additional notes or goals <span class="field-optional">(optional)</span>
+                </label>
+                <textarea id="cons-notes" name="Notes" rows="4"></textarea>
+              </div>
+
+              <div class="quote-submit">
+                <button class="pill" type="submit">Send your request</button>
+                <p class="quote-submit-note">
+                  Submitting opens your email app with everything filled in. Nothing goes anywhere
+                  until you press Send there.
+                </p>
+                <p class="quote-status" role="status"></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <section class="say-hi" id="contact" aria-labelledby="cta-h">
+        <div class="wrap">
+          <p class="kicker">Start a conversation</p>
+          <h2 id="cta-h">
+            <!-- data-chat-launch: opens Intercom once its snippet is added (site.js);
+                 until then the heading opens email, same as the address below, so
+                 nothing here is a dead end. -->
+            <a href="mailto:hello@labradoraccessibility.com" data-chat-launch
+              >Say hi <span class="h2-note">(opens chat)</span> <span aria-hidden="true">→</span></a
+            >
+          </h2>
+          <p>
+            Rather talk it through than fill in a form? Our founding team spans Maine, Wales, and
+            Delhi, so someone's online through most of your working day. Expect a scoped, fixed-fee
+            proposal within one business day. A call is welcome, never required.
+          </p>
+          <!-- Every way to reach us, in one row. site.js turns the address into a
+               copy-on-click control (visible + announced "Copied!" note); without
+               the script it stays a plain working mailto link. No "Get a quote"
+               pill here: the quote form is this page. -->
+          <ul class="contact-row" role="list">
+            <li class="contact-email">
+              <a href="mailto:hello@labradoraccessibility.com">hello@labradoraccessibility.com</a>
+              <!-- Visible cue for the copy-on-click upgrade; aria-hidden because the
+                   link's own accessible name already carries the same hint for screen
+                   readers. Ships hidden; site.js reveals it with the behavior. -->
+              <span class="copy-hint" aria-hidden="true" hidden>(click to copy)</span>
+              <span class="copy-note" role="status"></span>
+            </li>
+            <!-- TODO: swap the Book a call mailto for the real scheduler once it exists. -->
+            <li>
+              <a
+                class="pill"
+                href="mailto:hello@labradoraccessibility.com?subject=Booking%20a%20call"
+                >Book a call</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <!-- aria-label distinguishes this nav from the header's "Primary" landmark. -->
+      <nav class="wrap footer-nav" aria-label="Footer">
+        <div class="footer-col">
+          <h2>Services</h2>
+          <ul role="list">
+            <li><a href="audits.html">Audits</a></li>
+            <li><a href="vpats.html">VPATs &amp; ACRs</a></li>
+            <li><a href="remediation.html">Remediation</a></li>
+            <li><a href="consulting.html">Consulting</a></li>
+            <li><a href="audits.html#homepage-audit">The $495 homepage audit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Company</h2>
+          <ul role="list">
+            <li><a href="about.html">About</a></li>
+            <li><a href="index.html#beliefs">What we believe</a></li>
+            <li><a href="index.html#philosophy">Our philosophy</a></li>
+            <li><a href="tool.html">Our tool</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="#contact">Book a call</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Writing</h2>
+          <!-- TODO: these posts don't exist yet. Slugs are proposals; keep them in sync
+               with the real URLs when the blog ships. -->
+          <ul role="list">
+            <li><a href="/blog/manual-vs-automated-testing">Manual vs. automated testing</a></li>
+            <li><a href="/blog/audits-vs-widgets">Accessibility audits vs. widgets</a></li>
+            <li><a href="/blog/what-is-a-vpat">What is a VPAT, and when do you need one?</a></li>
+            <li>
+              <a href="/blog/european-accessibility-act"
+                >The European Accessibility Act (EAA), explained</a
+              >
+            </li>
+            <li>
+              <a href="/blog/how-to-read-an-audit-report">How to read your first audit report</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="wrap colophon">
+        <span>© 2026 Labrador Services · Maine · Wales · Delhi</span>
+      </div>
+    </footer>
+  </body>
+</html>

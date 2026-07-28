@@ -42,6 +42,11 @@
   --focus: #fd0;
   --focus-ink: #0b0c0c;
 
+  /* Form-error red, introduced with the quote form and used only there:
+     :user-invalid borders. Warm to sit with the gold family. 8.0:1 on Paper,
+     far past both the 4.5:1 text floor and the 3:1 UI-component floor. */
+  --rust-deep: #8c2a1c;
+
   /* Display is the licensed Neue Haas Unica, self-hosted (see fonts.css).
      The kit has no 500/600 cut, so those weights resolve to 400/700. */
   --font-display: "Neue Haas Unica", "Helvetica Neue", arial, sans-serif;
@@ -2912,4 +2917,331 @@ footer {
 nav.masthead > ul > li > a[aria-current="page"] {
   font-weight: 700;
   color: var(--mint-deep);
+}
+
+/* ============================================================
+   QUOTE FORM (quote.html, and the sitewide <dialog> that site.js
+   fetches it into). The visual grammar is the nav dropdown's,
+   deliberately: Paper Deep surfaces, the Soft Ink 1px border
+   (same reasoning — the hairline is too faint to bound a surface),
+   0.75rem radii, flat with no shadow, mint as the hover/selection
+   voice. Fields are Paper so they read against the Paper Deep
+   panel inside the dialog; on the page, the Soft Ink border does
+   the bounding (6.15:1, past the 3:1 UI-component floor).
+
+   The two branches switch on the path radios via :has() — CSS
+   only, no JS. Browsers without :has() render both branches
+   stacked under their own headings: degraded, fully usable.
+   ============================================================ */
+.quote-section {
+  padding-block: 0 clamp(3.5rem, 8vw, 6rem);
+}
+
+.quote-widget {
+  max-width: 44rem;
+}
+
+.quote-path {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.quote-path > legend {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+}
+
+.field-hint {
+  margin-top: 0.35rem;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 52ch;
+  text-wrap: pretty;
+}
+
+/* Breakpoint-free: the two options sit side by side where there's room and
+   stack where there isn't. */
+.quote-path-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.quote-path-option {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  padding: 0.8rem 0.9rem;
+  background: var(--paper-deep);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  cursor: pointer;
+}
+
+.quote-path-option:hover {
+  background: var(--mint);
+}
+
+/* Selection is carried by the radio dot itself (the honest signal); the mint
+   fill and deep border reinforce it, never replace it. */
+.quote-path-option:has(input:checked) {
+  background: var(--mint);
+  border-color: var(--mint-deep);
+}
+
+.quote-path-option input {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: 0.3rem;
+  accent-color: var(--mint-deep);
+}
+
+.quote-path-name {
+  display: block;
+  font-weight: 700;
+}
+
+.quote-path-desc {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+/* ---- The two branch forms ---- */
+.quote-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: clamp(1.8rem, 4vw, 2.6rem);
+  padding-top: clamp(1.8rem, 4vw, 2.6rem);
+  border-top: 1px solid var(--line);
+}
+
+.quote-form h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+}
+
+.quote-form .field-hint {
+  margin-block: 0.35rem 0.55rem;
+}
+
+.field label,
+.field-group > legend {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: 0;
+}
+
+.field-optional {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.field input,
+.field textarea,
+.choice-detail input {
+  display: block;
+  width: 100%;
+  margin-top: 0.45rem;
+  padding: 0.6rem 0.8rem;
+  font: inherit;
+  font-size: var(--text-base);
+  line-height: 1.4;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--ink-soft);
+  border-radius: 0.5rem;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+/* Only after the visitor has interacted with the field — never on load. The
+   red border reinforces the browser's own text message; it never replaces it. */
+.field input:user-invalid,
+.field textarea:user-invalid,
+.quote-form .choice input:user-invalid {
+  border-color: var(--rust-deep);
+  outline-color: var(--rust-deep);
+}
+
+.field-group {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.choice-list {
+  display: grid;
+  gap: 0.15rem;
+  margin-top: 0.45rem;
+}
+
+/* Choice rows borrow the dropdown's item grammar: same padding, radius, and
+   mint hover. The full row is the click target. */
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.choice:hover {
+  background: var(--mint);
+}
+
+.choice input {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--mint-deep);
+}
+
+/* The VPAT edition detail: indented under its checkbox row, clearly its
+   dependent. Always visible (hiding it until checked would need JS). */
+.choice-detail {
+  margin: 0.2rem 0 0.5rem 2.5rem;
+}
+
+.choice-detail label {
+  display: block;
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.quote-submit {
+  margin-top: 0.2rem;
+}
+
+.quote-submit-note {
+  margin-top: 0.9rem;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+.quote-status {
+  margin-top: 0.6rem;
+  font-weight: 500;
+  color: var(--mint-deep);
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+/* ---- The branch switch (CSS only) ---- */
+.quote-widget:has(#path-consulting:checked) .quote-form-services {
+  display: none;
+}
+
+.quote-widget:has(#path-services:checked) .quote-form-consulting {
+  display: none;
+}
+
+/* ---- The dialog (built by site.js on every page but quote.html) ---- */
+.quote-dialog {
+  width: min(46rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 3rem);
+  /* base.css resets margins globally, which also strips the UA stylesheet's
+     margin: auto that centers a modal dialog — restore it. */
+  margin: auto;
+  padding: 0;
+  border: 1px solid var(--ink-soft);
+  border-radius: 0.75rem;
+  background: var(--paper-deep);
+  color: var(--ink);
+  overflow: auto;
+}
+
+.quote-dialog::backdrop {
+  background: rgb(26 29 28 / 55%);
+}
+
+/* Keep the page from scrolling underneath the open dialog. */
+body:has(.quote-dialog[open]) {
+  overflow: hidden;
+}
+
+.quote-dialog-inner {
+  padding: clamp(1.4rem, 4vw, 2.2rem);
+}
+
+.quote-dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.quote-dialog-head h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
+}
+
+/* A real labelled button, in the ghost-pill costume. */
+.quote-close {
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 0.45rem 1.1rem;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.quote-close:hover {
+  background: var(--mint);
+  border-color: var(--mint-deep);
+}
+
+/* Inside the dialog the widget needs no page-column cap. */
+.quote-dialog .quote-widget {
+  max-width: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .quote-dialog[open] {
+    animation: quote-dialog-in 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .quote-dialog[open]::backdrop {
+    animation: quote-backdrop-in 0.22s ease-out;
+  }
+}
+
+@keyframes quote-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem) scale(0.985);
+  }
+}
+
+@keyframes quote-backdrop-in {
+  from {
+    opacity: 0;
+  }
 }
