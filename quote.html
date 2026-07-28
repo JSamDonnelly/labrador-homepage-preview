@@ -18,10 +18,10 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="fonts.css?v=12" />
-    <link rel="stylesheet" href="base.css?v=12" />
-    <link rel="stylesheet" href="style.css?v=12" />
-    <script src="site.js?v=12" defer></script>
+    <link rel="stylesheet" href="fonts.css?v=13" />
+    <link rel="stylesheet" href="base.css?v=13" />
+    <link rel="stylesheet" href="style.css?v=13" />
+    <script src="site.js?v=13" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -214,10 +214,22 @@
               </fieldset>
 
               <div class="field">
-                <label for="svc-url">
-                  Website URL <span class="field-optional">(optional)</span>
-                </label>
-                <input id="svc-url" name="Website URL" type="text" autocomplete="url" />
+                <label for="svc-url">Website URL</label>
+                <!-- Required, but the question above allows "App", and an app-only
+                     client would otherwise be stuck here: the hint gives them
+                     somewhere real to point. type stays "text", not "url", so a
+                     plain "example.com" is accepted without demanding a scheme. -->
+                <p class="field-hint" id="svc-url-hint">
+                  Testing a mobile app? Link its store page, or your company site.
+                </p>
+                <input
+                  id="svc-url"
+                  name="Website URL"
+                  type="text"
+                  autocomplete="url"
+                  aria-describedby="svc-url-hint"
+                  required
+                />
               </div>
 
               <fieldset class="field-group">
