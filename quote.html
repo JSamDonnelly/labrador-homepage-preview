@@ -282,10 +282,18 @@
                   Template), once filled out from your audit, becomes the conformance report buyers
                   ask for.
                 </p>
+                <!-- Order follows the real sequence of the work: test it, fix it,
+                     then document conformance. VPAT last also keeps its indented
+                     edition field at the end of the list rather than splitting
+                     the checkboxes in two. -->
                 <div class="choice-list">
                   <label class="choice">
                     <input type="checkbox" name="Services" value="Audit" data-choose-one />
                     <span>Audit</span>
+                  </label>
+                  <label class="choice">
+                    <input type="checkbox" name="Services" value="Remediation" data-choose-one />
+                    <span>Remediation</span>
                   </label>
                   <label class="choice">
                     <input type="checkbox" name="Services" value="VPAT / ACR" data-choose-one />
@@ -303,10 +311,6 @@
                       aria-describedby="svc-vpat-edition-hint"
                     />
                   </div>
-                  <label class="choice">
-                    <input type="checkbox" name="Services" value="Remediation" data-choose-one />
-                    <span>Remediation</span>
-                  </label>
                 </div>
               </fieldset>
 
