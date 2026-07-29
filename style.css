@@ -3224,7 +3224,21 @@ nav.masthead > ul > li > a[aria-current="page"] {
   border-radius: 0.75rem;
   background: var(--paper-deep);
   color: var(--ink);
-  overflow: auto;
+  /* Not the scroll container: a scrollbar inside a rounded box paints square
+     against the right edge and flattens the two corners it touches. The
+     scrolling moves to .quote-dialog-inner and this clips it, so all four
+     corners stay round and the scrollbar's ends are rounded off with them. */
+  overflow: hidden;
+}
+
+/* Scoped to [open] deliberately. Author styles outrank the UA stylesheet
+   regardless of specificity, so an unscoped display here would defeat the
+   UA's `dialog:not([open]) { display: none }` and leave the closed dialog
+   on the page. Column flex is what gives the inner element something to
+   scroll against. */
+.quote-dialog[open] {
+  display: flex;
+  flex-direction: column;
 }
 
 .quote-dialog::backdrop {
@@ -3237,6 +3251,10 @@ body:has(.quote-dialog[open]) {
 }
 
 .quote-dialog-inner {
+  /* min-height: 0 is what lets a flex item shrink below its content height;
+     without it the item refuses to shrink and nothing ever scrolls. */
+  min-height: 0;
+  overflow-y: auto;
   padding: clamp(1.4rem, 4vw, 2.2rem);
 }
 
