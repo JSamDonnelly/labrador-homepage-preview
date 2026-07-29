@@ -104,14 +104,14 @@ document.querySelectorAll("[data-chat-launch]").forEach((control) => {
 // ---------------------------------------------------------------------------
 // The quote form (quote.html) and its sitewide dialog
 //
-// The form works with JavaScript off: quote.html is a real page, its two
-// branches switch on the path radios via :has() in CSS, and each form's
-// action is a plain-text mailto. This block is the upgrade on top:
+// The form works with JavaScript off: quote.html is a real page and its two
+// branches switch on the path radios via :has() in CSS. Nothing receives a
+// submission yet — the form is finished markup waiting on a backend. This
+// block is the upgrade on top:
 //
-//   1. wireQuoteForms — replaces the flaky native mailto POST with a composed,
-//      readable email (subject from data-subject, one "Label: answer" line per
-//      field), and enforces "at least one" on checkbox groups marked
-//      data-choose-one, which HTML alone cannot express.
+//   1. wireQuoteForms — mirrors the questions both branches share, enforces
+//      "at least one" on checkbox groups marked data-choose-one (which HTML
+//      alone cannot express), and blocks the unhandled submit.
 //   2. The launcher — any link carrying data-quote-launch (every "Get a quote"
 //      control) fetches quote.html once, lifts out .quote-widget, and opens it
 //      in a native <dialog>: focus trap, Escape-to-close, and focus return all
@@ -119,8 +119,8 @@ document.querySelectorAll("[data-chat-launch]").forEach((control) => {
 //      the click falls back to plain navigation. quote.html itself has no
 //      launchers, so the widget's ids are never duplicated in one document.
 //
-// TODO (WordPress): the real form handler replaces the mailto composition;
-// everything else here carries over.
+// TODO (WordPress): give each form a real action and delete the submit
+// blocker; everything else here carries over.
 // ---------------------------------------------------------------------------
 const QUOTE_EMAIL = "hello@labradoraccessibility.com";
 
@@ -180,41 +180,21 @@ const wireQuoteForms = (root) => {
       sync();
     });
 
-    // Only fires once the form is valid — native validation runs first.
+    // Nothing receives this form yet. Native validation still runs first, so a
+    // submit only reaches here once every answer is valid; blocking it at that
+    // point keeps the answers out of the URL (a form with no action GETs back
+    // to the same page with every field in the query string) and avoids the
+    // dishonesty of a success state that sent nothing. Say plainly where the
+    // request should go instead.
+    //
+    // TODO (WordPress): delete this listener. The real handler belongs on each
+    // form's action; everything above it — the mirroring and the choose-one
+    // rule — carries over untouched.
     form.addEventListener("submit", (event) => {
       event.preventDefault();
-
-      const seen = new Set();
-      const lines = [];
-      Array.from(form.elements).forEach((el) => {
-        if (!el.name || seen.has(el.name)) return;
-        if (el.type === "submit" || el.type === "button") return;
-        let value = "";
-        if (el.type === "checkbox" || el.type === "radio") {
-          // form.elements[name] is a RadioNodeList when the name is shared
-          // (radio groups, the service checklists) and a lone element when not.
-          const named = form.elements[el.name];
-          const inputs = named instanceof RadioNodeList ? Array.from(named) : [named];
-          value = inputs
-            .filter((input) => input.checked)
-            .map((input) => input.value)
-            .join(", ");
-        } else {
-          value = el.value.trim();
-        }
-        seen.add(el.name);
-        if (value) lines.push(`${el.name}: ${value}`);
-      });
-
-      const subject = form.dataset.subject || "Quote request";
-      const body = lines.join("\r\n");
-      window.location.href = `mailto:${QUOTE_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
       const status = form.querySelector(".quote-status");
       if (status) {
-        status.textContent =
-          "Your email app should now be open with everything filled in. If nothing opened, " +
-          `email us at ${QUOTE_EMAIL}.`;
+        status.textContent = `This form isn't connected yet. Email ${QUOTE_EMAIL} and we'll pick it up from there.`;
       }
     });
   });
