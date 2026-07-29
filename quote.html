@@ -18,10 +18,10 @@
     <!-- The ?v= query is the cache-buster: bump it on every stylesheet change so
          a cached stylesheet can never pair with newer markup. In WordPress this
          job moves to wp_enqueue_style's version parameter. -->
-    <link rel="stylesheet" href="fonts.css?v=17" />
-    <link rel="stylesheet" href="base.css?v=17" />
-    <link rel="stylesheet" href="style.css?v=17" />
-    <script src="site.js?v=17" defer></script>
+    <link rel="stylesheet" href="fonts.css?v=18" />
+    <link rel="stylesheet" href="base.css?v=18" />
+    <link rel="stylesheet" href="style.css?v=18" />
+    <script src="site.js?v=18" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -402,59 +402,86 @@
                 <legend>What kind of consulting? (check at least one)</legend>
                 <p class="field-hint">Check anything that sounds right; most teams mix formats.</p>
                 <div class="choice-list">
-                  <label class="choice">
+                  <label class="choice choice-described">
                     <input
                       type="checkbox"
                       name="Consulting formats"
                       value="Lunch and learn"
                       data-choose-one
                     />
-                    <span>Lunch and learn</span>
+                    <span class="choice-text">
+                      <span class="choice-name">Lunch and learn</span>
+                      <span class="choice-desc"
+                        >One hour, your whole team, one topic done well.</span
+                      >
+                    </span>
                   </label>
-                  <label class="choice">
+                  <label class="choice choice-described">
                     <input
                       type="checkbox"
                       name="Consulting formats"
                       value="Speaking"
                       data-choose-one
                     />
-                    <span>Speaking</span>
+                    <span class="choice-text">
+                      <span class="choice-name">Speaking</span>
+                      <span class="choice-desc">Conferences, offsites, and company all-hands.</span>
+                    </span>
                   </label>
-                  <label class="choice">
+                  <label class="choice choice-described">
                     <input
                       type="checkbox"
                       name="Consulting formats"
                       value="Full-day training"
                       data-choose-one
                     />
-                    <span>Full-day training</span>
+                    <span class="choice-text">
+                      <span class="choice-name">Full-day training</span>
+                      <span class="choice-desc">Hands-on, built around your own stack.</span>
+                    </span>
                   </label>
-                  <label class="choice">
+                  <label class="choice choice-described">
                     <input
                       type="checkbox"
                       name="Consulting formats"
                       value="Design and code reviews"
                       data-choose-one
                     />
-                    <span>Design and code reviews</span>
+                    <span class="choice-text">
+                      <span class="choice-name">Design and code reviews</span>
+                      <span class="choice-desc"
+                        >Mocks, prototypes, or pull requests, before they ship.</span
+                      >
+                    </span>
                   </label>
-                  <label class="choice">
+                  <label class="choice choice-described">
                     <input
                       type="checkbox"
                       name="Consulting formats"
                       value="Office hours"
                       data-choose-one
                     />
-                    <span>Office hours</span>
+                    <span class="choice-text">
+                      <span class="choice-name">Office hours</span>
+                      <span class="choice-desc"
+                        >A standing block each week or month for whatever your team is stuck
+                        on.</span
+                      >
+                    </span>
                   </label>
-                  <label class="choice">
+                  <label class="choice choice-described">
                     <input
                       type="checkbox"
                       name="Consulting formats"
                       value="Program building"
                       data-choose-one
                     />
-                    <span>Program building</span>
+                    <span class="choice-text">
+                      <span class="choice-name">Program building</span>
+                      <span class="choice-desc"
+                        >Standards, checks, and ownership, so accessibility survives launches.</span
+                      >
+                    </span>
                   </label>
                 </div>
               </fieldset>

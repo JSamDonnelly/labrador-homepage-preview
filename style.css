@@ -3156,6 +3156,34 @@ nav.masthead > ul > li > a[aria-current="page"] {
   background: var(--mint);
 }
 
+/* A choice that carries a one-line explanation under its name. The checkbox
+   seats against the name's line box rather than centering across both lines,
+   and the description sits inside the label on purpose: it becomes part of
+   the control's accessible name, so a screen reader user hears what they are
+   picking, which is the whole point of adding it. Same two-tier grammar as
+   the path chooser at the top of the form. */
+.choice-described {
+  align-items: flex-start;
+  padding-block: 0.5rem;
+}
+
+.choice-described input {
+  margin-top: 0.25rem;
+}
+
+.choice-name {
+  display: block;
+}
+
+.choice-desc {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: var(--text-sm);
+  font-weight: 400;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
 .choice input {
   flex: none;
   width: 1.1rem;
