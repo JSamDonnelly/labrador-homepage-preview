@@ -3215,14 +3215,6 @@ nav.masthead > ul > li > a[aria-current="page"] {
   margin-top: 0.2rem;
 }
 
-.quote-submit-note {
-  margin-top: 0.9rem;
-  font-size: var(--text-sm);
-  color: var(--ink-soft);
-  max-width: 46ch;
-  text-wrap: pretty;
-}
-
 .quote-status {
   margin-top: 0.6rem;
   font-weight: 500;
